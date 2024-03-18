@@ -1,5 +1,5 @@
 <div align=center>
-	<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=La-Luna-team!&fontSize=90" />	
+	<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=brabu-team!&fontSize=90" />	
 </div>
 
 # 반려동물을 키우는 사람들을 위한 커뮤니티
