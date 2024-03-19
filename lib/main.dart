@@ -73,12 +73,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  // 스플레쉬 적용 initState
   @override
   void initState() {
     super.initState();
     initialization();
   }
 
+  // 스플레쉬 적용 initialization
   void initialization() async {
     // This is where you can initialize the resources needed by your app while
     // the splash screen is displayed.  Remove the following example because
