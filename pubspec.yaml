@@ -95,5 +95,5 @@ flutter:
 flutter_icons:
   ios: true
   android: true
-  image_path: "assets/images/mainIcon2.png"
+  image_path: "assets/images/mainIcon3.png"
   remove_alpha_ios: true
