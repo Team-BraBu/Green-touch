@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
+import 'main_Page.dart';
+
 void main() {
   //스플레쉬 위젯 적용
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
