@@ -38,6 +38,7 @@ dependencies:
   provider: ^6.1.2
   flutter_native_splash: ^2.4.0
   font_awesome_flutter: ^10.7.0
+  flutter_swiper_view: ^1.1.8
 
 dev_dependencies:
   flutter_test:
@@ -57,7 +58,10 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/images/
+    - assets/images/onboards/onBoard0.png
+    - assets/images/onboards/onBoard3.png
+    - assets/images/onboards/onBoard4.png
+    - assets/images/onboards/onBoard5.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
