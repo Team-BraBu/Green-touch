@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:greentouch/productlist.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -25,26 +26,34 @@ class MainPage extends StatelessWidget {
                     child: SizedBox(
                       width: 250,
                       height: 90,
-                      child: TextButton.icon(
-                        onPressed: () {},
-                        icon: Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: Icon(
-                            FontAwesomeIcons.pagelines,
-                            size: 50,
-                            color: Color(0xFF739072),
+                      child: Builder(builder: (context) {
+                        return TextButton.icon(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProductList(),
+                                ));
+                          },
+                          icon: Padding(
+                            padding: const EdgeInsets.only(right: 20.0),
+                            child: Icon(
+                              FontAwesomeIcons.pagelines,
+                              size: 50,
+                              color: Color(0xFF739072),
+                            ),
                           ),
-                        ),
-                        label: Text(
-                          '반려식물 보러가기',
-                          style: TextStyle(
-                            fontSize: 21,
-                            fontWeight: FontWeight.normal,
-                            color: Color(0xFF739072),
-                            fontFamily: 'Jua',
+                          label: Text(
+                            '반려식물 보러가기',
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.normal,
+                              color: Color(0xFF739072),
+                              fontFamily: 'Jua',
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      }),
                     ),
                   ),
                 ],
