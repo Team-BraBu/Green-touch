@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -26,17 +27,21 @@ class MainPage extends StatelessWidget {
                       height: 90,
                       child: TextButton.icon(
                         onPressed: () {},
-                        icon: Icon(
-                          Icons.yard_outlined,
-                          size: 50,
-                          color: Color(0xFF739072),
+                        icon: Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: Icon(
+                            FontAwesomeIcons.pagelines,
+                            size: 50,
+                            color: Color(0xFF739072),
+                          ),
                         ),
                         label: Text(
                           '반려식물 보러가기',
                           style: TextStyle(
                             fontSize: 21,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                             color: Color(0xFF739072),
+                            fontFamily: 'Jua',
                           ),
                         ),
                       ),
@@ -55,17 +60,21 @@ class MainPage extends StatelessWidget {
                       height: 90,
                       child: TextButton.icon(
                         onPressed: () {},
-                        icon: Icon(
-                          Icons.cottage_outlined,
-                          size: 50,
-                          color: Color(0xFF739072),
+                        icon: Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: Icon(
+                            Icons.cottage_outlined,
+                            size: 50,
+                            color: Color(0xFF739072),
+                          ),
                         ),
                         label: Text(
                           '인테리어 보러가기',
                           style: TextStyle(
                             fontSize: 21,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                             color: Color(0xFF739072),
+                            fontFamily: 'Jua',
                           ),
                         ),
                       ),
@@ -80,21 +89,25 @@ class MainPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: SizedBox(
-                      width: 165,
+                      width: 175,
                       height: 90,
                       child: TextButton.icon(
                         onPressed: () {},
-                        icon: Icon(
-                          Icons.shopping_bag_outlined,
-                          size: 50,
-                          color: Color(0xFF739072),
+                        icon: Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: Icon(
+                            Icons.shopping_bag_outlined,
+                            size: 50,
+                            color: Color(0xFF739072),
+                          ),
                         ),
                         label: Text(
                           '장바구니',
                           style: TextStyle(
                             fontSize: 21,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                             color: Color(0xFF739072),
+                            fontFamily: 'Jua',
                           ),
                         ),
                       ),
@@ -109,21 +122,25 @@ class MainPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: SizedBox(
-                      width: 235,
+                      width: 202,
                       height: 90,
                       child: TextButton.icon(
                         onPressed: () {},
-                        icon: Icon(
-                          Icons.person_outline,
-                          size: 50,
-                          color: Color(0xFF739072),
+                        icon: Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: Icon(
+                            Icons.person_outline,
+                            size: 50,
+                            color: Color(0xFF739072),
+                          ),
                         ),
                         label: Text(
-                          '내 정보 보러가기',
+                          '내 정보 보기',
                           style: TextStyle(
                             fontSize: 21,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                             color: Color(0xFF739072),
+                            fontFamily: 'Jua',
                           ),
                         ),
                       ),
@@ -132,28 +149,45 @@ class MainPage extends StatelessWidget {
                 ],
               ),
               Divider(color: Color(0xFFF0EADB)),
+              SizedBox(height: 70), // 버튼 위에 여백 추가
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
                     onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF739072),
+                      fixedSize: Size(180, 60),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
                     child: Text(
                       '회원 가입',
                       style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF739072),
+                        fontWeight: FontWeight.normal,
+                        color: Colors.white,
+                        fontFamily: 'Jua',
                       ),
                     ),
                   ),
                   ElevatedButton(
                     onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFECE3CE),
+                      fixedSize: Size(180, 60),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
                     child: Text(
                       '로그인',
                       style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF739072),
+                        fontWeight: FontWeight.normal,
+                        color: Colors.white,
+                        fontFamily: 'Jua',
                       ),
                     ),
                   ),
