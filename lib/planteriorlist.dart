@@ -6,6 +6,10 @@ class PlanteriorList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> images = [
+      'assets/images/planterior1.png',
+      'assets/images/planterior1.png'
+    ];
     return Scaffold(
       appBar: AppBar(
         actions: [Image.asset('assets/images/logo.png')],
