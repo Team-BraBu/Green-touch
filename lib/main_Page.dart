@@ -96,7 +96,6 @@ class MainPage extends StatelessWidget {
                       width: 175,
                       height: 90,
                       child: TextButton.icon(
-                        onPressed: () {},
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -163,44 +162,6 @@ class MainPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF739072),
-                      fixedSize: Size(180, 60),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: Text(
-                      '회원 가입',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white,
-                        fontFamily: 'Jua',
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFECE3CE),
-                      fixedSize: Size(180, 60),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: Text(
-                      '로그인',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white,
-                        fontFamily: 'Jua',
-                      ),
-                    ),
-                  ),
                   Builder(builder: (context) {
                     return ElevatedButton(
                       onPressed: () {

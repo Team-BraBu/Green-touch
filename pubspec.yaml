@@ -38,8 +38,6 @@ dependencies:
   provider: ^6.1.2
   flutter_native_splash: ^2.4.0
   font_awesome_flutter: ^10.7.0
-  flutter_native_splash: ^2.4.0
-  font_awesome_flutter: ^10.7.0
   flutter_swiper_view: ^1.1.8
   shared_preferences: ^2.2.2
 
@@ -87,11 +85,6 @@ flutter:
     - family: Jua
       fonts:
         - asset: assets/fonts/Jua-Regular.ttf
-
-  fonts:
-   - family: Jua
-     fonts:
-       - asset: assets/fonts/Jua-Regular.ttf
 
   #   - family: Trajan Pro
   #     fonts:
