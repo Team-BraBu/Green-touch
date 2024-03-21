@@ -18,6 +18,11 @@ class PlanteriorList extends StatelessWidget {
       '#식집사 #식물 #공기정화_식물'
     ];
 
+    final List<String> dates = [
+      '2024년 03월 01일',
+      '2024년 03월 02일',
+    ];
+
     return Scaffold(
         appBar: AppBar(
           actions: [Image.asset('assets/images/logo.png')],
@@ -28,10 +33,12 @@ class PlanteriorList extends StatelessWidget {
             final image = images[index];
             final content = contents[index];
             final hashtag = hashtags[index];
+            final date = dates[index];
             return Feed(
               imagePath: image,
               contentPath: content,
               hashtagPath: hashtag,
+              datePath: date,
             );
           },
         ));

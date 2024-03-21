@@ -7,10 +7,12 @@ class Feed extends StatefulWidget {
     required this.imagePath,
     required this.contentPath,
     required this.hashtagPath,
+    required this.datePath,
   });
   final String imagePath;
   final String contentPath;
   final String hashtagPath;
+  final String datePath;
 
   @override
   State<Feed> createState() => _FeedState();
@@ -69,7 +71,7 @@ class _FeedState extends State<Feed> {
         Padding(
           padding: const EdgeInsets.all(8),
           child: Text(
-            '2024년 03월 21일',
+            widget.datePath,
             style: TextStyle(color: Colors.grey),
           ),
         ),
