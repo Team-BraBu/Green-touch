@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:greentouch/main_Page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoarding extends StatelessWidget {
   final List<String> images = [

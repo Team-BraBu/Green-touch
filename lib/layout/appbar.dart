@@ -2,15 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:greentouch/main_Page.dart';
 
-class BaseAppBar extends StatefulWidget implements PreferredSizeWidget {
-  @override
-  State<BaseAppBar> createState() => _BaseAppBarState();
-
+class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
-}
 
-class _BaseAppBarState extends State<BaseAppBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +17,8 @@ class _BaseAppBarState extends State<BaseAppBar> {
             size: 40,
           ),
           onPressed: () {
-            Scaffold.of(context)
-                .openDrawer(); // leading 아이콘 버튼을 눌렀을 때 Drawer를 열도록 함
+            // leading 아이콘 버튼을 눌렀을 때 Drawer를 열도록 함
+            Scaffold.of(context).openDrawer();
           },
         ),
         actions: [
