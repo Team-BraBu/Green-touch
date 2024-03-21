@@ -25,22 +25,62 @@ class ProductList extends StatelessWidget {
           Image.asset('assets/images/logo.png'),
         ],
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+        ),
         padding: EdgeInsets.all(8),
-        children: List<Widget>.generate(pimages.length, (index) {
-          final String pimage = pimages[index];
-          return Container(
-            color: Color(0xFF3A4D39),
-            child: Image.asset(pimage),
+        itemCount: pimages.length,
+        itemBuilder: (context, index) {
+          final pimage = pimages[index];
+          return GestureDetector(
+            onTap: () {
+              // 상품 클릭 이벤트 처리
+            },
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    color: Color(0xFFF0EADB),
+                    child: Image.asset(
+                      pimage,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Text(
+                    '상품 이름 $index',
+                    style: TextStyle(color: Color(0xFF3A4D39)),
+                  ),
+                )
+              ],
+            ),
           );
-        }),
+        },
       ),
     );
   }
 }
+
+// ProductImage(pimagePath: pimage)
+
+// GridView.count(
+// crossAxisCount: 2,
+// crossAxisSpacing: 8,
+// mainAxisSpacing: 8,
+// padding: EdgeInsets.all(8),
+// children: List<Widget>.generate(pimages.length, (index) {
+// final String pimage = pimages[index];
+// return Container(
+// color: Color(0xFF3A4D39),
+// child: Image.asset(pimage),
+// );
+// }),
+// ),
 
 // GridView.count(crossAxisCount: 2, children: [List.generate(pimages.length, (index) {
 // return GestureDetector(
