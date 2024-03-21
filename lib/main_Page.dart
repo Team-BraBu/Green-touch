@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:greentouch/tab_cart.dart';
+import 'package:greentouch/user/login_Page.dart';
+import 'package:greentouch/user/register_Page.dart';
 
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, //debug배너 삭제
       home: Scaffold(
         body: Center(
           child: Column(
@@ -93,6 +97,12 @@ class MainPage extends StatelessWidget {
                       height: 90,
                       child: TextButton.icon(
                         onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => tabcart()),
+                          );
+                        },
                         icon: Padding(
                           padding: const EdgeInsets.only(right: 20.0),
                           child: Icon(
@@ -191,6 +201,59 @@ class MainPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Builder(builder: (context) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterPage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF739072),
+                        fixedSize: Size(180, 60),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: Text(
+                        '회원 가입',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white,
+                          fontFamily: 'Jua',
+                        ),
+                      ),
+                    );
+                  }),
+                  Builder(builder: (context) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFECE3CE),
+                        fixedSize: Size(180, 60),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: Text(
+                        '로그인',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white,
+                          fontFamily: 'Jua',
+                        ),
+                      ),
+                    );
+                  }),
                 ],
               ),
             ],

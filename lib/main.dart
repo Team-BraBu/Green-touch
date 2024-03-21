@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-
-import 'main_Page.dart';
 
 void main() {
-  //스플레쉬 위젯 적용
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
   runApp(const MyApp());
 }
 
@@ -18,42 +11,53 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyHomePage();
+    // SharedPreferences 에서 온보딩 완료 여부 조회
+    // isOnboarded 에 해당하는 값에서 null을 반환하는 경우 false를 기본값으로 지정.
+    bool isOnboarded = prefs.getBool('isOnboarded') ?? false;
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Your App Title',
+      home: isOnboarded ? OnBoarding() : MyHomePage(),
+    );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({super.key, required this.title});
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // 스플레쉬 적용 initState
-  @override
-  void initState() {
-    super.initState();
-    initialization();
-  }
+  int _counter = 0;
 
-  // 스플레쉬 적용 initialization
-  void initialization() async {
-    // This is where you can initialize the resources needed by your app while
-    // the splash screen is displayed.  Remove the following example because
-    // delaying the user experience is a bad design practice!
-    // ignore_for_file: avoid_print
-    print('ready in 3...');
-    await Future.delayed(const Duration(seconds: 1));
-    print('ready in 2...');
-    await Future.delayed(const Duration(seconds: 1));
-    print('ready in 1...');
-    await Future.delayed(const Duration(seconds: 1));
-    print('go!');
-    FlutterNativeSplash.remove();
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return MainPage();
+    return OnBoarding();
   }
 }
