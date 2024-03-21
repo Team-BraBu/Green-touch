@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Feed extends StatefulWidget {
-  const Feed({super.key, required this.imagePath});
+  const Feed({super.key, required this.imagePath, required this.contentPath});
   final String imagePath;
+  final String contentPath;
 
   @override
   State<Feed> createState() => _FeedState();
@@ -18,13 +19,11 @@ class _FeedState extends State<Feed> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: Image.asset(
-            widget.imagePath,
-            height: 400,
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
+        Image.asset(
+          widget.imagePath,
+          height: 400,
+          width: double.infinity,
+          fit: BoxFit.cover,
         ),
         Row(
           children: [
@@ -44,16 +43,22 @@ class _FeedState extends State<Feed> {
                     isMarked = !isMarked;
                   });
                 },
-                icon: Icon(CupertinoIcons.bookmark))
+                icon: Icon(
+                  CupertinoIcons.bookmark,
+                  color: isMarked ? Colors.grey : Colors.black,
+                ))
           ],
         ),
         Padding(
           padding: const EdgeInsets.all(8),
-          child: Text('플랜테리어 짱'),
+          child: Text(widget.contentPath),
         ),
         Padding(
           padding: const EdgeInsets.all(8),
-          child: Text('#플랜테리어 #식물 #초보자가_키우기_쉬운_식물'),
+          child: Text(
+            '#플랜테리어 #식물 #초보자가_키우기_쉬운_식물',
+            style: TextStyle(color: Colors.blueAccent),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(8),

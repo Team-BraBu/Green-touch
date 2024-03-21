@@ -10,6 +10,9 @@ class PlanteriorList extends StatelessWidget {
       'assets/images/planterior1.png',
       'assets/images/planterior2.png'
     ];
+
+    final List<String> contents = ['식물과 함께하는 인테리어 어떠세요?', '이제는 나도 식집사!'];
+
     return Scaffold(
         appBar: AppBar(
           actions: [Image.asset('assets/images/logo.png')],
@@ -18,18 +21,12 @@ class PlanteriorList extends StatelessWidget {
           itemCount: images.length,
           itemBuilder: (context, index) {
             final image = images[index];
+            final content = contents[index];
             return Feed(
               imagePath: image,
+              contentPath: content,
             );
           },
-        )
-        // GridView.count(
-        //   crossAxisCount: 1,
-        //   mainAxisSpacing: 10,
-        //   crossAxisSpacing: 8,
-        //   padding: EdgeInsets.all(8),
-        //   children: [Feed()],
-        // ),
-        );
+        ));
   }
 }
