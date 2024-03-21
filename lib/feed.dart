@@ -44,7 +44,7 @@ class _FeedState extends State<Feed> {
                     isMarked = !isMarked;
                   });
                 },
-                icon: Icon(CupertinoIcons.bookmark, color: ,))
+                icon: Icon(CupertinoIcons.bookmark))
           ],
         ),
         Padding(
