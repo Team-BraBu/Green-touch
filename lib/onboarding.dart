@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
+import 'package:greentouch/main_Page.dart';
 
 class OnBoarding extends StatelessWidget {
   final List<String> images = [
@@ -32,6 +33,10 @@ class OnBoarding extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       // 버튼이 클릭되었을 때 수행할 동작 정의
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => MainPage()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xff739072),
@@ -39,7 +44,7 @@ class OnBoarding extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     child: Text(
-                      '식물 친구 찾기',
+                      '식물  친구  찾기',
                       style: TextStyle(
                           color: Color(0xffece3ce),
                           fontFamily: 'Jua',
@@ -52,18 +57,42 @@ class OnBoarding extends StatelessWidget {
             );
           } else {
             // 마지막 페이지가 아닌 경우
-            return Image.asset(
-              images[index],
-              fit: BoxFit.fill,
+            return Stack(
+              fit: StackFit.expand,
+              children: [
+                Image.asset(
+                  images[index],
+                  fit: BoxFit.fill,
+                ),
+                Positioned(
+                  top: 60,
+                  right: 30,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => MainPage(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'skip',
+                      style: TextStyle(color: Color(0xff739072), fontSize: 20),
+                    ),
+                  ),
+                ),
+              ],
             );
           }
         },
         itemCount: images.length,
-        loop: true,
+        loop: false,
         // 마지막 슬라이드에서 다시 첫 번째 슬라이드로 돌아감
         pagination: SwiperPagination(),
         // 페이지 표시기 표시
-        control: SwiperControl(color: Color(0xff739072)), // 이전 및 다음 버튼 표시
+        control: SwiperControl(color: Color(0xff739072)), // 이전 및
+        // 다음 버튼 표시
       ),
     );
   }
