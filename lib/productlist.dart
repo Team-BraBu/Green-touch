@@ -25,6 +25,19 @@ class ProductList extends StatelessWidget {
           Image.asset('assets/images/logo.png'),
         ],
       ),
+      body: GridView.count(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        padding: EdgeInsets.all(8),
+        children: List<Widget>.generate(pimages.length, (index) {
+          final String pimage = pimages[index];
+          return Container(
+            color: Color(0xFF3A4D39),
+            child: Image.asset(pimage),
+          );
+        }),
+      ),
     );
   }
 }
