@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:greentouch/main_Page.dart';
+import '../tab_cart.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -27,7 +28,12 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: Color(0xFF739072),
             size: 35,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => tabcart()),
+            );
+          },
         ),
       ],
       title: GestureDetector(
@@ -44,6 +50,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
           fit: BoxFit.contain,
           scale: 4.5,
         ),
+
       ),
       centerTitle: true,
     );
