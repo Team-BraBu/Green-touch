@@ -2,9 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Feed extends StatefulWidget {
-  const Feed({super.key, required this.imagePath, required this.contentPath});
+  const Feed({
+    super.key,
+    required this.imagePath,
+    required this.contentPath,
+    required this.hashtagPath,
+  });
   final String imagePath;
   final String contentPath;
+  final String hashtagPath;
 
   @override
   State<Feed> createState() => _FeedState();
@@ -56,7 +62,7 @@ class _FeedState extends State<Feed> {
         Padding(
           padding: const EdgeInsets.all(8),
           child: Text(
-            '#플랜테리어 #식물 #초보자가_키우기_쉬운_식물',
+            widget.hashtagPath,
             style: TextStyle(color: Colors.blueAccent),
           ),
         ),
