@@ -8,6 +8,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, //debug배너 삭제
       home: Scaffold(
         body: Center(
           child: Column(
