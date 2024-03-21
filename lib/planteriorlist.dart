@@ -11,11 +11,14 @@ class PlanteriorList extends StatelessWidget {
       'assets/images/planterior2.png'
     ];
 
-    final List<String> contents = ['식물과 함께하는 인테리어 어떠세요?', '이제는 나도 식집사!'];
+    final List<String> contents = [
+      '식물과 함께하는 인테리어 어떠세요?',
+      '이제는 나도 식집사!',
+    ];
 
     final List<String> hashtags = [
       '#플랜테리어 #식물 #초보자가_키우기_쉬운_식물',
-      '#식집사 #식물 #공기정화_식물'
+      '#식집사 #식물 #공기정화_식물',
     ];
 
     final List<String> dates = [
