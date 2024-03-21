@@ -60,7 +60,7 @@ class MainPage extends StatelessWidget {
                       height: 90,
                       child: TextButton.icon(
                         onPressed: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder:  (_) => ,))
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder:  (_) => ,));
                         },
                         icon: Padding(
                           padding: const EdgeInsets.only(right: 20.0),
