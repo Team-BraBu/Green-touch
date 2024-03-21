@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  carousel_slider: ^4.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -38,6 +38,8 @@ dependencies:
   provider: ^6.1.2
   flutter_native_splash: ^2.4.0
   font_awesome_flutter: ^10.7.0
+  flutter_swiper_view: ^1.1.8
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -57,7 +59,13 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/images/
+    - assets/images/onboards/onBoard0.png
+    - assets/images/onboards/onBoard3.png
+    - assets/images/onboards/onBoard4.png
+    - assets/images/onboards/onBoard5.png
+    - assets/images/logo.png
+    - assets/images/banner/
+    - assets/images/plant/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

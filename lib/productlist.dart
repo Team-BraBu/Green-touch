@@ -1,62 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:greentouch/productlist_image.dart';
 
-class ProductList extends StatefulWidget {
+class ProductList extends StatelessWidget {
   const ProductList({super.key});
 
   @override
-  State<ProductList> createState() => _ProductListState();
-}
-
-class _ProductListState extends State<ProductList> {
-  @override
   Widget build(BuildContext context) {
-    final plantItem = {
-      "list": [
-        {"image": "assets/images/plant1.png", "name": "아레카야자"},
-        {"image": "assets/images/plant2.png", "name": "관음죽"},
-        {"image": "assets/images/plant3.png", "name": "대나무야자"},
-        {"image": "assets/images/plant4.png", "name": "인도고무나무"},
-        {"image": "assets/images/plant5.jpg", "name": "아이비"},
-        {"image": "assets/images/plant6.png", "name": "황금죽"},
-        {"image": "assets/images/plant7.png", "name": "피닉스야자"},
-        {"image": "assets/images/plant8.png", "name": "보스턴고사리"},
-        {"image": "assets/images/plant9.png", "name": "스파티필름"},
-        {"image": "assets/images/plant10.png", "name": "행운목"},
-      ]
-    };
+    final List<String> pimages = [
+      'assets/images/plant/plant1.png',
+      'assets/images/plant/plant2.png',
+      'assets/images/plant/plant3.png',
+      'assets/images/plant/plant4.png',
+      'assets/images/plant/plant5.jpg',
+      'assets/images/plant/plant6.png',
+      'assets/images/plant/plant7.png',
+      'assets/images/plant/plant8.png',
+      'assets/images/plant/plant9.png',
+      'assets/images/plant/plant10.png',
+    ];
 
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            Image.asset('assets/images/logo.png'),
-          ],
-        ),
-        body: GridView.count(
-          crossAxisCount: 2,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          padding: EdgeInsets.all(8),
-          children: List.generate(
-            10,
-            (index) {
-              return Center(
-                child: ListView(
-                  children: <Widget>[
-                    Image.asset('assets/images/plant1.png'),
-                    // Image.asset('assets/images/plant2.png'),
-                    // Image.asset('assets/images/plant/plant3.png'),
-                    // Image.asset('assets/images/plant/plant4.png'),
-                    // Image.asset('assets/images/plant/plant5.jpg'),
-                    // Image.asset('assets/images/plant/plant6.png'),
-                    // Image.asset('assets/images/plant/plant7.png'),
-                    // Image.asset('assets/images/plant/plant8.png'),
-                    // Image.asset('assets/images/plant/plant9.png'),
-                    // Image.asset('assets/images/plant/plant10.png'),
-                  ],
-                ),
-              );
-            },
-          ),
-        ));
+      appBar: AppBar(
+        actions: [
+          Image.asset('assets/images/logo.png'),
+        ],
+      ),
+      body: ,
+    );
   }
 }
+
+// GridView.count(crossAxisCount: 2, children: [List.generate(pimages.length, (index) {
+// return GestureDetector(
+// child: Stack(
+// children: [
+// Positioned.fill(child: Image.asset(pimages, fit: BoxFit.fill,))
+// ],
+// ),
+// );
+// };),]),
+
+// ListView.builder(
+// itemCount: images.length,
+// itemBuilder: (context, index) {
+// final image = images[index];
+// final content = contents[index];
+// final hashtag = hashtags[index];
+// final date = dates[index];
+// return Feed(
+// imagePath: image,
+// contentPath: content,
+// hashtagPath: hashtag,
+// datePath: date,
+// );
+// },
+// ));
