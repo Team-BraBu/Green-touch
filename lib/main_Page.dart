@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:greentouch/planteriorlist.dart';
+import 'package:greentouch/tab_cart.dart';
 import 'package:greentouch/user/login_Page.dart';
 import 'package:greentouch/user/register_Page.dart';
 
@@ -104,7 +105,12 @@ class MainPage extends StatelessWidget {
                       width: 175,
                       height: 90,
                       child: TextButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => tabcart()),
+                          );
+                        },
                         icon: Padding(
                           padding: const EdgeInsets.only(right: 20.0),
                           child: Icon(

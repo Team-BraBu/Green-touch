@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:greentouch/onboarding.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+late SharedPreferences prefs;
+
+void main() async {
   //스플레쉬 위젯 적용
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  prefs = await SharedPreferences.getInstance();
 
   runApp(const MyApp());
 }
@@ -16,10 +20,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // SharedPreferences 에서 온보딩 완료 여부 조회
+    // isOnboarded 에 해당하는 값에서 null을 반환하는 경우 false를 기본값으로 지정.
+    bool isOnboarded = prefs.getBool('isOnboarded') ?? false;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Your App Title',
-      home: MyHomePage(),
+      home: isOnboarded ? OnBoarding() : MyHomePage(),
     );
   }
 }

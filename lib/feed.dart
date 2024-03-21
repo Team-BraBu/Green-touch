@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Feed extends StatefulWidget {
-  const Feed({super.key});
+  const Feed({super.key, required this.imagePath});
+  final String imagePath;
 
   @override
   State<Feed> createState() => _FeedState();
@@ -19,7 +20,7 @@ class _FeedState extends State<Feed> {
       children: [
         Expanded(
           child: Image.asset(
-            'assets/images/planterior1.png',
+            widget.imagePath,
             height: 400,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -51,11 +52,11 @@ class _FeedState extends State<Feed> {
           child: Text('플랜테리어 짱'),
         ),
         Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Text('#플랜테리어 #식물 #초보자가_키우기_쉬운_식물'),
         ),
         Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Text(
             '2024년 03월 21일',
             style: TextStyle(color: Colors.grey),

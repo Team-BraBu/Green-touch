@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:greentouch/main_Page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoarding extends StatelessWidget {
   final List<String> images = [
@@ -11,7 +12,6 @@ class OnBoarding extends StatelessWidget {
   ];
 
   OnBoarding({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +31,11 @@ class OnBoarding extends StatelessWidget {
                   left: 50, // 버튼을 이미지 좌측에 위치시킴
                   right: 50, // 버튼을 이미지 우측에 위치시킴
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
                       // 버튼이 클릭되었을 때 수행할 동작 정의
+                      prefs.setBool('isOnboarded', true);
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (_) => MainPage()),
@@ -68,7 +71,11 @@ class OnBoarding extends StatelessWidget {
                   top: 60,
                   right: 30,
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      // 버튼이 클릭되었을 때 수행할 동작 정의
+                      prefs.setBool('isOnboarded', true);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
