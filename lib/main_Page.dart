@@ -61,32 +61,34 @@ class MainPage extends StatelessWidget {
                     child: SizedBox(
                       width: 250,
                       height: 90,
-                      child: TextButton.icon(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PlanteriorList(),
-                              ));
-                        },
-                        icon: Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: Icon(
-                            Icons.cottage_outlined,
-                            size: 50,
-                            color: Color(0xFF739072),
+                      child: Builder(builder: (context) {
+                        return TextButton.icon(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PlanteriorList(),
+                                ));
+                          },
+                          icon: Padding(
+                            padding: const EdgeInsets.only(right: 20.0),
+                            child: Icon(
+                              Icons.cottage_outlined,
+                              size: 50,
+                              color: Color(0xFF739072),
+                            ),
                           ),
-                        ),
-                        label: Text(
-                          '인테리어 보러가기',
-                          style: TextStyle(
-                            fontSize: 21,
-                            fontWeight: FontWeight.normal,
-                            color: Color(0xFF739072),
-                            fontFamily: 'Jua',
+                          label: Text(
+                            '인테리어 보러가기',
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.normal,
+                              color: Color(0xFF739072),
+                              fontFamily: 'Jua',
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      }),
                     ),
                   ),
                 ],
