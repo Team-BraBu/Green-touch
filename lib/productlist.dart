@@ -25,7 +25,6 @@ class ProductList extends StatelessWidget {
           Image.asset('assets/images/logo.png'),
         ],
       ),
-      body: ,
     );
   }
 }
