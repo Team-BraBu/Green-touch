@@ -32,10 +32,10 @@ class OnBoarding extends StatelessWidget {
                   right: 50, // 버튼을 이미지 우측에 위치시킴
                   child: ElevatedButton(
                     onPressed: () async {
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      // 버튼이 클릭되었을 때 수행할 동작 정의
-                      prefs.setBool('isOnboarded', true);
+                      // SharedPreferences prefs =
+                      //     await SharedPreferences.getInstance();
+                      // // 버튼이 클릭되었을 때 수행할 동작 정의
+                      // prefs.setBool('isOnboarded', true);
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (_) => MainPage()),
@@ -72,10 +72,10 @@ class OnBoarding extends StatelessWidget {
                   right: 30,
                   child: GestureDetector(
                     onTap: () async {
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      // 버튼이 클릭되었을 때 수행할 동작 정의
-                      prefs.setBool('isOnboarded', true);
+                      // SharedPreferences prefs =
+                      //     await SharedPreferences.getInstance();
+                      // // 버튼이 클릭되었을 때 수행할 동작 정의
+                      // prefs.setBool('isOnboarded', true);
                       Navigator.push(
                         context,
                         MaterialPageRoute(

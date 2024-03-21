@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:greentouch/layout/appbar.dart';
 import 'package:greentouch/main_Page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: BaseAppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
