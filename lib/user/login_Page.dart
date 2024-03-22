@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar.dart';
 import 'package:greentouch/main_Page.dart';
 
+import '../layout/app_drawer.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -17,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(),
+      drawer: AppDrawer(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'calendar.dart';
+import 'layout/app_drawer.dart';
 import 'layout/appbar.dart';
 
 class MyPage extends StatefulWidget {
@@ -20,6 +21,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(),
+      drawer: AppDrawer(),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
