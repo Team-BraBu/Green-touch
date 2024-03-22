@@ -93,9 +93,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-   - family: Jua
-     fonts:
-       - asset: assets/fonts/Jua-Regular.ttf
+    - family: Jua
+      fonts:
+        - asset: assets/fonts/Jua-Regular.ttf
 
   #   - family: Trajan Pro
   #     fonts:
@@ -115,4 +115,3 @@ flutter_native_splash:
   color: "#739072"
   android_12:
     color: "#739072"
-
