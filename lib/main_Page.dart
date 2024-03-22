@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:greentouch/mypage.dart';
+import 'package:greentouch/planteriorlist.dart';
 import 'package:greentouch/productlist.dart';
 import 'package:greentouch/tab_cart.dart';
 import 'package:greentouch/user/login_Page.dart';
@@ -71,7 +72,13 @@ class MainPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PlanteriorList(),
+                            ));
+                      },
                       child: SizedBox(
                         width: 370,
                         height: 90,
