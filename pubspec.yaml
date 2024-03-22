@@ -68,6 +68,7 @@ flutter:
     - assets/images/banner/
     - assets/images/barimg.PNG
     - assets/images/bo.png
+    - assets/imgaes/minions.jpg
     - assets/images/plant/
 
   # The following line ensures that the Material Icons font is
