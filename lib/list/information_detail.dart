@@ -1,9 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:greentouch/layout/appbar.dart';
 
-import '../layout/app_drawer.dart';
 import '../mypage/tab_cart.dart';
 
 void main() {
@@ -14,6 +10,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   // 어플리케이션의 루트 위젯입니다.
   @override
   Widget build(BuildContext context) {
@@ -40,8 +37,17 @@ class _InformationDetailState extends State<InformationDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(),
-      drawer: AppDrawer(),
+      appBar: AppBar(
+        title: Center(
+          child: Image.asset(
+            'assets/images/logo.png',
+            fit: BoxFit.contain,
+            scale: 4.5,
+          ),
+        ),
+      ),
+
+      //drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
