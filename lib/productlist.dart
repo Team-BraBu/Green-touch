@@ -87,19 +87,6 @@ class _ProductListState extends State<ProductList> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> pprices = [
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-    ];
-
     return Scaffold(
       appBar: BaseAppBar(),
       drawer: AppDrawer(),
