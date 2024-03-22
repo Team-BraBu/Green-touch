@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
     bool isOnboarded = prefs.getBool('isOnboarded') ?? false;
 
     return MaterialApp(
+      // scaffoldAppBar: BaseAppBar(),
       debugShowCheckedModeBanner: false,
       title: 'Your App Title',
       home: isOnboarded ? OnBoarding() : MyHomePage(),
