@@ -50,7 +50,6 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
           fit: BoxFit.contain,
           scale: 4.5,
         ),
-
       ),
       centerTitle: true,
     );
