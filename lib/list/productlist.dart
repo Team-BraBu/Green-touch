@@ -165,7 +165,7 @@ class _ProductListState extends State<ProductList> {
                   subtitle: 'subtitle',
                   price: pprice,
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => InformationDetail(),

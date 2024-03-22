@@ -1,5 +1,5 @@
-<div align=center>
-	<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=brabu-team!&fontSize=90" />	
+<div style="text-align: center;">
+	<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=brabu-team!&fontSize=90"  alt=""/>	
 </div>
 
 # 식집사들을 위한 식물 구매 키오스크
