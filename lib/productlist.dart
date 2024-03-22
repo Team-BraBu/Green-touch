@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'layout/app_drawer.dart';
 import 'layout/appbar.dart';
 
-class ProductList extends StatelessWidget {
+class ProductList extends StatefulWidget {
   const ProductList({super.key});
 
+  @override
+  State<ProductList> createState() => _ProductListState();
+}
+
+class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
     final List<String> pimages = [
@@ -51,82 +56,94 @@ class ProductList extends StatelessWidget {
     return Scaffold(
       appBar: BaseAppBar(),
       drawer: AppDrawer(),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-        ),
-        padding: EdgeInsets.all(8),
-        itemCount: pimages.length,
-        itemBuilder: (context, index) {
-          final pimage = pimages[index];
-          final pcontent = pcontents[index];
-          final pprice = pprices[index];
-          return Card(
-            color: Color(0xffece3ce),
-            child: GestureDetector(
-              onTap: () {
-                // 상품 클릭 이벤트 처리
-              },
-              child: Column(
-                children: [
-                  AspectRatio(
-                    aspectRatio: 16 / 9,
-                    child: Image.asset(
-                      pimage,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      pcontent,
-                      style: TextStyle(color: Color(0xFF3A4D39)),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      pprice,
-                      style: TextStyle(color: Color(0xFF3A4D39)),
-                    ),
-                  ),
-                ],
+      body: Column(
+        children: [
+          SizedBox(
+            height: 15,
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff739072), // background (button) color
+                foregroundColor: Colors.white,
               ),
+              child: Text('공기 정화 식물'),
             ),
-          );
-        },
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff739072), // background (button) color
+                foregroundColor: Colors.white,
+              ),
+              child: Text('초보자 식물'),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff739072), // background (button) color
+                foregroundColor: Colors.white,
+              ),
+              child: Text('기타 등등'),
+            ),
+          ]),
+          SizedBox(
+            height: 15,
+          ),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              padding: EdgeInsets.all(8),
+              itemCount: pimages.length,
+              itemBuilder: (context, index) {
+                final pimage = pimages[index];
+                final pcontent = pcontents[index];
+                final pprice = pprices[index];
+                return Card(
+                  color: Color(0xffece3ce),
+                  child: GestureDetector(
+                    onTap: () {
+                      // 상품 클릭 이벤트 처리
+                    },
+                    child: Column(
+                      children: [
+                        AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: Image.asset(
+                            pimage,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            pcontent,
+                            style: TextStyle(color: Color(0xFF3A4D39)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            pprice,
+                            style: TextStyle(color: Color(0xFF3A4D39)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-
-// ProductImage(pimagePath: pimage)
-
-// GridView.count(
-// crossAxisCount: 2,
-// crossAxisSpacing: 8,
-// mainAxisSpacing: 8,
-// padding: EdgeInsets.all(8),
-// children: List<Widget>.generate(pimages.length, (index) {
-// final String pimage = pimages[index];
-// return Container(
-// color: Color(0xFF3A4D39),
-// child: Image.asset(pimage),
-// );
-// }),
-// ),
-
-// GridView.count(crossAxisCount: 2, children: [List.generate(pimages.length, (index) {
-// return GestureDetector(
-// child: Stack(
-// children: [
-// Positioned.fill(child: Image.asset(pimages, fit: BoxFit.fill,))
-// ],
-// ),
-// );
-// };),]),
 
 // ListView.builder(
 // itemCount: images.length,
