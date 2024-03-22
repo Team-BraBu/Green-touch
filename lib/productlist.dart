@@ -87,6 +87,9 @@ class _ProductListState extends State<ProductList> {
     });
   }
 
+  // 카테고리 선택 여부
+  bool checked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,24 +104,37 @@ class _ProductListState extends State<ProductList> {
             ElevatedButton(
               onPressed: () => _onCategorySelected('공기 정화 식물'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff739072), // background (button) color
-                foregroundColor: Colors.white,
+                minimumSize: Size(100, 30),
+                backgroundColor: selectedCategory == '공기 정화 식물'
+                    ? Color(0xff739072)
+                    : Colors.white, // background (button) color
+                foregroundColor: selectedCategory == '공기 정화 식물'
+                    ? Colors.white
+                    : Color(0xff739072),
               ),
               child: Text('공기 정화 식물'),
             ),
             ElevatedButton(
               onPressed: () => _onCategorySelected('초보자 식물'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff739072), // background (button) color
-                foregroundColor: Colors.white,
+                backgroundColor: selectedCategory == '초보자 식물'
+                    ? Color(0xff739072)
+                    : Colors.white, // background (button) color
+                foregroundColor: selectedCategory == '초보자 식물'
+                    ? Colors.white
+                    : Color(0xff739072),
               ),
               child: Text('초보자 식물'),
             ),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff739072), // background (button) color
-                foregroundColor: Colors.white,
+                backgroundColor: selectedCategory == '기타 등등'
+                    ? Color(0xff739072)
+                    : Colors.white, // background (button) color
+                foregroundColor: selectedCategory == '기타 등등'
+                    ? Colors.white
+                    : Color(0xff739072),
               ),
               child: Text('기타 등등'),
             ),
@@ -149,40 +165,6 @@ class _ProductListState extends State<ProductList> {
                     // 상품 클릭 이벤트 처리
                   },
                 );
-                //   GestureDetector(
-                //   onTap: () {
-                //     // 상품 클릭 이벤트 처리
-                //   },
-                //   child: Column(
-                //     children: [
-                //       Expanded(
-                //         child: FittedBox(
-                //           fit: BoxFit.cover,
-                //           child: Image.asset(pimage),
-                //         ),
-                //       ),
-                //       Padding(
-                //         padding: const EdgeInsets.all(8),
-                //         child: Text(
-                //           pcontent,
-                //           style: TextStyle(color: Color(0xFF3A4D39)),
-                //         ),
-                //       ),
-                //       Padding(
-                //         padding: const EdgeInsets.all(8),
-                //         child: Text(
-                //           pprice,
-                //           style: TextStyle(color: Color(0xFF3A4D39)),
-                //         ),
-                //       ),
-                //       // Divider( // 선 추가
-                //       //   color: Colors.grey, // 선의 색상 설정
-                //       //   thickness: 1, // 선의 두께 설정
-                //       //   height: 0, // 선의 높이 설정
-                //       // ),
-                //     ],
-                //   ),
-                // );
               },
             ),
           ),
