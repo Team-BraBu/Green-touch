@@ -12,6 +12,35 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
+  String selectedCategory = '공기 정화 식물';
+  Map<String, List<String>> categoryData = {
+    '공기 정화 식물': [
+      'assets/images/plant/plant1.png',
+      'assets/images/plant/plant2.png',
+      'assets/images/plant/plant3.png',
+      'assets/images/plant/plant4.png',
+      'assets/images/plant/plant5.jpg',
+      'assets/images/plant/plant6.png',
+      'assets/images/plant/plant7.png',
+      'assets/images/plant/plant8.png',
+      'assets/images/plant/plant9.png',
+      'assets/images/plant/plant10.png',
+    ],
+    '초보자 식물': [
+      'assets/images/plant/plant11.jpg',
+      'assets/images/plant/plant12.png',
+      'assets/images/plant/plant13.jpg',
+      'assets/images/plant/plant14.png',
+      'assets/images/plant/plant15.jpg',
+    ]
+  };
+
+  void _onCategorySelected(String category) {
+    setState(() {
+      selectedCategory = category;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<String> pimages = [
@@ -63,7 +92,7 @@ class _ProductListState extends State<ProductList> {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => _onCategorySelected('공기 정화 식물'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xff739072), // background (button) color
                 foregroundColor: Colors.white,
@@ -71,7 +100,7 @@ class _ProductListState extends State<ProductList> {
               child: Text('공기 정화 식물'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => _onCategorySelected('초보자 식물'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xff739072), // background (button) color
                 foregroundColor: Colors.white,
@@ -98,11 +127,12 @@ class _ProductListState extends State<ProductList> {
                 mainAxisSpacing: 8,
               ),
               padding: EdgeInsets.all(8),
-              itemCount: pimages.length,
+              itemCount: categoryData[selectedCategory]?.length ?? 0,
               itemBuilder: (context, index) {
-                final pimage = pimages[index];
-                final pcontent = pcontents[index];
-                final pprice = pprices[index];
+                final pimage = categoryData[selectedCategory]![index];
+                // final pimage = pimages[index];
+                // final pcontent = pcontents[index];
+                // final pprice = pprices[index];
                 return Card(
                   color: Color(0xffece3ce),
                   child: GestureDetector(
@@ -118,20 +148,20 @@ class _ProductListState extends State<ProductList> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            pcontent,
-                            style: TextStyle(color: Color(0xFF3A4D39)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            pprice,
-                            style: TextStyle(color: Color(0xFF3A4D39)),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(8),
+                        //   child: Text(
+                        //     pcontent,
+                        //     style: TextStyle(color: Color(0xFF3A4D39)),
+                        //   ),
+                        // ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(8),
+                        //   child: Text(
+                        //     pprice,
+                        //     style: TextStyle(color: Color(0xFF3A4D39)),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -144,19 +174,3 @@ class _ProductListState extends State<ProductList> {
     );
   }
 }
-
-// ListView.builder(
-// itemCount: images.length,
-// itemBuilder: (context, index) {
-// final image = images[index];
-// final content = contents[index];
-// final hashtag = hashtags[index];
-// final date = dates[index];
-// return Feed(
-// imagePath: image,
-// contentPath: content,
-// hashtagPath: hashtag,
-// datePath: date,
-// );
-// },
-// ));
