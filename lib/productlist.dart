@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'layout/app_drawer.dart';
@@ -70,12 +71,11 @@ class ProductList extends StatelessWidget {
               },
               child: Column(
                 children: [
-                  Expanded(
-                    child: Container(
-                      child: Image.asset(
-                        pimage,
-                        fit: BoxFit.cover,
-                      ),
+                  AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: Image.asset(
+                      pimage,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Padding(
