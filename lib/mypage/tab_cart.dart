@@ -1,11 +1,7 @@
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:greentouch/layout/app_drawer.dart';
 import 'package:greentouch/layout/appbar_back.dart';
-
-import '../layout/appbar.dart';
 
 class Product {
   final String name;
