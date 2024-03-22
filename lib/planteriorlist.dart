@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/feed.dart';
 
+import 'layout/app_drawer.dart';
+import 'layout/appbar.dart';
+
 class PlanteriorList extends StatelessWidget {
   const PlanteriorList({super.key});
 
@@ -27,9 +30,8 @@ class PlanteriorList extends StatelessWidget {
     ];
 
     return Scaffold(
-        appBar: AppBar(
-          actions: [Image.asset('assets/images/logo.png')],
-        ),
+        appBar: BaseAppBar(),
+        drawer: AppDrawer(),
         body: ListView.builder(
           itemCount: images.length,
           itemBuilder: (context, index) {
