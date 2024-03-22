@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:greentouch/productlistitem.dart';
 
 import 'layout/app_drawer.dart';
 import 'layout/appbar.dart';
@@ -129,6 +130,7 @@ class _ProductListState extends State<ProductList> {
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
+                childAspectRatio: 1 / 1.5, //item 의 가로 1, 세로 1 의 비율
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
               ),
@@ -138,40 +140,49 @@ class _ProductListState extends State<ProductList> {
                 final pimage = categoryData[selectedCategory]![index];
                 final pcontent = categoryData2[selectedCategory]![index];
                 final pprice = categoryData3[selectedCategory]![index];
-                return GestureDetector(
+                return ProductListItem(
+                  imagePath: pimage,
+                  title: pcontent,
+                  subtitle: 'subtitle',
+                  price: pprice,
                   onTap: () {
                     // 상품 클릭 이벤트 처리
                   },
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Image.asset(pimage),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(
-                          pcontent,
-                          style: TextStyle(color: Color(0xFF3A4D39)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(
-                          pprice,
-                          style: TextStyle(color: Color(0xFF3A4D39)),
-                        ),
-                      ),
-                      // Divider( // 선 추가
-                      //   color: Colors.grey, // 선의 색상 설정
-                      //   thickness: 1, // 선의 두께 설정
-                      //   height: 0, // 선의 높이 설정
-                      // ),
-                    ],
-                  ),
                 );
+                //   GestureDetector(
+                //   onTap: () {
+                //     // 상품 클릭 이벤트 처리
+                //   },
+                //   child: Column(
+                //     children: [
+                //       Expanded(
+                //         child: FittedBox(
+                //           fit: BoxFit.cover,
+                //           child: Image.asset(pimage),
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(8),
+                //         child: Text(
+                //           pcontent,
+                //           style: TextStyle(color: Color(0xFF3A4D39)),
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(8),
+                //         child: Text(
+                //           pprice,
+                //           style: TextStyle(color: Color(0xFF3A4D39)),
+                //         ),
+                //       ),
+                //       // Divider( // 선 추가
+                //       //   color: Colors.grey, // 선의 색상 설정
+                //       //   thickness: 1, // 선의 두께 설정
+                //       //   height: 0, // 선의 높이 설정
+                //       // ),
+                //     ],
+                //   ),
+                // );
               },
             ),
           ),
