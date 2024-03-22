@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:greentouch/layout/appbar_back.dart';
+import 'package:greentouch/list/planteriorlist.dart';
 
 class Product {
   final String name;
@@ -88,11 +90,21 @@ class _tabcartState extends State<tabcart> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image.asset(
-            'assets/banner/ad_planterior.png',
-            fit: BoxFit.cover,
-            width: double.infinity,
-            // height: 150.0,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => PlanteriorList(),
+                ),
+              );
+            },
+            child: Image.asset(
+              'assets/banner/ad_planterior.png',
+              fit: BoxFit.cover,
+              width: double.infinity,
+              // height: 150.0,
+            ),
           ),
           Container(
             color: Color(0xffF3F1EC),
