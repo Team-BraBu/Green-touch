@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:greentouch/layout/app_drawer.dart';
 
 import 'layout/appbar.dart';
 
@@ -86,6 +87,7 @@ class _tabcartState extends State<tabcart> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: BaseAppBar(),
+      drawer: AppDrawer(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -117,7 +119,7 @@ class _tabcartState extends State<tabcart> {
                         width: MediaQuery.of(context).size.width,
                         margin: EdgeInsets.symmetric(horizontal: 5.0),
                         decoration: BoxDecoration(
-                          color: Colors.grey,
+                          color: Color(0xffF3F1EC),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Image.asset(
@@ -150,7 +152,7 @@ class _tabcartState extends State<tabcart> {
             ],
           ),
           Container(
-            color: Colors.grey[200],
+            color: Color(0xffF3F1EC),
             padding: EdgeInsets.symmetric(vertical: 5.0),
           ),
           Container(
@@ -163,7 +165,7 @@ class _tabcartState extends State<tabcart> {
             ),
           ),
           Container(
-            color: Colors.grey[300],
+            color: Color(0xffF3F1EC),
             padding: EdgeInsets.symmetric(vertical: 0.5),
           ),
           if (cart.items.isEmpty)
@@ -176,20 +178,20 @@ class _tabcartState extends State<tabcart> {
                     Icon(
                       Icons.shopping_bag_outlined,
                       size: 50.0,
-                      color: Colors.grey[300],
+                      color: Color(0xffF3F1EC),
                     ),
                     Text(
                       '장바구니에 상품이 없습니다',
                       style: TextStyle(
                         fontSize: 18.0,
-                        color: Colors.grey[400],
+                        color: Color(0xffF3F1EC),
                       ),
                     ),
                     Text(
                       '상품을 추가해보세요',
                       style: TextStyle(
                         fontSize: 18.0,
-                        color: Colors.grey[400],
+                        color: Color(0xffF3F1EC),
                       ),
                     ),
                   ],
@@ -237,6 +239,7 @@ class _tabcartState extends State<tabcart> {
                 double totalPrice = product.price * quantity;
 
                 return Card(
+                  color: Colors.white,
                   margin: EdgeInsets.all(6.0),
                   elevation: 3.0,
                   shape: RoundedRectangleBorder(
@@ -360,7 +363,7 @@ class _tabcartState extends State<tabcart> {
                     onPressed: () {},
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Color(0xff4f6f52)),
+                          MaterialStateProperty.all(Color(0xff739072)),
                       minimumSize: MaterialStateProperty.all(Size(370, 60)),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
