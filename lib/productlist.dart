@@ -72,7 +72,6 @@ class ProductList extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      color: Color(0xFFF0EADB),
                       child: Image.asset(
                         pimage,
                         fit: BoxFit.cover,
