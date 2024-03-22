@@ -34,6 +34,19 @@ class ProductList extends StatelessWidget {
       '행운목'
     ];
 
+    final List<String> pprices = [
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+    ];
+
     return Scaffold(
       appBar: BaseAppBar(),
       drawer: AppDrawer(),
@@ -48,29 +61,40 @@ class ProductList extends StatelessWidget {
         itemBuilder: (context, index) {
           final pimage = pimages[index];
           final pcontent = pcontents[index];
-          return GestureDetector(
-            onTap: () {
-              // 상품 클릭 이벤트 처리
-            },
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    color: Color(0xFFF0EADB),
-                    child: Image.asset(
-                      pimage,
-                      fit: BoxFit.cover,
+          final pprice = pprices[index];
+          return Card(
+            color: Color(0xffece3ce),
+            child: GestureDetector(
+              onTap: () {
+                // 상품 클릭 이벤트 처리
+              },
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Color(0xFFF0EADB),
+                      child: Image.asset(
+                        pimage,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    pcontent,
-                    style: TextStyle(color: Color(0xFF3A4D39)),
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      pcontent,
+                      style: TextStyle(color: Color(0xFF3A4D39)),
+                    ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      pprice,
+                      style: TextStyle(color: Color(0xFF3A4D39)),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },
