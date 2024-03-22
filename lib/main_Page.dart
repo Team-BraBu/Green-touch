@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:greentouch/mypage.dart';
 import 'package:greentouch/productlist.dart';
 import 'package:greentouch/tab_cart.dart';
 import 'package:greentouch/user/login_Page.dart';
@@ -21,74 +22,78 @@ class MainPage extends StatelessWidget {
                 height: 300,
               ),
               SizedBox(height: 0),
-              Divider(color: Color(0xFFF0EADB)),
+              Divider(color: Color(0xffF0EADB)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
-                      width: 250,
-                      height: 90,
-                      child: Builder(builder: (context) {
-                        return TextButton.icon(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ProductList(),
-                                ));
-                          },
-                          icon: Padding(
-                            padding: const EdgeInsets.only(right: 20.0),
-                            child: Icon(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductList(),
+                            ));
+                      },
+                      child: SizedBox(
+                        width: 370,
+                        height: 90,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 15),
+                            Icon(
                               FontAwesomeIcons.pagelines,
                               size: 50,
                               color: Color(0xFF739072),
                             ),
-                          ),
-                          label: Text(
-                            '반려식물 보러가기',
-                            style: TextStyle(
-                              fontSize: 21,
-                              fontWeight: FontWeight.normal,
-                              color: Color(0xFF739072),
-                              fontFamily: 'Jua',
+                            SizedBox(width: 20),
+                            Text(
+                              '반려식물 보러가기',
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFF739072),
+                                fontFamily: 'Jua',
+                              ),
                             ),
-                          ),
-                        );
-                      }),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
-              Divider(color: Color(0xFFF0EADB)),
+              Divider(color: Color(0xffF0EADB)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
-                      width: 250,
-                      height: 90,
-                      child: TextButton.icon(
-                        onPressed: () {},
-                        icon: Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: Icon(
-                            Icons.cottage_outlined,
-                            size: 50,
-                            color: Color(0xFF739072),
-                          ),
-                        ),
-                        label: Text(
-                          '인테리어 보러가기',
-                          style: TextStyle(
-                            fontSize: 21,
-                            fontWeight: FontWeight.normal,
-                            color: Color(0xFF739072),
-                            fontFamily: 'Jua',
-                          ),
+                    child: InkWell(
+                      onTap: () {},
+                      child: SizedBox(
+                        width: 370,
+                        height: 90,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 15),
+                            Icon(
+                              Icons.home_outlined,
+                              size: 50,
+                              color: Color(0xFF739072),
+                            ),
+                            SizedBox(width: 20),
+                            Text(
+                              '인테리어 보러가기',
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFF739072),
+                                fontFamily: 'Jua',
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -101,32 +106,33 @@ class MainPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
-                      width: 175,
-                      height: 90,
-                      child: TextButton.icon(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => tabcart()),
-                          );
-                        },
-                        icon: Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: Icon(
-                            Icons.shopping_bag_outlined,
-                            size: 50,
-                            color: Color(0xFF739072),
-                          ),
-                        ),
-                        label: Text(
-                          '장바구니',
-                          style: TextStyle(
-                            fontSize: 21,
-                            fontWeight: FontWeight.normal,
-                            color: Color(0xFF739072),
-                            fontFamily: 'Jua',
-                          ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => tabcart()));
+                      },
+                      child: SizedBox(
+                        width: 370,
+                        height: 90,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 15),
+                            Icon(
+                              Icons.shopping_bag_outlined,
+                              size: 50,
+                              color: Color(0xFF739072),
+                            ),
+                            SizedBox(width: 20),
+                            Text(
+                              '장바구니',
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFF739072),
+                                fontFamily: 'Jua',
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -139,27 +145,33 @@ class MainPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
-                      width: 202,
-                      height: 90,
-                      child: TextButton.icon(
-                        onPressed: () {},
-                        icon: Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: Icon(
-                            Icons.person_outline,
-                            size: 50,
-                            color: Color(0xFF739072),
-                          ),
-                        ),
-                        label: Text(
-                          '내 정보 보기',
-                          style: TextStyle(
-                            fontSize: 21,
-                            fontWeight: FontWeight.normal,
-                            color: Color(0xFF739072),
-                            fontFamily: 'Jua',
-                          ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => MyPage()));
+                      },
+                      child: SizedBox(
+                        width: 370,
+                        height: 90,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 15),
+                            Icon(
+                              Icons.person_outline,
+                              size: 50,
+                              color: Color(0xFF739072),
+                            ),
+                            SizedBox(width: 20),
+                            Text(
+                              '내 정보 보기',
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFF739072),
+                                fontFamily: 'Jua',
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -218,7 +230,7 @@ class MainPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.normal,
-                          color: Colors.white,
+                          color: Color(0xFF739072),
                           fontFamily: 'Jua',
                         ),
                       ),
