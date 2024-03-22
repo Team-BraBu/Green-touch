@@ -35,28 +35,8 @@ class _ProductListState extends State<ProductList> {
     ]
   };
 
-  void _onCategorySelected(String category) {
-    setState(() {
-      selectedCategory = category;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final List<String> pimages = [
-      'assets/images/plant/plant1.png',
-      'assets/images/plant/plant2.png',
-      'assets/images/plant/plant3.png',
-      'assets/images/plant/plant4.png',
-      'assets/images/plant/plant5.jpg',
-      'assets/images/plant/plant6.png',
-      'assets/images/plant/plant7.png',
-      'assets/images/plant/plant8.png',
-      'assets/images/plant/plant9.png',
-      'assets/images/plant/plant10.png',
-    ];
-
-    final List<String> pcontents = [
+  Map<String, List<String>> categoryData2 = {
+    '공기 정화 식물': [
       '아레카 야자',
       '관음죽',
       '대나무 야자',
@@ -67,8 +47,46 @@ class _ProductListState extends State<ProductList> {
       '보스턴 고사리',
       '스파티 필름',
       '행운목'
-    ];
+    ],
+    '초보자 식물': [
+      '스킨답서스',
+      '홍콩 야자',
+      '테이블 야자',
+      '박쥐란',
+      '떡갈 고무나무',
+    ]
+  };
 
+  Map<String, List<String>> categoryData3 = {
+    '공기 정화 식물': [
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+    ],
+    '초보자 식물': [
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+      '20,000원',
+    ]
+  };
+
+  void _onCategorySelected(String category) {
+    setState(() {
+      selectedCategory = category;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final List<String> pprices = [
       '20,000원',
       '20,000원',
@@ -130,9 +148,8 @@ class _ProductListState extends State<ProductList> {
               itemCount: categoryData[selectedCategory]?.length ?? 0,
               itemBuilder: (context, index) {
                 final pimage = categoryData[selectedCategory]![index];
-                // final pimage = pimages[index];
-                // final pcontent = pcontents[index];
-                // final pprice = pprices[index];
+                final pcontent = categoryData2[selectedCategory]![index];
+                final pprice = categoryData3[selectedCategory]![index];
                 return Card(
                   color: Color(0xffece3ce),
                   child: GestureDetector(
@@ -148,20 +165,20 @@ class _ProductListState extends State<ProductList> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8),
-                        //   child: Text(
-                        //     pcontent,
-                        //     style: TextStyle(color: Color(0xFF3A4D39)),
-                        //   ),
-                        // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8),
-                        //   child: Text(
-                        //     pprice,
-                        //     style: TextStyle(color: Color(0xFF3A4D39)),
-                        //   ),
-                        // ),
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            pcontent,
+                            style: TextStyle(color: Color(0xFF3A4D39)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            pprice,
+                            style: TextStyle(color: Color(0xFF3A4D39)),
+                          ),
+                        ),
                       ],
                     ),
                   ),
