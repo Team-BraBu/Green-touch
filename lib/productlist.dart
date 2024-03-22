@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'layout/app_drawer.dart';
 import 'layout/appbar.dart';
@@ -137,37 +138,38 @@ class _ProductListState extends State<ProductList> {
                 final pimage = categoryData[selectedCategory]![index];
                 final pcontent = categoryData2[selectedCategory]![index];
                 final pprice = categoryData3[selectedCategory]![index];
-                return Card(
-                  color: Color(0xffece3ce),
-                  child: GestureDetector(
-                    onTap: () {
-                      // 상품 클릭 이벤트 처리
-                    },
-                    child: Column(
-                      children: [
-                        AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: Image.asset(
-                            pimage,
-                            fit: BoxFit.cover,
-                          ),
+                return GestureDetector(
+                  onTap: () {
+                    // 상품 클릭 이벤트 처리
+                  },
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: Image.asset(pimage),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            pcontent,
-                            style: TextStyle(color: Color(0xFF3A4D39)),
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          pcontent,
+                          style: TextStyle(color: Color(0xFF3A4D39)),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            pprice,
-                            style: TextStyle(color: Color(0xFF3A4D39)),
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          pprice,
+                          style: TextStyle(color: Color(0xFF3A4D39)),
                         ),
-                      ],
-                    ),
+                      ),
+                      // Divider( // 선 추가
+                      //   color: Colors.grey, // 선의 색상 설정
+                      //   thickness: 1, // 선의 두께 설정
+                      //   height: 0, // 선의 높이 설정
+                      // ),
+                    ],
                   ),
                 );
               },
