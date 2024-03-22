@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/productlist_image.dart';
 
+import 'layout/app_drawer.dart';
+import 'layout/appbar.dart';
+
 class ProductList extends StatelessWidget {
   const ProductList({super.key});
 
@@ -19,12 +22,22 @@ class ProductList extends StatelessWidget {
       'assets/images/plant/plant10.png',
     ];
 
+    final List<String> pcontents = [
+      '아레카 야자',
+      '관음죽',
+      '대나무 야자',
+      '인도 고무나무',
+      '아이비',
+      '황금죽',
+      '피닉스 야자',
+      '보스턴 고사리',
+      '스파티 필름',
+      '행운목'
+    ];
+
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          Image.asset('assets/images/logo.png'),
-        ],
-      ),
+      appBar: BaseAppBar(),
+      drawer: AppDrawer(),
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -35,6 +48,7 @@ class ProductList extends StatelessWidget {
         itemCount: pimages.length,
         itemBuilder: (context, index) {
           final pimage = pimages[index];
+          final pcontent = pcontents[index];
           return GestureDetector(
             onTap: () {
               // 상품 클릭 이벤트 처리
@@ -53,7 +67,7 @@ class ProductList extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: Text(
-                    '상품 이름 $index',
+                    pcontent,
                     style: TextStyle(color: Color(0xFF3A4D39)),
                   ),
                 )
