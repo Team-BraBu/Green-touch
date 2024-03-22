@@ -100,13 +100,13 @@ class _CalendarPageState extends State<CalendarPage> {
                 onChanged: (value) {
                   _newEventTitle = value; // 새로운 일정 제목 갱신
                 },
-                decoration: InputDecoration(hintText: "일정 제목을 입력하세요"),
+                decoration: InputDecoration(hintText: "제목을 입력하세요"),
               ),
               TextField(
                 onChanged: (value) {
                   _newEventDescription = value; // 새로운 일정 내용 갱신
                 },
-                decoration: InputDecoration(hintText: "일정 내용을 입력하세요"),
+                decoration: InputDecoration(hintText: "내용을 입력하세요"),
               ),
             ],
           ),
@@ -141,6 +141,33 @@ class _CalendarPageState extends State<CalendarPage> {
   }
 
   void _showEventDetails(List<Event> events) {
-    // TODO: 해당 날짜의 일정 출력
+    if (events.isNotEmpty) {
+      // 해당 날짜에 일정이 있는 경우
+      String eventDetails = '';
+      for (var event in events) {
+        // 여러 개의 일정이 있을 수 있으므로 각 일정의 내용을 반복하여 문자열에 추가합니다.
+        eventDetails += '제목: ${event.title}\n';
+        eventDetails += '내용: ${event.description}\n\n';
+      }
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("메모"),
+            content: SingleChildScrollView(
+              child: Text(eventDetails),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("닫기"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
