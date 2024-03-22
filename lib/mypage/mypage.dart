@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greentouch/mypage/product_reviews.dart';
 import 'calendar.dart';
 import '../layout/app_drawer.dart';
 import '../layout/appbar.dart';
@@ -111,7 +112,12 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                       SizedBox(height: 65),
                       InkWell(
                         onTap: () {
-                          // 후기 작성을 눌렀을 때 동작할 코드 추가
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProductReview(),
+                            ),
+                          ); // 후기 작성을 눌렀을 때 동작할 코드 추가
                         },
                         child: Row(
                           children: [
