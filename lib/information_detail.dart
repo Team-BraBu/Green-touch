@@ -31,33 +31,6 @@ class InformationDetail extends StatefulWidget {
 
 class _InformationDetailState extends State<InformationDetail> {
   bool _isExpanded = false; // _isExpanded 상태 변수 추가
-  void _onPurchaseButtonPressed(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          height: 200,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  '모달 창',
-                  style: TextStyle(fontSize: 24),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(); // 모달 닫기
-                  },
-                  child: Text('닫기'),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
   //  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ↑구매버튼 누르면 창뜨는 메서드 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
   @override
