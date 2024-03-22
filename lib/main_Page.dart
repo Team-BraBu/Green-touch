@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:greentouch/mypage.dart';
-import 'package:greentouch/planteriorlist.dart';
-import 'package:greentouch/productlist.dart';
-import 'package:greentouch/tab_cart.dart';
+import 'package:greentouch/mypage/mypage.dart';
+import 'package:greentouch/list/planteriorlist.dart';
+import 'package:greentouch/list/productlist.dart';
+import 'package:greentouch/mypage/tab_cart.dart';
 import 'package:greentouch/user/login_Page.dart';
 import 'package:greentouch/user/register_Page.dart';
 

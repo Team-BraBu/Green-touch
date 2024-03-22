@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:greentouch/productlistitem.dart';
+import 'package:greentouch/list/productlistitem.dart';
 
-import 'layout/app_drawer.dart';
-import 'layout/appbar.dart';
+import '../layout/app_drawer.dart';
+import '../layout/appbar.dart';
+import 'information_detail.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
@@ -17,23 +18,23 @@ class _ProductListState extends State<ProductList> {
   String selectedCategory = '공기 정화 식물';
   Map<String, List<String>> categoryData = {
     '공기 정화 식물': [
-      'assets/images/plant/plant1.png',
-      'assets/images/plant/plant2.png',
-      'assets/images/plant/plant3.png',
-      'assets/images/plant/plant4.png',
-      'assets/images/plant/plant5.jpg',
-      'assets/images/plant/plant6.png',
-      'assets/images/plant/plant7.png',
-      'assets/images/plant/plant8.png',
-      'assets/images/plant/plant9.png',
-      'assets/images/plant/plant10.png',
+      'assets/plant/plant1.png',
+      'assets/plant/plant2.png',
+      'assets/plant/plant3.png',
+      'assets/plant/plant4.png',
+      'assets/plant/plant5.jpg',
+      'assets/plant/plant6.png',
+      'assets/plant/plant7.png',
+      'assets/plant/plant8.png',
+      'assets/plant/plant9.png',
+      'assets/plant/plant10.png',
     ],
     '초보자 식물': [
-      'assets/images/plant/plant11.jpg',
-      'assets/images/plant/plant12.png',
-      'assets/images/plant/plant13.jpg',
-      'assets/images/plant/plant14.png',
-      'assets/images/plant/plant15.jpg',
+      'assets/plant/plant11.jpg',
+      'assets/plant/plant12.png',
+      'assets/plant/plant13.jpg',
+      'assets/plant/plant14.png',
+      'assets/plant/plant15.jpg',
     ]
   };
 
@@ -164,7 +165,11 @@ class _ProductListState extends State<ProductList> {
                   subtitle: 'subtitle',
                   price: pprice,
                   onTap: () {
-                    // 상품 클릭 이벤트 처리
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => InformationDetail(),
+                        ));
                   },
                 );
               },

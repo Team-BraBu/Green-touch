@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:greentouch/layout/appbar.dart';
+
+import '../layout/app_drawer.dart';
+import '../mypage/tab_cart.dart';
 
 void main() {
   // 스플래시 위젯 적용
@@ -36,19 +40,15 @@ class _InformationDetailState extends State<InformationDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 100,
-        actions: [Icon(Icons.search_rounded)],
-        title: Text('touch Green'),
-        backgroundColor: Color(0xFF739072),
-      ),
+      appBar: BaseAppBar(),
+      drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Center(
               child: Image.asset(
-                'assets/images/plant.jpg',
+                'assets/plant/plant1.png',
                 height: 300,
                 fit: BoxFit.cover,
               ),
@@ -235,7 +235,10 @@ class _InformationDetailState extends State<InformationDetail> {
           children: [
             IconButton(
               icon: Icon(Icons.shopping_cart),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => tabcart()));
+              },
             ),
             ElevatedButton(
               onPressed: () {},

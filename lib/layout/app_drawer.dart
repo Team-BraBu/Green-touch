@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:greentouch/mypage.dart';
+import 'package:greentouch/mypage/mypage.dart';
 
-import '../tab_cart.dart';
+import '../list/planteriorlist.dart';
+import '../list/productlist.dart';
+import '../mypage/tab_cart.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -31,6 +33,13 @@ class AppDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductList(),
+                    ));
+              },
               title: Text(
                 '반려식물 보러가기',
                 textAlign: TextAlign.start,
@@ -44,6 +53,13 @@ class AppDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PlanteriorList(),
+                    ));
+              },
               title: Text(
                 '인테리어 보러가기',
                 textAlign: TextAlign.start,

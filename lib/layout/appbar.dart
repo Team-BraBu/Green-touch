@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:greentouch/main_Page.dart';
-import '../tab_cart.dart';
+import '../mypage/tab_cart.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override

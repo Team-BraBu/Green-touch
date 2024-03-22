@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:greentouch/feed.dart';
+import 'package:greentouch/list/feed.dart';
 
-import 'layout/app_drawer.dart';
-import 'layout/appbar.dart';
+import '../layout/app_drawer.dart';
+import '../layout/appbar.dart';
 
 class PlanteriorList extends StatelessWidget {
   const PlanteriorList({super.key});
