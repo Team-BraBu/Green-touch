@@ -104,7 +104,7 @@ class _ProductListState extends State<ProductList> {
             ElevatedButton(
               onPressed: () => _onCategorySelected('공기 정화 식물'),
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(100, 30),
+                minimumSize: Size(10, 30),
                 backgroundColor: selectedCategory == '공기 정화 식물'
                     ? Color(0xff739072)
                     : Colors.white, // background (button) color
