@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:greentouch/information_detail.dart';
 import 'package:greentouch/productlistitem.dart';
 
 import 'layout/app_drawer.dart';
@@ -165,6 +166,11 @@ class _ProductListState extends State<ProductList> {
                   price: pprice,
                   onTap: () {
                     // 상품 클릭 이벤트 처리
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => InformationDetail()),
+                    );
                   },
                 );
               },
