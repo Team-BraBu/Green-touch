@@ -29,31 +29,70 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              '회원가입',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.normal,
+                color: Color(0xFF3A4D39),
+                fontFamily: 'Jua',
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             TextField(
               controller: _usernameController,
               decoration: InputDecoration(
                 labelText: '아이디',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Color(0xFF739072),
+                  ),
+                ),
               ),
             ),
+            SizedBox(height: 15),
             TextField(
               controller: _passwordController,
+              obscureText: true,
               decoration: InputDecoration(
                 labelText: '비밀번호',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Color(0xFF739072),
+                  ),
+                ),
               ),
-              obscureText: true,
             ),
+            SizedBox(height: 15),
             TextField(
               controller: _confirmPasswordController,
+              obscureText: true,
               decoration: InputDecoration(
                 labelText: '비밀번호 확인',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Color(0xFF739072),
+                  ),
+                ),
               ),
-              obscureText: true,
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 _register();
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF739072),
+                fixedSize: Size(380, 60),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
               child: Text(
                 '회원가입',
                 style: TextStyle(
