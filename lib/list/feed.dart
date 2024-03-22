@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Feed extends StatefulWidget {
   const Feed({
-    super.key,
+    Key? key,
     required this.imagePath,
     required this.contentPath,
     required this.hashtagPath,
     required this.datePath,
-  });
+  }) : super(key: key);
+
   final String imagePath;
   final String contentPath;
   final String hashtagPath;
@@ -27,11 +30,18 @@ class _FeedState extends State<Feed> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(
-          widget.imagePath,
-          height: 400,
-          width: double.infinity,
-          fit: BoxFit.cover,
+        GestureDetector(
+          onDoubleTap: () {
+            setState(() {
+              isFavorite = !isFavorite;
+            });
+          },
+          child: Image.asset(
+            widget.imagePath,
+            height: 400,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
         ),
         Row(
           children: [
@@ -41,20 +51,25 @@ class _FeedState extends State<Feed> {
                   isFavorite = !isFavorite;
                 });
               },
-              icon: Icon(CupertinoIcons.heart),
-              color: isFavorite ? Colors.red : Colors.black,
+              icon: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: isFavorite ? Colors.red : Colors.black,
+              ),
             ),
+            Text('5 likes'),
             Spacer(),
             IconButton(
-                onPressed: () {
-                  setState(() {
-                    isMarked = !isMarked;
-                  });
-                },
-                icon: Icon(
-                  CupertinoIcons.bookmark,
-                  color: isMarked ? Colors.grey : Colors.black,
-                ))
+              onPressed: () {
+                setState(() {
+                  isMarked = !isMarked;
+                  _savedFeed();
+                });
+              },
+              icon: Icon(
+                isMarked ? Icons.bookmark : Icons.bookmark_border,
+                color: isMarked ? Colors.black : Colors.black,
+              ),
+            ),
           ],
         ),
         Padding(
@@ -75,7 +90,18 @@ class _FeedState extends State<Feed> {
             style: TextStyle(color: Colors.grey),
           ),
         ),
+        SizedBox(
+          height: 8,
+        )
       ],
     );
+  }
+
+  Future<void> _savedFeed() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('imagePath', widget.imagePath);
+    await prefs.setString('contentPath', widget.contentPath);
+    await prefs.setString('hashtagPath', widget.hashtagPath);
+    await prefs.setString('datePath', widget.datePath);
   }
 }

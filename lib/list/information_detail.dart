@@ -1,32 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:greentouch/layout/appbar.dart';
 
-import '../layout/app_drawer.dart';
+import '../main_Page.dart';
 import '../mypage/tab_cart.dart';
-
-void main() {
-  // 스플래시 위젯 적용
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-  // 어플리케이션의 루트 위젯입니다.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
-      ),
-      home: InformationDetail(),
-    );
-  }
-}
 
 class InformationDetail extends StatefulWidget {
   @override
@@ -40,8 +15,24 @@ class _InformationDetailState extends State<InformationDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(),
-      drawer: AppDrawer(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: GestureDetector(
+          onTap: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MainPage(),
+              ),
+            );
+          },
+          child: Image.asset(
+            'assets/images/logo.png',
+            fit: BoxFit.contain,
+            scale: 4.5,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

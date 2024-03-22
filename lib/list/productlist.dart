@@ -15,81 +15,17 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
+  // 상품 데이터 인스턴스 생성
+  final ProductData productData = ProductData.defaultData;
+
   String selectedCategory = '공기 정화 식물';
-  Map<String, List<String>> categoryData = {
-    '공기 정화 식물': [
-      'assets/plant/plant1.png',
-      'assets/plant/plant2.png',
-      'assets/plant/plant3.png',
-      'assets/plant/plant4.png',
-      'assets/plant/plant5.jpg',
-      'assets/plant/plant6.png',
-      'assets/plant/plant7.png',
-      'assets/plant/plant8.png',
-      'assets/plant/plant9.png',
-      'assets/plant/plant10.png',
-    ],
-    '초보자 식물': [
-      'assets/plant/plant11.jpg',
-      'assets/plant/plant12.png',
-      'assets/plant/plant13.jpg',
-      'assets/plant/plant14.png',
-      'assets/plant/plant15.jpg',
-    ]
-  };
 
-  Map<String, List<String>> categoryData2 = {
-    '공기 정화 식물': [
-      '아레카 야자',
-      '관음죽',
-      '대나무 야자',
-      '인도 고무나무',
-      '아이비',
-      '황금죽',
-      '피닉스 야자',
-      '보스턴 고사리',
-      '스파티 필름',
-      '행운목'
-    ],
-    '초보자 식물': [
-      '스킨답서스',
-      '홍콩 야자',
-      '테이블 야자',
-      '박쥐란',
-      '떡갈 고무나무',
-    ]
-  };
-
-  Map<String, List<String>> categoryData3 = {
-    '공기 정화 식물': [
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-    ],
-    '초보자 식물': [
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-      '20,000원',
-    ]
-  };
-
+  // 카테고리
   void _onCategorySelected(String category) {
     setState(() {
       selectedCategory = category;
     });
   }
-
-  // 카테고리 선택 여부
-  bool checked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -154,18 +90,18 @@ class _ProductListState extends State<ProductList> {
                 mainAxisSpacing: 8,
               ),
               padding: EdgeInsets.all(8),
-              itemCount: categoryData[selectedCategory]?.length ?? 0,
+              itemCount: productData.images[selectedCategory]?.length ?? 0,
               itemBuilder: (context, index) {
-                final pimage = categoryData[selectedCategory]![index];
-                final pcontent = categoryData2[selectedCategory]![index];
-                final pprice = categoryData3[selectedCategory]![index];
+                final pimage = productData.images[selectedCategory]![index];
+                final pcontent = productData.names[selectedCategory]![index];
+                final pprice = productData.prices[selectedCategory]![index];
                 return ProductListItem(
                   imagePath: pimage,
                   title: pcontent,
                   subtitle: 'subtitle',
                   price: pprice,
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => InformationDetail(),
@@ -177,6 +113,82 @@ class _ProductListState extends State<ProductList> {
           ),
         ],
       ),
+      backgroundColor: Colors.white,
     );
   }
+}
+
+class ProductData {
+  final Map<String, List<String>> images;
+  final Map<String, List<String>> names;
+  final Map<String, List<String>> prices;
+
+  ProductData(
+      {required this.images, required this.names, required this.prices});
+
+  static ProductData get defaultData => ProductData(
+        images: {
+          '공기 정화 식물': [
+            'assets/plant/plant1.png',
+            'assets/plant/plant2.png',
+            'assets/plant/plant3.png',
+            'assets/plant/plant4.png',
+            'assets/plant/plant5.jpg',
+            'assets/plant/plant6.png',
+            'assets/plant/plant7.png',
+            'assets/plant/plant8.png',
+            'assets/plant/plant9.png',
+            'assets/plant/plant10.png',
+          ],
+          '초보자 식물': [
+            'assets/plant/plant11.jpg',
+            'assets/plant/plant12.png',
+            'assets/plant/plant13.jpg',
+            'assets/plant/plant14.png',
+            'assets/plant/plant15.jpg',
+          ]
+        },
+        names: {
+          '공기 정화 식물': [
+            '아레카 야자',
+            '관음죽',
+            '대나무 야자',
+            '인도 고무나무',
+            '아이비',
+            '황금죽',
+            '피닉스 야자',
+            '보스턴 고사리',
+            '스파티 필름',
+            '행운목'
+          ],
+          '초보자 식물': [
+            '스킨답서스',
+            '홍콩 야자',
+            '테이블 야자',
+            '박쥐란',
+            '떡갈 고무나무',
+          ]
+        },
+        prices: {
+          '공기 정화 식물': [
+            '20,000원',
+            '20,000원',
+            '20,000원',
+            '20,000원',
+            '20,000원',
+            '20,000원',
+            '20,000원',
+            '20,000원',
+            '20,000원',
+            '20,000원',
+          ],
+          '초보자 식물': [
+            '20,000원',
+            '20,000원',
+            '20,000원',
+            '20,000원',
+            '20,000원',
+          ],
+        },
+      );
 }
