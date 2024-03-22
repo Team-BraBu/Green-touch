@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:greentouch/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SavedFeedPage extends StatefulWidget {
