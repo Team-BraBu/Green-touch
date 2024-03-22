@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:greentouch/productlist_image.dart';
 
 import 'layout/app_drawer.dart';
 import 'layout/appbar.dart';
