@@ -31,7 +31,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: AssetImage('assets/images/minions.jpg'),
+                  backgroundImage: AssetImage(''),
                 ),
                 SizedBox(width: 20),
                 Text(
