@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/app_drawer.dart';
+import 'package:greentouch/layout/appbar_back.dart';
 
 import '../layout/appbar.dart';
 
@@ -86,16 +88,15 @@ class _tabcartState extends State<tabcart> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: BaseAppBar(),
-      drawer: AppDrawer(),
+      appBar: BackAppbar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Image.asset(
-            'assets/images/barimg.PNG',
+            'assets/banner/ad_planterior.png',
             fit: BoxFit.cover,
             width: double.infinity,
-            height: 150.0,
+            // height: 150.0,
           ),
           Container(
             color: Color(0xffF3F1EC),
@@ -359,8 +360,8 @@ class _tabcartState extends State<tabcart> {
                                 });
                               },
                               child: Icon(
-                                Icons.delete_forever_outlined,
-                                color: Colors.red[400],
+                                CupertinoIcons.delete,
+                                color: Color(0xff3A4D39),
                               ),
                             ),
                             SizedBox(height: 85.0),

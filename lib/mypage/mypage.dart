@@ -23,16 +23,18 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
     return Scaffold(
       appBar: BaseAppBar(),
       drawer: AppDrawer(),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 50, bottom: 30, left: 30, right: 30),
+            child: Row(
               children: [
                 CircleAvatar(
                   radius: 50,
                   backgroundImage: AssetImage(''),
+                  backgroundColor: Color(0xfff0eadb),
                 ),
                 SizedBox(width: 20),
                 Text(
@@ -44,8 +46,11 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                   children: [
                     SizedBox(height: 40),
                     IconButton(
-                      icon: Icon(Icons.calendar_month_outlined),
-                      iconSize: 90,
+                      icon: Icon(
+                        Icons.edit_calendar,
+                        color: Color(0xff739072),
+                      ),
+                      iconSize: 60,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -58,33 +63,40 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                 ),
               ],
             ),
-            Container(
-              color: Colors.grey[200],
-              padding: EdgeInsets.symmetric(vertical: 5.0),
-            ),
-            TabBar(
-              controller: _tabController,
-              tabs: [
-                Tab(
-                  child: Text(
-                    '활동',
-                    style: TextStyle(
-                      fontSize: 20, // 원하는 크기로 조정
-                    ),
+          ),
+          Divider(
+            height: 1,
+            color: Color(0xfff0eadb),
+            thickness: 10,
+          ),
+          TabBar(
+            controller: _tabController,
+            labelColor: Color(0xff3A4D39),
+            indicatorColor: Color(0xff3A4D39),
+            dividerColor: Color(0xfff0eadb),
+            tabs: [
+              Tab(
+                child: Text(
+                  '활동',
+                  style: TextStyle(
+                    fontSize: 20, // 원하는 크기로 조정
                   ),
                 ),
-                Tab(
-                  child: Text(
-                    '쇼핑',
-                    style: TextStyle(
-                      fontSize: 20, // 원하는 크기로 조정
-                    ),
+              ),
+              Tab(
+                child: Text(
+                  '쇼핑',
+                  style: TextStyle(
+                    fontSize: 20, // 원하는 크기로 조정
                   ),
                 ),
-              ],
-            ),
-            SizedBox(height: 40),
-            Expanded(
+              ),
+            ],
+          ),
+          SizedBox(height: 40),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: TabBarView(
                 controller: _tabController,
                 children: [
@@ -237,8 +249,8 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

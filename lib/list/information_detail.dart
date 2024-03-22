@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greentouch/layout/appbar_back.dart';
 
 import '../mypage/tab_cart.dart';
 
@@ -37,15 +38,7 @@ class _InformationDetailState extends State<InformationDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Image.asset(
-            'assets/images/logo.png',
-            fit: BoxFit.contain,
-            scale: 4.5,
-          ),
-        ),
-      ),
+      appBar: BackAppbar(),
 
       //drawer: AppDrawer(),
       body: SingleChildScrollView(
