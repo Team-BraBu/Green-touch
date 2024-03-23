@@ -52,7 +52,7 @@ class _CalendarPageState extends State<CalendarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BackAppbar(),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -81,6 +81,9 @@ class _CalendarPageState extends State<CalendarPage> {
             SizedBox(
               height: 20,
             ),
+            Divider(
+              color: Color(0xffF3F1EC),
+            ),
             CalendarCarousel<Event>(
               locale: 'ko_KR',
               onDayPressed: (DateTime date, List<Event> events) {
@@ -90,50 +93,59 @@ class _CalendarPageState extends State<CalendarPage> {
                   _showEventDetails(events);
                 });
               },
-              weekendTextStyle: TextStyle(
-                color: Colors.red,
-              ),
+
               thisMonthDayBorderColor: Colors.grey,
               weekFormat: false,
               height: 600.0,
               selectedDateTime: _currentDate,
               markedDatesMap: _events,
               headerTextStyle: TextStyle(
-                  color: Color(0xff3A4D39), fontFamily: 'Jua', fontSize: 20),
-              prevMonthDayBorderColor: Color(0xff3A4D39),
-              nextMonthDayBorderColor: Color(0xff3A4D39),
+                  color: Color(0xff3A4D39), fontFamily: 'Jua', fontSize: 23),
+              daysTextStyle: TextStyle(
+                  fontFamily: 'Jua', color: Color(0xff739072), fontSize: 16),
+              weekendTextStyle: TextStyle(
+                  fontFamily: 'Jua', color: Color(0xffD26F6F), fontSize: 16),
+              weekdayTextStyle:
+                  TextStyle(fontFamily: 'Jua', color: Color(0xff3A4D39)),
 
+              iconColor: Color(0xff3A4D39),
               todayButtonColor: Color(0xffece3ce), // 오늘 날짜 버튼의 배경색 변경
               todayBorderColor: Color(0xffece3ce), // 오늘 날짜 버튼의 테두리 색상 변경
+              todayTextStyle: TextStyle(
+                  color: Color(0xff739072), fontSize: 16, fontFamily: 'Jua'),
               selectedDayButtonColor: Color(0xff739072), // 선택된 날짜 버튼의 배경색 변경
               selectedDayBorderColor: Color(0xff739072), // 선택된 날짜 버튼의 테두리 색상 변경
+              selectedDayTextStyle:
+                  TextStyle(color: Color(0xffece3ce), fontFamily: 'Jua'),
+              nextDaysTextStyle:
+                  TextStyle(fontFamily: 'Jua', color: Colors.grey),
+              prevDaysTextStyle:
+                  TextStyle(fontFamily: 'Jua', color: Colors.grey),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    _showAddEventDialog(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff739072),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 130, vertical: 18),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  child: Text(
-                    '메 모 하 기',
-                    style: TextStyle(
-                        color: Color(0xffECE3CE),
-                        fontFamily: 'Jua',
-                        fontSize: 20),
-                  ),
-                ),
-              ],
-            ),
+            SizedBox(height: 20), // 버튼과의 간격 조절
           ],
         ),
       ),
+      floatingActionButton: Stack(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              _showAddEventDialog(context);
+            },
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff739072),
+                padding: EdgeInsets.symmetric(horizontal: 130, vertical: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10))),
+            child: Text(
+              '메 모 하 기',
+              style: TextStyle(
+                  color: Color(0xffECE3CE), fontFamily: 'Jua', fontSize: 20),
+            ),
+          ),
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
