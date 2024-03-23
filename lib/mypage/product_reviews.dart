@@ -165,23 +165,6 @@ class _ProductReviewState extends State<ProductReview> {
               },
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => PlanteriorList(),
-                ),
-              );
-            },
-            child: Image.asset(
-              'assets/banner/ad_planterior1.png',
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 100,
-              // height: 150.0,
-            ),
-          ),
         ],
       ),
     );
