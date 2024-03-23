@@ -111,7 +111,7 @@ class _ProductReviewState extends State<ProductReview> {
                                   ),
                                   SizedBox(height: 25),
                                   RatingBar.builder(
-                                    initialRating: 3,
+                                    initialRating: 0,
                                     minRating: 1,
                                     direction: Axis.horizontal,
                                     allowHalfRating: true,
@@ -141,13 +141,13 @@ class _ProductReviewState extends State<ProductReview> {
                                   Text(
                                     '더보기',
                                     style: TextStyle(
-                                      fontSize: 11,
+                                      fontSize: 12,
                                       color: Color(0xff739072),
                                     ),
                                   ),
                                   Icon(
                                     CupertinoIcons.chevron_forward,
-                                    size: 30,
+                                    size: 40,
                                     color: Color(0xff739072),
                                   ),
                                 ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel, EventList, EventInterface;
+import 'package:greentouch/layout/appbar_back.dart';
 
 class CalendarPage extends StatefulWidget {
   @override
@@ -50,13 +51,39 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('캘린더'),
-      ),
-      body: Center(
+      appBar: BackAppbar(),
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '캘 린 더',
+                  style: TextStyle(
+                      color: Color(0xff739072),
+                      fontSize: 30,
+                      fontFamily: 'Jua'),
+                ),
+                Text(
+                  '반려식물의 물 주는 날을 기록해 놓으면 쑥쑥커요 💧',
+                  style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xff3A4D39),
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Divider(
+              color: Color(0xffF3F1EC),
+            ),
             CalendarCarousel<Event>(
               locale: 'ko_KR',
               onDayPressed: (DateTime date, List<Event> events) {
@@ -66,24 +93,59 @@ class _CalendarPageState extends State<CalendarPage> {
                   _showEventDetails(events);
                 });
               },
-              weekendTextStyle: TextStyle(
-                color: Colors.red,
-              ),
+
               thisMonthDayBorderColor: Colors.grey,
               weekFormat: false,
               height: 600.0,
               selectedDateTime: _currentDate,
               markedDatesMap: _events,
+              headerTextStyle: TextStyle(
+                  color: Color(0xff3A4D39), fontFamily: 'Jua', fontSize: 23),
+              daysTextStyle: TextStyle(
+                  fontFamily: 'Jua', color: Color(0xff739072), fontSize: 16),
+              weekendTextStyle: TextStyle(
+                  fontFamily: 'Jua', color: Color(0xffD26F6F), fontSize: 16),
+              weekdayTextStyle:
+                  TextStyle(fontFamily: 'Jua', color: Color(0xff3A4D39)),
+
+              iconColor: Color(0xff3A4D39),
+              todayButtonColor: Color(0xffece3ce), // 오늘 날짜 버튼의 배경색 변경
+              todayBorderColor: Color(0xffece3ce), // 오늘 날짜 버튼의 테두리 색상 변경
+              todayTextStyle: TextStyle(
+                  color: Color(0xff739072), fontSize: 16, fontFamily: 'Jua'),
+              selectedDayButtonColor: Color(0xff739072), // 선택된 날짜 버튼의 배경색 변경
+              selectedDayBorderColor: Color(0xff739072), // 선택된 날짜 버튼의 테두리 색상 변경
+              selectedDayTextStyle:
+                  TextStyle(color: Color(0xffece3ce), fontFamily: 'Jua'),
+              nextDaysTextStyle:
+                  TextStyle(fontFamily: 'Jua', color: Colors.grey),
+              prevDaysTextStyle:
+                  TextStyle(fontFamily: 'Jua', color: Colors.grey),
             ),
-            ElevatedButton(
-              onPressed: () {
-                _showAddEventDialog(context);
-              },
-              child: Text('메모'),
-            ),
+            SizedBox(height: 20), // 버튼과의 간격 조절
           ],
         ),
       ),
+      floatingActionButton: Stack(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              _showAddEventDialog(context);
+            },
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff739072),
+                padding: EdgeInsets.symmetric(horizontal: 130, vertical: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10))),
+            child: Text(
+              '메 모 하 기',
+              style: TextStyle(
+                  color: Color(0xffECE3CE), fontFamily: 'Jua', fontSize: 20),
+            ),
+          ),
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -92,7 +154,10 @@ class _CalendarPageState extends State<CalendarPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("일정 추가"),
+          title: Text(
+            "일정 추가",
+            style: TextStyle(color: Color(0xff739072), fontFamily: 'Jua'),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -111,13 +176,21 @@ class _CalendarPageState extends State<CalendarPage> {
             ],
           ),
           actions: [
-            TextButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("취소"),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xffece3ce),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10))),
+              child: Text("취소",
+                  style: TextStyle(
+                      color: Color(0xff739072),
+                      fontFamily: 'Jua',
+                      fontSize: 15)),
             ),
-            TextButton(
+            ElevatedButton(
               onPressed: () {
                 // 새로운 일정 추가 로직
                 setState(() {
@@ -132,7 +205,15 @@ class _CalendarPageState extends State<CalendarPage> {
                 });
                 Navigator.of(context).pop();
               },
-              child: Text("저장"),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff739072),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10))),
+              child: Text(
+                "저장",
+                style: TextStyle(
+                    color: Color(0xffECE3CE), fontFamily: 'Jua', fontSize: 15),
+              ),
             ),
           ],
         );
