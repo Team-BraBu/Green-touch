@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:greentouch/layout/appbar_back.dart';
+import 'package:greentouch/list/information_detail.dart';
 
 // 데이터 모델 정의
 class Product {
@@ -23,6 +25,7 @@ class _ProductReviewState extends State<ProductReview> {
     Product('아레카야자', 'assets/plant/plant1.png'),
     Product('관음죽', 'assets/plant/plant2.png'),
     Product('대나무야자', 'assets/plant/plant3.png'),
+    Product('아레카야자1', 'assets/plant/plant4.png'),
   ];
 
   // 각 상품의 별점을 저장하는 맵
@@ -31,31 +34,22 @@ class _ProductReviewState extends State<ProductReview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: BackAppbar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 100, bottom: 40, left: 40, right: 40),
+            padding: EdgeInsets.only(top: 20, bottom: 40, left: 40, right: 40),
             child: Row(
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Icon(
-                    CupertinoIcons.chevron_back,
-                    size: 40,
-                    color: Color(0xff739072),
-                  ),
-                ),
-                SizedBox(width: 50),
+                SizedBox(width: 40),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '상품 리뷰',
                       style: TextStyle(
-                          fontSize: 28,
+                          fontSize: 32,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Jua',
                           color: Color(0xff739072)),
@@ -63,7 +57,7 @@ class _ProductReviewState extends State<ProductReview> {
                     Text(
                       '구매하신 상품의 별점을 주세요 ⭐️',
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 12,
                           color: Color(0xff3A4D39),
                           fontWeight: FontWeight.bold),
                     )
@@ -139,9 +133,7 @@ class _ProductReviewState extends State<ProductReview> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (_) =>
-                                        ProductDetailPage(product: product),
-                                  ),
+                                      builder: (_) => InformationDetail()),
                                 );
                               },
                               child: Row(
