@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:greentouch/layout/appbar_back.dart';
-import 'package:greentouch/list/planteriorlist.dart';
 
 // 데이터 모델 정의
 class Product {
