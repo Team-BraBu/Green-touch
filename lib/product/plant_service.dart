@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class ProductService extends ChangeNotifier {
-  List<Product> products = [];
+class PlantService extends ChangeNotifier {
+  List<Plant> plants = [];
 
-  ProductService() {
-    initializeProducts();
+  PlantService() {
+    initializePlants(); // 생성자 이름을 PlantService로 수정
   }
 
-  void initializeProducts() {
-    products = [
-      Product(
+  void initializePlants() {
+    plants = [
+      Plant(
         imagePath: 'assets/plant/plant1.png',
         title: '아레카야자',
         subtitle: '1위 공기정화식물',
@@ -22,7 +22,7 @@ class ProductService extends ChangeNotifier {
         detail_3:
             '이국적인 느낌으로 북유럽 인테리어 소품, 북유럽 감성이 담긴 화분, 시원한 휴양지 느낌이 나는 카페 화분으로 좋습니다. 또한 여러가지 화분소재를 이용하여 빈티지, 모던, 내추럴한 인테리어가 가능합니다. 특히 여름에 활용도가 높습니다.',
       ),
-      Product(
+      Plant(
         imagePath: 'assets/plant/plant2.png',
         title: '관음죽',
         subtitle: '2위 공기정화식물',
@@ -37,15 +37,12 @@ class ProductService extends ChangeNotifier {
     ];
   }
 
-// 다른 곳에서 ProductService의 products 리스트를 사용할 수 있도록 getter 메서드를 제공합니다.
-  List<Product> getProducts() {
-    return products;
+  List<Plant> getPlants() {
+    return plants;
   }
 }
 
-// Add more products as needed
-
-class Product {
+class Plant {
   final String imagePath;
   final String title;
   final String subtitle;
@@ -55,7 +52,7 @@ class Product {
   final String detail_2;
   final String detail_3;
 
-  Product({
+  Plant({
     required this.imagePath,
     required this.title,
     required this.subtitle,
