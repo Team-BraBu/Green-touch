@@ -89,33 +89,36 @@ class _ProductListState extends State<ProductList> {
               ),
               SizedBox(height: 15),
               Expanded(
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1 / 1.5,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                  ),
-                  padding: EdgeInsets.all(8),
-                  itemCount: plants.length,
-                  itemBuilder: (context, index) {
-                    final Plant plant = plants[index];
-                    return ProductListItem(
-                      imagePath: plant.imagePath,
-                      title: plant.title,
-                      subtitle: plant.subtitle,
-                      price: '${plant.price} 원',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => InformationDetail(),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
+                child: Builder(builder: (context) {
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1 / 1.5,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                    ),
+                    padding: EdgeInsets.all(8),
+                    itemCount: plants.length,
+                    itemBuilder: (context, index) {
+                      final Plant plant = plants[index];
+                      return ProductListItem(
+                        imagePath: plant.imagePath,
+                        title: plant.title,
+                        subtitle: plant.subtitle,
+                        price: '${plant.price} 원',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  InformationDetail(plant: plant),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  );
+                }),
               ),
             ],
           );

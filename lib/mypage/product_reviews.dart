@@ -130,11 +130,11 @@ class _ProductReviewState extends State<ProductReview> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => InformationDetail()),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (_) => InformationDetail(plant : plant)),
+                                // );
                               },
                               child: Row(
                                 children: [
