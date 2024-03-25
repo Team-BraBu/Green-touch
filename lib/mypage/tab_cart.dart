@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:greentouch/layout/appbar_back.dart';
 import 'package:greentouch/list/planteriorlist.dart';
+import 'package:greentouch/mypage/purchase.dart';
 
 class Product {
   final String name;
@@ -399,7 +400,13 @@ class _tabcartState extends State<tabcart> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 25.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PurchasePage()),
+                      );
+                    },
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xff739072)),
