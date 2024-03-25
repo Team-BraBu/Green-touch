@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar_back.dart';
 import 'package:greentouch/product/plant_service.dart';
-import 'package:provider/provider.dart';
 
 class InformationDetail extends StatefulWidget {
   final Plant plant; //선택된 식물을 인자로 받음
