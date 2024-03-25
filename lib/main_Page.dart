@@ -17,12 +17,13 @@ class MainPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.asset(
-                'assets/images/logo.png',
-                width: 300,
-                height: 300,
+              SizedBox(
+                height: 70,
               ),
-              SizedBox(height: 0),
+              Image.asset(
+                'assets/images/newIconBig.png',
+                width: double.infinity,
+              ),
               Divider(color: Color(0xffF0EADB)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,

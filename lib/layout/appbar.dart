@@ -48,7 +48,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Image.asset(
           'assets/images/logo.png',
           fit: BoxFit.contain,
-          scale: 4.5,
+          // scale: 1,
         ),
       ),
       centerTitle: true,
