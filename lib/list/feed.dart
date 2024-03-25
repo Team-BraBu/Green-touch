@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Feed extends StatefulWidget {
   const Feed({
@@ -62,7 +59,7 @@ class _FeedState extends State<Feed> {
               onPressed: () {
                 setState(() {
                   isMarked = !isMarked;
-                  _savedFeed();
+                  // _savedFeed();
                 });
               },
               icon: Icon(
@@ -95,13 +92,5 @@ class _FeedState extends State<Feed> {
         )
       ],
     );
-  }
-
-  Future<void> _savedFeed() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('imagePath', widget.imagePath);
-    await prefs.setString('contentPath', widget.contentPath);
-    await prefs.setString('hashtagPath', widget.hashtagPath);
-    await prefs.setString('datePath', widget.datePath);
   }
 }

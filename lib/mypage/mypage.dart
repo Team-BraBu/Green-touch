@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/list/planteriorlist.dart';
 import 'package:greentouch/mypage/product_reviews.dart';
-import 'calendar.dart';
+import 'package:greentouch/savedfeed.dart';
+
 import '../layout/app_drawer.dart';
 import '../layout/appbar.dart';
+import 'calendar.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -201,12 +203,12 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                     InkWell(
                       onTap: () {
                         // 버튼이 눌렸을 때 수행할 동작 추가
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => ProductReview(),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => SavedFeedPage(),
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
