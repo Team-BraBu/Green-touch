@@ -74,7 +74,9 @@ class _SavedFeedPageState extends State<SavedFeedPage> {
         ),
         Padding(
           padding: const EdgeInsets.all(8),
-          child: Text(widget.contentPath),
+          child: Text(
+            widget.contentPath,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(8),
