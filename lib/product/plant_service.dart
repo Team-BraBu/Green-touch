@@ -42,6 +42,12 @@ class PlantService extends ChangeNotifier {
   }
 }
 
+List<Plant> getCategoryPlants(int category, PlantService plantService) {
+  return plantService.plants
+      .where((plant) => plant.category == category)
+      .toList();
+}
+
 class Plant {
   final String imagePath;
   final String title;
