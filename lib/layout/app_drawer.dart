@@ -42,7 +42,7 @@ class AppDrawer extends StatelessWidget {
               },
               title: Text(
                 '반려식물 보러가기',
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.end,
               ),
               textColor: Color(0xFF739072),
               titleTextStyle: TextStyle(
@@ -62,7 +62,7 @@ class AppDrawer extends StatelessWidget {
               },
               title: Text(
                 '인테리어 보러가기',
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.end,
               ),
               textColor: Color(0xFF739072),
               titleTextStyle: TextStyle(
@@ -81,7 +81,7 @@ class AppDrawer extends StatelessWidget {
               },
               title: Text(
                 '장바구니',
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.end,
               ),
               textColor: Color(0xFF739072),
               titleTextStyle: TextStyle(
@@ -98,7 +98,24 @@ class AppDrawer extends StatelessWidget {
               },
               title: Text(
                 '내 정보 보기',
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.end,
+              ),
+              textColor: Color(0xFF739072),
+              titleTextStyle: TextStyle(
+                  color: Color(0xFF739072), fontSize: 20, fontFamily: 'Jua'),
+            ),
+          ),
+          Divider(color: Color(0xFFF0EADB)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyPage()));
+              },
+              title: Text(
+                '내 주변 식물원',
+                textAlign: TextAlign.end,
               ),
               textColor: Color(0xFF739072),
               titleTextStyle: TextStyle(
