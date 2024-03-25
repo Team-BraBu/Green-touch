@@ -2,141 +2,98 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SavedFeedPage extends StatefulWidget {
-  const SavedFeedPage({Key? key}) : super(key: key);
+  // const SavedFeedPage({Key? key}) : super(key: key);
+
+  const SavedFeedPage({
+    Key? key,
+    required this.imagePath,
+    required this.contentPath,
+    required this.hashtagPath,
+    required this.datePath,
+  }) : super(key: key);
+
+  final String imagePath;
+  final String contentPath;
+  final String hashtagPath;
+  final String datePath;
 
   @override
   State<SavedFeedPage> createState() => _SavedFeedPageState();
 }
 
 class _SavedFeedPageState extends State<SavedFeedPage> {
-  List<String> savedFeeds = [];
-  // List<Map<String, String>> savedFeeds = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _loadSavedFeeds();
-  }
-
-  Future<void> _loadSavedFeeds() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    savedFeeds = prefs.getStringList('savedFeeds') ?? [];
-
-    setState(() {});
-    // List<String>? savedImagePaths = prefs.getStringList('imagePaths');
-    // List<String>? savedContentPaths = prefs.getStringList('contentPaths');
-    // List<String>? savedHashtagPaths = prefs.getStringList('hashtagPaths');
-    // List<String>? savedDatePaths = prefs.getStringList('datePaths');
-
-    // if (savedImagePaths != null &&
-    //     savedContentPaths != null &&
-    //     savedHashtagPaths != null &&
-    //     savedDatePaths != null) {
-    //   for (int i = 0; i < savedImagePaths.length; i++) {
-    //     savedFeeds.add({
-    //       'imagePath': savedImagePaths[i],
-    //       'contentPath': savedContentPaths[i],
-    //       'hashtagPath': savedHashtagPaths[i],
-    //       'datePath': savedDatePaths[i],
-    //     });
-    //   }
-    //   setState(() {});
-    // }
-  }
+  bool isFavorite = false;
+  bool isMarked = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Saved Feed'),
-      ),
-      body: ListView.builder(
-        itemCount: savedFeeds.length,
-        itemBuilder: (context, index) {
-          String imagePath = savedFeeds[index];
-          return Scaffold(
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  child: Image.asset(
-                    imagePath,
-                    height: 400,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GestureDetector(
+          onDoubleTap: () {
+            setState(() {
+              isFavorite = !isFavorite;
+            });
+          },
+          child: Image.asset(
+            widget.imagePath,
+            height: 400,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Row(
+          children: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  isFavorite = !isFavorite;
+                });
+              },
+              icon: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: isFavorite ? Colors.red : Colors.black,
+              ),
             ),
-          );
-          // return _buildFeedItem(savedFeeds[index]);
-        },
-      ),
+            Text('365 likes'),
+            Spacer(),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  isMarked = !isMarked;
+                  // _savedFeed();
+                });
+              },
+              icon: Icon(
+                isMarked ? Icons.bookmark : Icons.bookmark_border,
+                color: isMarked ? Colors.black : Colors.black,
+              ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Text(widget.contentPath),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Text(
+            widget.hashtagPath,
+            style: TextStyle(color: Colors.blueAccent),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Text(
+            widget.datePath,
+            style: TextStyle(color: Colors.grey),
+          ),
+        ),
+        SizedBox(
+          height: 8,
+        )
+      ],
     );
   }
-
-  // Widget _buildFeedItem(Map<String, String> feed) {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: [
-  //       GestureDetector(
-  //         onTap: () {
-  //           // Handle image tap
-  //         },
-  //         child: Image.asset(
-  //           feed['imagePath']!,
-  //           height: 400,
-  //           width: double.infinity,
-  //           fit: BoxFit.cover,
-  //         ),
-  //       ),
-  //       Row(
-  //         children: [
-  //           IconButton(
-  //             onPressed: () {
-  //               // Handle favorite button tap
-  //             },
-  //             icon: Icon(
-  //               Icons.favorite_border,
-  //               color: Colors.black,
-  //             ),
-  //           ),
-  //           Text('5 likes'),
-  //           Spacer(),
-  //           IconButton(
-  //             onPressed: () {
-  //               // Handle bookmark button tap
-  //             },
-  //             icon: Icon(
-  //               Icons.bookmark_border,
-  //               color: Colors.black,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //       Padding(
-  //         padding: const EdgeInsets.all(8),
-  //         child: Text(feed['contentPath']!),
-  //       ),
-  //       Padding(
-  //         padding: const EdgeInsets.all(8),
-  //         child: Text(
-  //           feed['hashtagPath']!,
-  //           style: TextStyle(color: Colors.blueAccent),
-  //         ),
-  //       ),
-  //       Padding(
-  //         padding: const EdgeInsets.all(8),
-  //         child: Text(
-  //           feed['datePath']!,
-  //           style: TextStyle(color: Colors.grey),
-  //         ),
-  //       ),
-  //       SizedBox(
-  //         height: 8,
-  //       )
-  //     ],
-  //   );
-  // }
 }

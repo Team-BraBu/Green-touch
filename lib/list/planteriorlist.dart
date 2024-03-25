@@ -12,23 +12,24 @@ class PlanteriorList extends StatelessWidget {
     final PlanteriorData planteriorData = PlanteriorData.defaultData;
 
     return Scaffold(
-        appBar: BaseAppBar(),
-        drawer: AppDrawer(),
-        body: ListView.builder(
-          itemCount: planteriorData.images.length,
-          itemBuilder: (context, index) {
-            final image = planteriorData.images[index];
-            final content = planteriorData.contents[index];
-            final hashtag = planteriorData.hashtags[index];
-            final date = planteriorData.dates[index];
-            return Feed(
-              imagePath: image,
-              contentPath: content,
-              hashtagPath: hashtag,
-              datePath: date,
-            );
-          },
-        ));
+      appBar: BaseAppBar(),
+      drawer: AppDrawer(),
+      body: ListView.builder(
+        itemCount: planteriorData.images.length,
+        itemBuilder: (context, index) {
+          final image = planteriorData.images[index];
+          final content = planteriorData.contents[index];
+          final hashtag = planteriorData.hashtags[index];
+          final date = planteriorData.dates[index];
+          return Feed(
+            imagePath: image,
+            contentPath: content,
+            hashtagPath: hashtag,
+            datePath: date,
+          );
+        },
+      ),
+    );
   }
 }
 
