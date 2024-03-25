@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:greentouch/onboarding.dart';
+import 'package:greentouch/product/product_service.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 late SharedPreferences prefs;
@@ -11,7 +13,15 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   prefs = await SharedPreferences.getInstance();
 
-  runApp(const MyApp());
+  runApp(
+    //서비스 등록
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ProductService()), // 외우기
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
