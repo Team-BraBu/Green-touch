@@ -33,6 +33,7 @@ class _ProductListState extends State<ProductList> {
         builder: (context, plantService, _) {
           // 선택된 카테고리에 해당하는 식물 목록 가져오기
           List<Plant> plants = getCategoryPlants(category!, plantService);
+
           return Column(
             children: [
               SizedBox(height: 15),
@@ -68,6 +69,21 @@ class _ProductListState extends State<ProductList> {
                           category == 2 ? Colors.white : Color(0xff739072),
                     ),
                     child: Text('초보자 식물'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        category = 3; // 카테고리 2 선택
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(10, 30),
+                      backgroundColor:
+                          category == 3 ? Color(0xff739072) : Colors.white,
+                      foregroundColor:
+                          category == 3 ? Colors.white : Color(0xff739072),
+                    ),
+                    child: Text('영양제'),
                   ),
                 ],
               ),
