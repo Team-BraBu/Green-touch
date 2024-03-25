@@ -200,31 +200,17 @@ class _InformationDetailState extends State<InformationDetail> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(
-              icon: Icon(
-                CupertinoIcons.cart,
-                color: Color(0xff739072),
-                size: 40,
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => tabcart()));
-              },
-            ),
-            SizedBox(
-              width: 10,
-            ),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF739072),
-                fixedSize: Size(140, 50),
+                fixedSize: Size(180, 55),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
               child: Text(
-                '선물 하기',
+                '장바구니 담기',
                 style: TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: 18,
@@ -285,7 +271,7 @@ class _InformationDetailState extends State<InformationDetail> {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFECE3CE),
-                fixedSize: Size(140, 50),
+                fixedSize: Size(180, 55),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
