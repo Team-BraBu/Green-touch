@@ -20,6 +20,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordController2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,25 +82,33 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   SizedBox(height: 30),
-                  // TextField(
-                  //   obscureText: true,
-                  //   decoration: InputDecoration(
-                  //     border: OutlineInputBorder(
-                  //       borderRadius: BorderRadius.circular(10),
-                  //     ),
-                  //     hintText: '비밀번호를 다시 입력해주세요.',
-                  //     hintStyle: TextStyle(
-                  //       color: Color(0xFF739072),
-                  //     ),
-                  //   ),
-                  // ),
+                  TextField(
+                    controller: passwordController2,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      hintText: '비밀번호를 다시 입력해주세요.',
+                      hintStyle: TextStyle(
+                        color: Color(0xFF739072),
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 25),
                   ElevatedButton(
                     onPressed: () {
                       //로그인
+                      if (passwordController.text != passwordController2.text) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('비밀번호가 일치하지 않습니다.')),
+                        );
+                        return;
+                      }
                       authService.signUp(
                         email: emailController.text,
                         password: passwordController.text,
+                        password2: passwordController2.text,
                         onSuccess: () {
                           //성공 메세지가 뜨고
                           ScaffoldMessenger.of(context).showSnackBar(
