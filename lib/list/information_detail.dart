@@ -125,11 +125,11 @@ class _InformationDetailState extends State<InformationDetail> {
                         Row(
                           children: [
                             Text(
-                              '식물 특징 및 ',
+                              '${plant.title}의 특징 및 정보',
                               style: TextStyle(
                                 fontFamily: 'Jua',
                                 fontSize: 22,
-                                color: Color(0xFF739072),
+                                color: Color(0xFF3A4D39),
                               ),
                             ),
                             TextButton(
@@ -152,7 +152,7 @@ class _InformationDetailState extends State<InformationDetail> {
                           ),
                           SizedBox(height: 16),
                           Text(
-                            '주의 사항',
+                            '키우는 TIP',
                             style: TextStyle(
                               fontSize: 22,
                               color: Color(0xffD26F6F),
@@ -165,7 +165,7 @@ class _InformationDetailState extends State<InformationDetail> {
                           ),
                           SizedBox(height: 16),
                           Text(
-                            '키우기 팁',
+                            '인테리어 TIP',
                             style: TextStyle(
                               fontSize: 22,
                               fontFamily: 'Jua',
