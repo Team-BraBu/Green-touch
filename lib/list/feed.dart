@@ -56,7 +56,7 @@ class _FeedState extends State<Feed> {
                 color: isFavorite ? Colors.red : Colors.black,
               ),
             ),
-            Text('5 likes'),
+            Text('365 likes'),
             Spacer(),
             IconButton(
               onPressed: () {
