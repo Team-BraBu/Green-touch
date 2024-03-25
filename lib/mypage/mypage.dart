@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/list/planteriorlist.dart';
 import 'package:greentouch/mypage/product_reviews.dart';
-import 'package:greentouch/savedfeed.dart';
-
+import 'package:greentouch/service/auth_service.dart';
+import 'package:provider/provider.dart';
+import 'calendar.dart';
 import '../layout/app_drawer.dart';
 import '../layout/appbar.dart';
-import 'calendar.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -23,6 +23,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<AuthService>().currentUser();
     return Scaffold(
       appBar: BaseAppBar(),
       drawer: AppDrawer(),
@@ -41,7 +42,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                 ),
                 SizedBox(width: 20),
                 Text(
-                  '최준영',
+                  user == null ? '비회원' : '${user.email}',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
@@ -203,12 +204,12 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                     InkWell(
                       onTap: () {
                         // 버튼이 눌렸을 때 수행할 동작 추가
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => SavedFeedPage(),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (_) => ProductReview(),
+                        //   ),
+                        // );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(

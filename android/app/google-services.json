@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "721526155217",
+    "project_id": "green-touch-6cf2a",
+    "storage_bucket": "green-touch-6cf2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721526155217:android:4415e65048a30539d8a2f0",
+        "android_client_info": {
+          "package_name": "com.brabu.greentouch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl2iSVS7hleJU8Ug656dRvmK6TdMRrv3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
