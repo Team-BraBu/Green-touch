@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:greentouch/main_Page.dart';
+import 'package:greentouch/service/auth_service.dart';
+import 'package:provider/provider.dart';
 import '../mypage/tab_cart.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -9,6 +11,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<AuthService>().currentUser();
     return AppBar(
       leading: IconButton(
         icon: Icon(
@@ -29,10 +32,26 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             size: 35,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => tabcart()),
-            );
+            if (user != null) {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => tabcart()));
+            } else {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text("회원 전용"),
+                      content: Text('로그인이 된 회원만 가능합니다.'),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('확인'))
+                      ],
+                    );
+                  });
+            }
           },
         ),
       ],
