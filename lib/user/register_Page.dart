@@ -112,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         onSuccess: () {
                           //성공 메세지가 뜨고
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('로그인 성공')),
+                            SnackBar(content: Text('회원가입 성공')),
                           );
                           //로그인 성공시 홈페이지 이동
                           Navigator.pushReplacement(
