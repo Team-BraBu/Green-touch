@@ -4,10 +4,10 @@ import 'package:greentouch/main_Page.dart';
 
 class OnBoarding extends StatelessWidget {
   final List<String> images = [
-    'assets/images/onboards/onBoard0.png',
-    'assets/images/onboards/onBoard3.png',
-    'assets/images/onboards/onBoard4.png',
-    'assets/images/onboards/onBoard5.png'
+    'assets/onboards/onBoard0.png',
+    'assets/onboards/onBoard3.png',
+    'assets/onboards/onBoard4.png',
+    'assets/onboards/onBoard5.png'
   ];
 
   OnBoarding({super.key});

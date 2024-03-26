@@ -19,6 +19,15 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
 
+  List<String> _images = [
+    'assets/images/Bob.jpg',
+    'assets/images/Kevin.jpg',
+    'assets/images/Stuart.jpg',
+  ];
+  String? _selectedImagePath;
+
+  List<bool> _isSelected = [false, false, false]; // 이미지 선택 여부를 저장하는 리스트
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,16 +133,20 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    // 회원가입 정보를 SharedPreferences에 저장
+    // 이미 등록된 아이디인지 확인
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? existingUsername = prefs.getString('username');
+    if (existingUsername == username) {
+      _showAlert('경고', '이미 등록된 아이디입니다.');
+      return;
+    }
+
+    // 회원가입 정보를 SharedPreferences에 저장
     await prefs.setString('username', username);
     await prefs.setString('password', password);
 
-    // 회원가입 성공시 메인 페이지로 이동
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => MainPage()),
-    );
+    // 회원가입 성공시 성공 다이얼로그 표시
+    _showSuccessDialog();
   }
 
   void _showAlert(String title, String message) {
@@ -147,6 +160,100 @@ class _RegisterPageState extends State<RegisterPage> {
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
+              },
+              child: Text('확인'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _setProfilePicture(String? imagePath) async {
+    // 선택된 이미지를 SharedPreferences에 저장
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('profile_picture', imagePath ?? '');
+
+    // 이미지를 저장한 후에는 프로필 사진을 설정하는 등의 추가적인 작업을 수행할 수 있습니다.
+    // 이 예시에서는 SharedPreferences에 이미지 경로만 저장했습니다.
+  }
+
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('성공'),
+          contentPadding: EdgeInsets.all(20),
+          content: Container(
+            width: 300,
+            height: 200,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text('회원가입이 성공적으로 완료되었습니다.'),
+                  SizedBox(height: 20),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: _images.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 4.0,
+                      mainAxisSpacing: 4.0,
+                    ),
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _isSelected[index] = !_isSelected[index];
+                          });
+                        },
+                        child: Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: _isSelected[index]
+                                      ? Colors.blue
+                                      : Colors.transparent,
+                                  width: 2.0,
+                                ),
+                              ),
+                              child: Image.asset(
+                                _images[index],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              child: Checkbox(
+                                value: _isSelected[index],
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    _isSelected[index] = newValue ?? false;
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                _setProfilePicture(_selectedImagePath);
+                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainPage()),
+                );
               },
               child: Text('확인'),
             ),

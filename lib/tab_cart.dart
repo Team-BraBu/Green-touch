@@ -63,23 +63,23 @@ class _tabcartState extends State<tabcart> {
   void initState() {
     super.initState();
     // 식물 더미 데이터
-    cart.addItem(Product('보스턴고사리', 10000, 'assets/images/banner/tree1.png'));
-    cart.addItem(Product('인도 고무나무', 15000, 'assets/images/banner/tree2.png'));
-    cart.addItem(Product('떡갈 고무나무', 12000, 'assets/images/banner/tree3.jpg'));
-    cart.addItem(Product('홍콩야자', 18000, 'assets/images/banner/tree4.png'));
+    cart.addItem(Product('보스턴고사리', 10000, 'assets/banner/tree1.png'));
+    cart.addItem(Product('인도 고무나무', 15000, 'assets/banner/tree2.png'));
+    cart.addItem(Product('떡갈 고무나무', 12000, 'assets/banner/tree3.jpg'));
+    cart.addItem(Product('홍콩야자', 18000, 'assets/banner/tree4.png'));
     for (var product in cart.items) {
       quantities[product] = 1;
       isChecked[product] = true;
     }
 
     //광고 이미지 더미 데이터
-    adImages.add(Adimage('assets/images/banner/1.jpg'));
-    adImages.add(Adimage('assets/images/banner/2.jpg'));
-    adImages.add(Adimage('assets/images/banner/3.jpg'));
-    adImages.add(Adimage('assets/images/banner/4.jpg'));
-    adImages.add(Adimage('assets/images/banner/5.jpg'));
-    adImages.add(Adimage('assets/images/banner/6.jpg'));
-    adImages.add(Adimage('assets/images/banner/7.jpg'));
+    adImages.add(Adimage('assets/banner/1.jpg'));
+    adImages.add(Adimage('assets/banner/2.jpg'));
+    adImages.add(Adimage('assets/banner/3.jpg'));
+    adImages.add(Adimage('assets/banner/4.jpg'));
+    adImages.add(Adimage('assets/banner/5.jpg'));
+    adImages.add(Adimage('assets/banner/6.jpg'));
+    adImages.add(Adimage('assets/banner/7.jpg'));
   }
 
   @override
