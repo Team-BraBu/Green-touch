@@ -4,6 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:greentouch/onboarding.dart';
 import 'package:greentouch/product/plant_service.dart';
 import 'package:greentouch/service/auth_service.dart';
+import 'package:greentouch/service/cart_service.dart';
 
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,10 +25,10 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => PlantService()), // 외우기
         ChangeNotifierProvider(create: (context) => AuthService()),
+        ChangeNotifierProvider(create: (context) => CartService()),
       ],
       child: const MyApp(),
     ),
-
   );
 }
 
