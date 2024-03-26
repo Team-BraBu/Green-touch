@@ -43,10 +43,6 @@ class _ProductReviewState extends State<ProductReview> {
   }
 
   // 별점을 Shared Preferences에 저장
-  void _saveRating(double rating) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setDouble('rating', rating);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +114,11 @@ class _ProductItemState extends State<_ProductItem> {
   void initState() {
     super.initState();
     _rating = 0.0;
+  }
+
+  void _saveRating(double rating) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setDouble('rating', rating);
   }
 
   @override

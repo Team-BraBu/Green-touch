@@ -9,8 +9,6 @@ import 'package:greentouch/service/review_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'mypage/product_reviews.dart';
-
 late SharedPreferences prefs;
 
 void main() async {
