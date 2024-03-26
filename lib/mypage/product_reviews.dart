@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:greentouch/layout/appbar_back.dart';
-import 'package:greentouch/list/information_detail.dart';
 
 // 데이터 모델 정의
 class Product {
@@ -130,11 +129,11 @@ class _ProductReviewState extends State<ProductReview> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => InformationDetail()),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (_) => InformationDetail(plant : plant)),
+                                // );
                               },
                               child: Row(
                                 children: [
