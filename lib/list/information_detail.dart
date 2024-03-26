@@ -2,8 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:greentouch/layout/appbar_back.dart';
+import 'package:greentouch/mypage/purchase.dart';
 import 'package:greentouch/mypage/tab_cart.dart';
 import 'package:greentouch/service/plant_service.dart';
+import 'package:provider/provider.dart';
+
+import '../service/cart_service.dart';
 
 class InformationDetail extends StatefulWidget {
   final Plant plant; //선택된 식물을 인자로 받음
@@ -219,7 +223,14 @@ class _InformationDetailState extends State<InformationDetail> {
               width: 10,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                final cartItem = widget.plant;
+                context.read<CartService>().addToCart(cartItem); // 장바구니에 상품 추가
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TabCart())); // 장바구니 화면으로 이동
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF739072),
                 fixedSize: Size(155, 55),
@@ -334,6 +345,12 @@ class PurchaseModalButton extends StatelessWidget {
                     ),
                     onPressed: () {
                       // 결제 창으로 이동하는 코드 작성
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => PurchasePage(),
+                        ),
+                      );
                     },
                     child: Text(
                       '바로 구매 하기',
