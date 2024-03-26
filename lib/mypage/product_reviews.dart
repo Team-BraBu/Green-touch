@@ -42,12 +42,6 @@ class _ProductReviewState extends State<ProductReview> {
     });
   }
 
-  // 별점을 Shared Preferences에 저장
-  void _saveRating(double rating) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setDouble('rating', rating);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
