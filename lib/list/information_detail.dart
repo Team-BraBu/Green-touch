@@ -242,10 +242,14 @@ class _InformationDetailState extends State<InformationDetail> {
             ElevatedButton(
               onPressed: () {
                 showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return PurchaseModalButton(title: widget.plant.title);
-                    });
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                      height: 200,
+                      child: PurchaseModalButton(title: widget.plant.title),
+                    );
+                  },
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFECE3CE),
@@ -271,6 +275,7 @@ class _InformationDetailState extends State<InformationDetail> {
   }
 }
 
+//모달창 클래스
 class PurchaseModalButton extends StatelessWidget {
   final String title;
 
@@ -278,84 +283,74 @@ class PurchaseModalButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        showModalBottomSheet(
-          context: context,
-          builder: (BuildContext context) {
-            return Container(
-              height: 200,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Card(
-                      elevation: 10,
-                      child: ListTile(
-                        title: Text(
-                          '"$title"를 바로 구매 하시겠습니까 ??',
-                          style: TextStyle(
-                            fontFamily: 'Jua',
-                            color: Color(0xff3A4D39),
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pop(); // 모달 닫기
-                            },
-                            child: Text(
-                              '닫기',
-                              style: TextStyle(
-                                color: Color(0xFF739072),
-                                fontFamily: 'Jua',
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF739072),
-                              fixedSize: Size(320, 55),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                            onPressed: () {
-                              // 결제 창으로 이동하는 코드 작성
-                            },
-                            child: Text(
-                              '바로 구매',
-                              style: TextStyle(
-                                color: Color(0xFFECE3CE),
-                                fontFamily: 'Jua',
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+    return Container(
+      height: 200,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Card(
+              elevation: 10,
+              child: ListTile(
+                title: Text(
+                  '"$title"를 바로 구매 하시겠습니까 ??',
+                  style: TextStyle(
+                    fontFamily: 'Jua',
+                    color: Color(0xff3A4D39),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            );
-          },
-        );
-      },
-      child: Text('모달 버튼'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop(); // 모달 닫기
+                    },
+                    child: Text(
+                      '닫기',
+                      style: TextStyle(
+                        color: Color(0xFF739072),
+                        fontFamily: 'Jua',
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF739072),
+                      fixedSize: Size(320, 55),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onPressed: () {
+                      // 결제 창으로 이동하는 코드 작성
+                    },
+                    child: Text(
+                      '바로 구매 하기',
+                      style: TextStyle(
+                        color: Color(0xFFECE3CE),
+                        fontFamily: 'Jua',
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

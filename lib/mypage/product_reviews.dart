@@ -2,14 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:greentouch/layout/appbar_back.dart';
-
-// 데이터 모델 정의
-class Product {
-  final String name;
-  final String imagePath;
-
-  Product(this.name, this.imagePath);
-}
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../service/review_service.dart';
 
 class ProductReview extends StatefulWidget {
   const ProductReview({Key? key}) : super(key: key);
@@ -19,16 +14,39 @@ class ProductReview extends StatefulWidget {
 }
 
 class _ProductReviewState extends State<ProductReview> {
-  // 상품 데이터 생성
-  final List<Product> products = [
-    Product('아레카야자', 'assets/plant/plant1.png'),
-    Product('관음죽', 'assets/plant/plant2.png'),
-    Product('대나무야자', 'assets/plant/plant3.png'),
-    Product('아레카야자1', 'assets/plant/plant4.png'),
+  late double _rating;
+  late PlantReviewService reviewService;
+  late TextEditingController _ratingController;
+
+  final List<PlantReviewService> products = [
+    PlantReviewService('아레카야자', 'assets/plant/plant1.png'),
+    PlantReviewService('관음죽', 'assets/plant/plant2.png'),
+    PlantReviewService('대나무야자', 'assets/plant/plant3.png'),
+    PlantReviewService('아레카야자1', 'assets/plant/plant4.png'),
   ];
 
-  // 각 상품의 별점을 저장하는 맵
-  Map<String, double> ratings = {};
+  @override
+  void initState() {
+    super.initState();
+    _ratingController = TextEditingController();
+    _loadRating();
+  }
+
+  // 저장된 별점을 불러와서 _rating 변수에 할당
+  void _loadRating() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    double savedRating = prefs.getDouble('rating') ?? 0.0;
+    setState(() {
+      _rating = savedRating;
+      _ratingController.text = _rating.toStringAsFixed(1);
+    });
+  }
+
+  // 별점을 Shared Preferences에 저장
+  void _saveRating(double rating) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setDouble('rating', rating);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,88 +93,9 @@ class _ProductReviewState extends State<ProductReview> {
               itemCount: products.length,
               itemBuilder: (context, index) {
                 final product = products[index];
-                return Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Color(0xffF0EADB),
-                        width: 1,
-                      ),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Image.asset(
-                              product.imagePath,
-                              width: 120,
-                              height: 120,
-                            ),
-                            SizedBox(width: 30),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    product.name,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(height: 25),
-                                  RatingBar.builder(
-                                    initialRating: 0,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemSize: 23,
-                                    itemBuilder: (context, _) => Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                    ),
-                                    onRatingUpdate: (rating) {
-                                      print(rating);
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (_) => InformationDetail(plant : plant)),
-                                // );
-                              },
-                              child: Row(
-                                children: [
-                                  Text(
-                                    '더보기',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color(0xff739072),
-                                    ),
-                                  ),
-                                  Icon(
-                                    CupertinoIcons.chevron_forward,
-                                    size: 40,
-                                    color: Color(0xff739072),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                return ChangeNotifierProvider.value(
+                  value: product, // 상품 객체를 상태로 제공
+                  child: _ProductItem(),
                 );
               },
             ),
@@ -167,29 +106,114 @@ class _ProductReviewState extends State<ProductReview> {
   }
 }
 
-class ProductDetailPage extends StatelessWidget {
-  final Product product;
+class _ProductItem extends StatefulWidget {
+  @override
+  State<_ProductItem> createState() => _ProductItemState();
+}
 
-  const ProductDetailPage({Key? key, required this.product}) : super(key: key);
+class _ProductItemState extends State<_ProductItem> {
+  late double _rating;
+
+  @override
+  void initState() {
+    super.initState();
+    _rating = 0.0;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(product.name),
+    final review = Provider.of<PlantReviewService>(context);
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Color(0xffF0EADB),
+            width: 1,
+          ),
+        ),
       ),
-      body: Center(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '상품 페이지입니다: ${product.name}',
-              style: TextStyle(fontSize: 24),
+            Row(
+              children: [
+                Image.asset(
+                  review.imagePath,
+                  width: 120,
+                  height: 120,
+                ),
+                SizedBox(width: 30),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        review.name,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 25),
+                      RatingBar.builder(
+                        initialRating: _rating,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemSize: 23,
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {
+                          setState(() {
+                            _rating = rating;
+                          });
+                          _saveRating(rating); // 별점 저장
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (_) => InformationDetail(plant : plant)),
+                    // );
+                  },
+                  child: Row(
+                    children: [
+                      Text(
+                        '더보기',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xff739072),
+                        ),
+                      ),
+                      Icon(
+                        CupertinoIcons.chevron_forward,
+                        size: 40,
+                        color: Color(0xff739072),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            // 상품 페이지 컨텐츠 추가
           ],
         ),
       ),
     );
+  }
+
+  // 별점을 Shared Preferences에 저장
+  void _saveRating(double rating) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setDouble('rating', rating);
   }
 }

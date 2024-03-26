@@ -2,11 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:greentouch/onboarding.dart';
-import 'package:greentouch/service/plant_service.dart';
 import 'package:greentouch/service/auth_service.dart';
-
+import 'package:greentouch/service/cart_service.dart';
+import 'package:greentouch/service/plant_service.dart';
+import 'package:greentouch/service/review_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'mypage/product_reviews.dart';
 
 late SharedPreferences prefs;
 
@@ -24,6 +27,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => PlantService()), // 외우기
         ChangeNotifierProvider(create: (context) => AuthService()),
+        ChangeNotifierProvider(create: (context) => CartService()),
+        ChangeNotifierProvider(
+            create: (context) => PlantReviewService('name', 'imagePath')),
       ],
       child: const MyApp(),
     ),
