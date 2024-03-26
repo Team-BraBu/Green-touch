@@ -32,11 +32,11 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
         children: [
           Padding(
             padding:
-                const EdgeInsets.only(top: 50, bottom: 30, left: 30, right: 30),
+                const EdgeInsets.only(top: 50, bottom: 30, left: 20, right: 20),
             child: Row(
               children: [
                 CircleAvatar(
-                  radius: 50,
+                  radius: 45,
                   // backgroundImage: AssetImage(''),
                   backgroundColor: Color(0xfff0eadb),
                 ),
@@ -54,7 +54,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                         Icons.edit_calendar,
                         color: Color(0xff739072),
                       ),
-                      iconSize: 60,
+                      iconSize: 55,
                       onPressed: () {
                         Navigator.push(
                           context,

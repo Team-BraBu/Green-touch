@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/list/productlistitem.dart';
-import 'package:greentouch/product/plant_service.dart';
+import 'package:greentouch/service/plant_service.dart';
 import 'package:provider/provider.dart';
 
 import '../layout/app_drawer.dart';

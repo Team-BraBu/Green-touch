@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:greentouch/layout/appbar_back.dart';
-import 'package:greentouch/product/plant_service.dart';
+import 'package:greentouch/service/plant_service.dart';
 
 class InformationDetail extends StatefulWidget {
   final Plant plant; //선택된 식물을 인자로 받음
@@ -173,13 +175,14 @@ class _InformationDetailState extends State<InformationDetail> {
                         ),
                       ], // 접기/펼쳐보기.
                       SizedBox(height: 16),
-                      Text('추가 텍스트'),
                       Padding(padding: EdgeInsets.all(1.5)),
                     ],
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(8.5)),
-                Divider(color: Colors.grey, thickness: 3),
+                SizedBox(
+                  height: 100,
+                )
                 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 클릭시 내용 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
               ],
             ),
@@ -195,11 +198,18 @@ class _InformationDetailState extends State<InformationDetail> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            GestureDetector(
+              onTap: () {},
+              child: Icon(CupertinoIcons.cart),
+            ),
+            SizedBox(
+              width: 10,
+            ),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF739072),
-                fixedSize: Size(180, 55),
+                fixedSize: Size(160, 55),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -227,35 +237,69 @@ class _InformationDetailState extends State<InformationDetail> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Expanded(
-                              child: Card(
-                                elevation: 4,
-                                child: ExpansionTile(
-                                  title: Text(
-                                    '식물이름',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                            Card(
+                              elevation: 10,
+                              child: ListTile(
+                                title: Text(
+                                  '"${widget.plant.title}"를 구매 하시겠습니까 ??',
+                                  style: TextStyle(
+                                    fontFamily: 'Jua',
+                                    color: Color(0xFF739072),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  children: [
-                                    ListTile(
-                                      title: Text('목록'),
-                                      onTap: () {},
-                                    )
-                                  ],
                                 ),
+                                // children: [
+                                //   ListTile(
+                                //     title: Text('목록'),
+                                //     onTap: () {},
+                                //   )
+                                // ],
                               ),
                             ),
-                            Text(
-                              '구매창',
-                              style: TextStyle(fontSize: 24),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pop(); // 모달 닫기
-                              },
-                              child: Text('닫기'),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(); // 모달 닫기
+                                    },
+                                    child: Text(
+                                      '닫기',
+                                      style: TextStyle(
+                                        color: Color(0xff3A4D39),
+                                        fontFamily: 'Jua',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Color(0xFFECE3CE),
+                                      fixedSize: Size(250, 55),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Text(
+                                      '바로 구매',
+                                      style: TextStyle(
+                                        color: Color(0xff3A4D39),
+                                        fontFamily: 'Jua',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -266,7 +310,7 @@ class _InformationDetailState extends State<InformationDetail> {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFECE3CE),
-                fixedSize: Size(180, 55),
+                fixedSize: Size(160, 55),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

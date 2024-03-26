@@ -70,7 +70,7 @@ class PlantService extends ChangeNotifier {
             '수명이 길고 홈 인테리어용으로 멋있고 고급스러워서 집안의 인테리어로도 많이 사용됩니다.',
       ),
       Plant(
-        imagePath: 'assets/plant/plant5.png',
+        imagePath: 'assets/plant/plant5.jpg',
         title: '아이비',
         subtitle: '',
         price: 30000,
@@ -145,7 +145,7 @@ class PlantService extends ChangeNotifier {
         detail_3: '',
       ),
       Plant(
-        imagePath: 'assets/plant/plant11.png',
+        imagePath: 'assets/plant/plant11.jpg',
         title: '스킨답서스',
         subtitle: '주방에 딱!',
         price: 20000,
@@ -170,7 +170,7 @@ class PlantService extends ChangeNotifier {
         detail_3: '수경재배로 키워보세요! 집안의 산뜻한 분위기를 줄 수 있어요!',
       ),
       Plant(
-        imagePath: 'assets/plant/plant13.png',
+        imagePath: 'assets/plant/plant13.jpg',
         title: '테이블야자',
         subtitle: '마음의 평화',
         price: 39000,
@@ -195,7 +195,7 @@ class PlantService extends ChangeNotifier {
         detail_3: '천장이나 벽에 걸어 놓는다면 더할나위없을거에요 !',
       ),
       Plant(
-        imagePath: 'assets/plant/plant15.png',
+        imagePath: 'assets/plant/plant15.jpg',
         title: '떡갈고무나무',
         subtitle: '',
         price: 39000,
