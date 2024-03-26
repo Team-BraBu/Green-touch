@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:greentouch/list/feedservice.dart';
+import 'package:provider/provider.dart';
 
 class Feed extends StatefulWidget {
   const Feed({
@@ -59,7 +61,9 @@ class _FeedState extends State<Feed> {
               onPressed: () {
                 setState(() {
                   isMarked = !isMarked;
-                  // _savedFeed();
+                  // feedservice 를 통해 북마크 토글
+                  Provider.of<FeedService>(context, listen: false)
+                      .toggleSavedImage(widget.imagePath);
                 });
               },
               icon: Icon(
