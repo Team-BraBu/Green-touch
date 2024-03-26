@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar.dart';
+import 'package:greentouch/mypage/finish.dart';
 import '../layout/app_drawer.dart';
 
 class PurchasePage extends StatefulWidget {
@@ -11,9 +12,7 @@ class PurchasePage extends StatefulWidget {
 }
 
 class _PurchasePageState extends State<PurchasePage> {
-
   final TextEditingController addressController = TextEditingController();
-
 
   final TextEditingController cardNumberController = TextEditingController();
   final TextEditingController expiryDateController = TextEditingController();
@@ -29,11 +28,17 @@ class _PurchasePageState extends State<PurchasePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 100,),
+            SizedBox(
+              height: 100,
+            ),
             Text(
               '배송 주소 입력',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Color(0xFF739072),
-                fontFamily: 'Jua',),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.normal,
+                color: Color(0xFF739072),
+                fontFamily: 'Jua',
+              ),
             ),
             TextField(
               controller: addressController,
@@ -45,8 +50,12 @@ class _PurchasePageState extends State<PurchasePage> {
             SizedBox(height: 20),
             Text(
               '카드 결제',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Color(0xFF739072),
-                fontFamily: 'Jua',),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.normal,
+                color: Color(0xFF739072),
+                fontFamily: 'Jua',
+              ),
             ),
             TextField(
               controller: cardNumberController,
@@ -90,13 +99,15 @@ class _PurchasePageState extends State<PurchasePage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => finished()),
+                );
+              },
               child: Text(
-                  '결제하기',
-                style: TextStyle(
-                  fontSize: 23,
-                  color: Colors.white
-                ),
+                '결제하기',
+                style: TextStyle(fontSize: 23, color: Colors.white),
               ),
             ),
           ],
