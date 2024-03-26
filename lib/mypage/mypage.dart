@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:greentouch/list/planteriorlist.dart';
 import 'package:greentouch/mypage/product_reviews.dart';
 import 'package:greentouch/savedfeed.dart';
+import 'package:greentouch/savedfeedlist.dart';
 import 'package:greentouch/service/auth_service.dart';
 import 'package:provider/provider.dart';
 import 'calendar.dart';
@@ -208,7 +209,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => SavedFeedPage(),
+                            builder: (_) => BookmarkedFeed(imagePath: , contentPath: contentPath, hashtagPath: hashtagPath, datePath: datePath, isMarked: isMarked, onBookmarkChanged: onBookmarkChanged),
                           ),
                         );
                       },
