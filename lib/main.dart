@@ -2,7 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:greentouch/onboarding.dart';
+import 'package:greentouch/product/plant_service.dart';
 import 'package:greentouch/service/auth_service.dart';
+
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,10 +17,17 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   prefs = await SharedPreferences.getInstance();
+
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => AuthService()),
-    ], child: const MyApp()),
+    //서비스 등록
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => PlantService()), // 외우기
+        ChangeNotifierProvider(create: (context) => AuthService()),
+      ],
+      child: const MyApp(),
+    ),
+
   );
 }
 
