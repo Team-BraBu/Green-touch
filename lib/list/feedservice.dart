@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:greentouch/list/feed.dart';
 import 'package:greentouch/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'feed_item.dart';
 
 /**
  * ChangeNotifier
@@ -10,25 +14,17 @@ import 'package:shared_preferences/shared_preferences.dart';
  */
 
 class FeedService extends ChangeNotifier {
-  SharedPreferences prefs;
+  List<Feed> _bookmarkedFeeds = [];
 
-  // // 리스트 이미지
-  // List<String> pImages = [];
-  // 북마크 누른 이미지
-  List<String> savedImages = [];
+  List<Feed> get bookmarkedFeeds => _bookmarkedFeeds;
 
-  FeedService(this.prefs) {
-    savedImages = prefs.getStringList('saved') ?? [];
+  void addBookmark(Feed feed) {
+    _bookmarkedFeeds.add(feed);
+    notifyListeners();
   }
 
-  void toggleSavedImage(String imagePath) {
-    if (savedImages.contains(imagePath)) {
-      savedImages.remove(imagePath);
-    } else {
-      savedImages.add(imagePath);
-    }
-    // Shared Preferences에 저장
-    prefs.setStringList('saved', savedImages);
+  void removeBookmark(Feed feed) {
+    _bookmarkedFeeds.remove(feed);
     notifyListeners();
   }
 }
