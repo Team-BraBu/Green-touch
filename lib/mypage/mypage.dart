@@ -208,12 +208,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => SavedFeedPage(
-                              imagePath: '',
-                              contentPath: '',
-                              hashtagPath: '',
-                              datePath: '',
-                            ),
+                            builder: (_) => SavedFeedPage(),
                           ),
                         );
                       },
