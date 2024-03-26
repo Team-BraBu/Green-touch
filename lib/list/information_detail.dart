@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:greentouch/layout/appbar_back.dart';
+import 'package:greentouch/mypage/tab_cart.dart';
 import 'package:greentouch/service/plant_service.dart';
 
 class InformationDetail extends StatefulWidget {
@@ -199,7 +200,14 @@ class _InformationDetailState extends State<InformationDetail> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => TabCart(),
+                  ),
+                );
+              },
               child: Icon(CupertinoIcons.cart),
             ),
             SizedBox(

@@ -123,7 +123,7 @@ class MainPage extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => tabcart()));
+                                  builder: (context) => TabCart()));
                         } else {
                           showDialog(
                               context: context,
