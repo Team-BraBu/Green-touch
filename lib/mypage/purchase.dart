@@ -142,6 +142,7 @@ class _PurchasePageState extends State<PurchasePage> {
                     ),
                   ),
                   onPressed: () {
+                    context.read<CartService>().removeCartItems();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
