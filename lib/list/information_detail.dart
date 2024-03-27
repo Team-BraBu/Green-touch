@@ -183,7 +183,7 @@ class _InformationDetailState extends State<InformationDetail> {
                             widget.plant.detail_2,
                             style: TextStyle(color: Colors.grey[600]),
                           ),
-                        SizedBox(height: 16),
+                        SizedBox(height: 25),
                         if (widget.plant.subtitle != '영양제')
                           Text(
                             '인테리어 TIP',
