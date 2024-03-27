@@ -208,6 +208,16 @@ class PlantService extends ChangeNotifier {
             ' 물은 뿌리에 과도한 습기가 발생하지 않도록 흡수되어야 합니다.',
         detail_3: '',
       ),
+      Plant(
+        imagePath: 'assets/plant/y.jpg',
+        title: '영양제',
+        subtitle: '',
+        price: 40000,
+        category: 3,
+        detail_1: '',
+        detail_2: '',
+        detail_3: '',
+      ),
     ];
   }
 
