@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:greentouch/layout/appbar.dart';
 import 'package:greentouch/layout/appbar_back.dart';
-import 'package:greentouch/mypage/finish.dart';
+import 'package:greentouch/mypage/finished.dart';
+import '../layout/app_drawer.dart';
 
 class PurchasePage extends StatefulWidget {
   const PurchasePage({Key? key}) : super(key: key);
