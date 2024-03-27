@@ -26,7 +26,6 @@ class _InformationDetailState extends State<InformationDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BackAppbar(),
-
       //drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
