@@ -27,23 +27,29 @@ class Feed extends StatefulWidget {
 class _FeedState extends State<Feed> {
   bool isFavorite = false;
   bool isMarked = false;
-
-  // SharedPreferences 를 사용하여 북마크된 상태 저장
-  void saveBookmarkStatus(bool isMarked) async {
-    await prefs.setBool(widget.imagePath, isMarked);
-  }
-
-  // SharedPreferences 에서 북마크된 상태 불러오기
-  Future<bool> loadBookmarkStatus() async {
-    return prefs.getBool(widget.imagePath) ?? false;
-  }
+  late FeedIconState feedIconState;
+  int likesCount = 356;
 
   @override
   void initState() {
-    loadBookmarkStatus().then((status) {
+    SharedPreferences.getInstance().then((prefs) {
+      feedIconState = FeedIconState(prefs);
+
+      bool bookmarkStatus = feedIconState.loadBookmarkStatus(widget.imagePath);
       setState(() {
-        isMarked = status;
-        // isFavorite = status;
+        isMarked = bookmarkStatus;
+      });
+
+      bool favoriteStatus =
+          feedIconState.loadFavoriteStatus('favorite_${widget.imagePath}');
+      setState(() {
+        isFavorite = favoriteStatus;
+      });
+
+      int savedLikesCount =
+          feedIconState.loadLikesCount('likes_${widget.imagePath}');
+      setState(() {
+        likesCount = savedLikesCount;
       });
     });
   }
@@ -57,8 +63,13 @@ class _FeedState extends State<Feed> {
           onDoubleTap: () {
             setState(() {
               isFavorite = !isFavorite;
-              // saveFavoriteStatus(isFavorite);
+              // likesCount += 1; // 단순히 횟수 증가하는 로직
+              likesCount += isFavorite ? 1 : -1; // 좋아요 누를때마다 횟수 조정
             });
+            feedIconState.saveFavoriteStatus(
+                'favorite_${widget.imagePath}', isFavorite);
+            feedIconState.saveLikesCount(
+                'likes_${widget.imagePath}', likesCount);
           },
           child: Image.asset(
             widget.imagePath,
@@ -73,22 +84,28 @@ class _FeedState extends State<Feed> {
               onPressed: () {
                 setState(() {
                   isFavorite = !isFavorite;
-                  // saveFavoriteStatus(isFavorite);
+                  // likesCount += 1; // 단순히 횟수 증가하는 로직
+                  likesCount += isFavorite ? 1 : -1; // 좋아요 누를때마다 횟수 조정
                 });
+                feedIconState.saveFavoriteStatus(
+                    'favorite_${widget.imagePath}', isFavorite);
+                feedIconState.saveLikesCount(
+                    'likes_${widget.imagePath}', likesCount);
               },
               icon: Icon(
                 isFavorite ? Icons.favorite : Icons.favorite_border,
                 color: isFavorite ? Colors.red : Colors.black,
               ),
             ),
-            Text('365 likes'),
+            Text('${likesCount} likes'),
             Spacer(),
             IconButton(
               onPressed: () {
                 setState(() {
                   isMarked = !isMarked;
-                  saveBookmarkStatus(isMarked); // 북마크 상태 저장
                 });
+                feedIconState.saveBookmarkStatus(
+                    widget.imagePath, isMarked); // 북마크 상태 저장
               },
               icon: Icon(
                 isMarked ? Icons.bookmark : Icons.bookmark_border,
@@ -120,5 +137,35 @@ class _FeedState extends State<Feed> {
         )
       ],
     );
+  }
+}
+
+class FeedIconState {
+  final SharedPreferences prefs;
+
+  FeedIconState(this.prefs);
+
+  Future<void> saveBookmarkStatus(String imagePath, bool isMarked) async {
+    await prefs.setBool(imagePath, isMarked);
+  }
+
+  bool loadBookmarkStatus(String imagePath) {
+    return prefs.getBool(imagePath) ?? false;
+  }
+
+  Future<void> saveFavoriteStatus(String imagePath, bool isFavorite) async {
+    await prefs.setBool('favorite_$imagePath', isFavorite);
+  }
+
+  bool loadFavoriteStatus(String imagePath) {
+    return prefs.getBool('favorite_$imagePath') ?? false;
+  }
+
+  Future<void> saveLikesCount(String imagePath, int likesCount) async {
+    await prefs.setInt('likes_$imagePath', likesCount);
+  }
+
+  int loadLikesCount(String imagePath) {
+    return prefs.getInt('likes_$imagePath') ?? 356;
   }
 }
