@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:greentouch/list/history.dart';
+import 'package:greentouch/list/mission.dart';
 import 'package:greentouch/list/planteriorlist.dart';
+import 'package:greentouch/list/recommanded.dart';
 import 'package:greentouch/mypage/product_reviews.dart';
 import 'package:greentouch/service/auth_service.dart';
 import 'package:provider/provider.dart';
-
+import 'calendar.dart';
 import '../layout/app_drawer.dart';
 import '../layout/appbar.dart';
-import 'calendar.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -111,13 +113,13 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                   children: [
                     InkWell(
                       onTap: () {
-                        // // 버튼이 눌렸을 때 수행할 동작 추가
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => ProductReview(),
-                        //   ),
-                        // );
+                        // 버튼이 눌렸을 때 수행할 동작 추가
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => Recommand(),
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -173,13 +175,12 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                     Divider(color: Color(0xffF0EADB)),
                     InkWell(
                       onTap: () {
-                        // 버튼이 눌렸을 때 수행할 동작 추가
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => ProductReview(),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => MissionPage(),
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -204,7 +205,12 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                     Divider(color: Color(0xffF0EADB)),
                     InkWell(
                       onTap: () {
-                        // 버튼이 눌렸을 때 수행할 동작 추가
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => HistoryPage(),
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
