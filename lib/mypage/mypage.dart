@@ -205,12 +205,6 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                     InkWell(
                       onTap: () {
                         // 버튼이 눌렸을 때 수행할 동작 추가
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => BookmarkedFeed(imagePath: , contentPath: contentPath, hashtagPath: hashtagPath, datePath: datePath, isMarked: isMarked, onBookmarkChanged: onBookmarkChanged),
-                        //   ),
-                        // );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
