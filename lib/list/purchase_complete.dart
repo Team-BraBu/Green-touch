@@ -10,27 +10,21 @@ class PurchaseComplete extends StatelessWidget {
     return Scaffold(
       appBar: BaseAppBar(),
       backgroundColor: Colors.white,
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.jpg'),
-            fit: BoxFit.cover,
-
-          ),
-        ),
-        child: Column(
-          children: [
-            // Top bar with the menu icon and logo
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  // Menu icon
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+        // Top bar with the menu icon and logo
+        SizedBox(height: 70,width: 10,),
+      Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Row(
+            children: [
+            Icon(Icons.menu, size: 30), // Menu icon
                   Expanded(
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Image.asset(
-                        'assets/images/pang2.png', // Replace with your asset
+                        'assets/images/logo4.png', // Replace with your asset
                         width: 100, // Adjust the size to fit your logo
                       ),
                     ),
@@ -43,13 +37,22 @@ class PurchaseComplete extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Image.asset('assets/plant/plant1.png'), // Confetti image
-                  SizedBox(height: 16),
+                Image.asset('assets/images/logo2.png',width: double.infinity,height: 250,
+                ),
+                  SizedBox(height: 16,width: 10,),
                   Text(
                     '구매가 완료되었습니다.',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Color(0xffD26F6F),fontFamily: 'Jua',fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 24),
+                  SizedBox(height: 16,width: 10,),
+                  Text('총 결제금액', style: TextStyle(fontSize: 18)),
+                  Text(
+                    '29,000  원',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       // Button tap action
@@ -67,15 +70,35 @@ class PurchaseComplete extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                     ),
                   ),
-                  Spacer(),
-                  Text('결제금액',
-                      style: TextStyle(fontSize: 22, color: Colors.red)),
-                  Text('29,000원',
-                      style: TextStyle(fontSize: 24, color: Colors.black)),
+                  SizedBox(height: 17),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Button tap action
+                    },
+                    child: Text(
+                      '돌아가기',
+                      style: TextStyle(
+                        fontFamily: 'Jua',
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                        color: Color(0xff3A4D39),
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF739072),
+                      fixedSize: Size(150,50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+
+                      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    ),
+                  ),
                   Spacer(),
                 ],
               ),
             ),
+
             // Bottom banner with fast delivery text
             Container(
               color: Colors.orange,
@@ -94,7 +117,6 @@ class PurchaseComplete extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }
