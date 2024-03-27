@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar_back.dart';
 import 'package:greentouch/list/purchase_complete.dart';
+import 'package:greentouch/mypage/product_reviews.dart';
+
 import 'package:greentouch/service/cart_service.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +24,7 @@ class _PurchasePageState extends State<PurchasePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Consumer<CartService>(builder: (context, cartService, child) {
       List<Plant> product = cartService.product;
       double totalPrice = 0;
@@ -141,28 +144,33 @@ class _PurchasePageState extends State<PurchasePage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onPressed: () {
-                    context.read<CartService>().removeCartItems();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PurchaseComplete()),
-                    );
-                  },
-                  child: Text(
-                    '결제하기',
-                    style: TextStyle(
-                        fontSize: 22,
-                        color: Colors.white,
-                        fontFamily: 'Jua',
-                        fontWeight: FontWeight.normal),
+                    onPressed: () {
+                      context.read<CartService>().removeCartItems();
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PurchaseComplete(),
+                          settings: RouteSettings(
+                            arguments: ProductReview(), // 여기에 데이터를 전달합니다.
+                          ),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      '결제하기',
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.white,
+                          fontFamily: 'Jua',
+                          fontWeight: FontWeight.normal),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        }),
-      );
-    });
+                ],
+              ),
+            );
+          }),
+        );
+      },
+    );
   }
 }
