@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:greentouch/list/history.dart';
-import 'package:greentouch/list/mission.dart';
+import 'package:greentouch/mypage/history.dart';
+import 'package:greentouch/mypage/mission.dart';
 import 'package:greentouch/list/planteriorlist.dart';
-import 'package:greentouch/list/recommanded.dart';
+import 'package:greentouch/mypage/recommanded.dart';
 import 'package:greentouch/mypage/product_reviews.dart';
 import 'package:greentouch/service/auth_service.dart';
 import 'package:provider/provider.dart';

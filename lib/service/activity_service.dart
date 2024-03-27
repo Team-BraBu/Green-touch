@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../list/history.dart';
+import '../mypage/history.dart';
 
 class Activity {
   String date;
