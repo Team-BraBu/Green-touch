@@ -262,7 +262,7 @@ class _TabCartState extends State<TabCart> {
                 itemCount: cartItems.length,
                 itemBuilder: (context, index) {
                   final product = cartItems[index];
-                  int quantity = quantities[product] ?? 1;
+                  // int quantity = quantities[product] ?? 1;
                   // double totalPrice = product.price * quantity;
 
                   return Card(
