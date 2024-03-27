@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar.dart';
 import 'package:greentouch/layout/appbar_back.dart';
+import 'package:greentouch/list/purchase_complete.dart';
 import 'package:greentouch/mypage/finished.dart';
 import '../layout/app_drawer.dart';
 
@@ -112,7 +113,7 @@ class _PurchasePageState extends State<PurchasePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Finished()),
+                    MaterialPageRoute(builder: (context) => Purchasecomplete()),
                   );
                 },
                 child: Text(
