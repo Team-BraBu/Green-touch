@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../layout/app_drawer.dart';
 import '../layout/appbar.dart';
+import '../service/cart_service.dart';
 import 'calendar.dart';
 
 class MyPage extends StatefulWidget {
@@ -146,7 +147,11 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => ProductReview(),
+                            builder: (_) => ProductReview(
+                              purchasedItems: context
+                                  .read<CartService>()
+                                  .getPurchasedItem(),
+                            ),
                           ),
                         );
                       },

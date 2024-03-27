@@ -17,7 +17,10 @@ class Product {
 }
 
 class ProductReview extends StatefulWidget {
-  const ProductReview({Key? key}) : super(key: key);
+  final List<Plant> purchasedItems;
+
+  const ProductReview({Key? key, required this.purchasedItems})
+      : super(key: key);
 
   @override
   State<ProductReview> createState() => _ProductReviewState();
@@ -25,14 +28,13 @@ class ProductReview extends StatefulWidget {
 
 class _ProductReviewState extends State<ProductReview> {
   // late Plant plant;
-
   // 각 상품의 별점을 저장하는 맵
   Map<String, double> ratings = {};
 
   @override
   Widget build(BuildContext context) {
     return Consumer<CartService>(builder: (context, cartService, child) {
-      List<Plant> products = cartService.product;
+      List<Plant> purchased = cartService.purchasedItems;
 
       return Scaffold(
         appBar: BackAppbar(),
@@ -75,9 +77,9 @@ class _ProductReviewState extends State<ProductReview> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: products.length,
+                itemCount: purchased.length,
                 itemBuilder: (context, index) {
-                  final product = products[index];
+                  final product = purchased[index];
                   return Container(
                     decoration: BoxDecoration(
                       border: Border(
