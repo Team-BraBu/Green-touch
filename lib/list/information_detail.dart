@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:greentouch/layout/appbar_back.dart';
 import 'package:greentouch/mypage/purchase.dart';
 import 'package:greentouch/mypage/tab_cart.dart';
-import 'package:greentouch/service/plant_service.dart';
+import 'package:greentouch/product/plant_service.dart';
 import 'package:provider/provider.dart';
 
 import '../service/cart_service.dart';
