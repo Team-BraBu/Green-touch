@@ -210,7 +210,7 @@ class _InformationDetailState extends State<InformationDetail> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => tabcart())); // 장바구니 화면으로 이동
+                          builder: (context) => TabCart())); // 장바구니 화면으로 이동
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF739072),

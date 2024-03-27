@@ -36,12 +36,12 @@ class ShoppingCart {
   bool get isEmpty => items.isEmpty;
 }
 
-class tabcart extends StatefulWidget {
+class TabCart extends StatefulWidget {
   @override
   _tabcartState createState() => _tabcartState();
 }
 
-class _tabcartState extends State<tabcart> {
+class _tabcartState extends State<TabCart> {
   final ShoppingCart cart = ShoppingCart();
   Map<Product, bool> isChecked = {};
   Map<Product, int> quantities = {};

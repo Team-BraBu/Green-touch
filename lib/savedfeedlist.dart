@@ -22,7 +22,11 @@ class SavedFeedList extends StatelessWidget {
       body: ListView.builder(
         itemCount: bookmarkedFeeds.length,
         itemBuilder: (context, index) {
-          return FeedItem(imagePath: bookmarkedFeeds[index], contentPath: contentPath, hashtagPath: hashtagPath, datePath: datePath)
+          return FeedItem(
+              imagePath: bookmarkedFeeds[index],
+              contentPath: contentPath,
+              hashtagPath: hashtagPath,
+              datePath: datePath);
           // final image = planteriorData.images[index];
           // final content = planteriorData.contents[index];
           // final hashtag = planteriorData.hashtags[index];

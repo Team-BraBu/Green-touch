@@ -112,7 +112,7 @@ class _PurchasePageState extends State<PurchasePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => finished()),
+                    MaterialPageRoute(builder: (context) => Finished()),
                   );
                 },
                 child: Text(

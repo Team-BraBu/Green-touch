@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:greentouch/layout/app_drawer.dart';
 import 'package:greentouch/layout/appbar.dart';
 
-class finished extends StatelessWidget {
-  const finished({super.key});
+class Finished extends StatelessWidget {
+  const Finished({super.key});
 
   @override
   Widget build(BuildContext context) {
