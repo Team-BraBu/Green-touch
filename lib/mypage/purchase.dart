@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar_back.dart';
+import 'package:greentouch/list/purchase_complete.dart';
 import 'package:greentouch/mypage/finished.dart';
 
 class PurchasePage extends StatefulWidget {
@@ -109,7 +110,7 @@ class _PurchasePageState extends State<PurchasePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Finished()),
+                    MaterialPageRoute(builder: (context) => Purchasecomplete()),
                   );
                 },
                 child: Text(
