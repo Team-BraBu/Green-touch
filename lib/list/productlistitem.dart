@@ -20,7 +20,8 @@ class ProductListItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        color: Colors.white,
+        decoration: BoxDecoration(
+            border: Border.all(color: Color(0xffF0EADB)), color: Colors.white),
         child: Padding(
           padding: EdgeInsets.all(8),
           child: Column(
@@ -35,6 +36,7 @@ class ProductListItem extends StatelessWidget {
                   fit: BoxFit.fill, // 이미지를 꽉 채우도록 설정
                 ),
               ),
+              SizedBox(height: 8),
               Text(
                 title,
                 style: TextStyle(
@@ -42,10 +44,12 @@ class ProductListItem extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),
+              SizedBox(height: 4),
               Text(
                 subtitle,
                 style: TextStyle(color: Color(0xFF3A4D39)),
               ),
+              SizedBox(height: 4),
               Text(
                 price,
                 style: TextStyle(color: Color(0xFF3A4D39)),
