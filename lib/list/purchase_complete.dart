@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar_back.dart';
 
-class Purchasecomplete extends StatelessWidget {
+class PurchaseComplete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
