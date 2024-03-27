@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:greentouch/layout/appbar_back.dart';
 
 class Purchasecomplete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: BackAppbar(),
         backgroundColor: Colors.white,
         body: Container(
           decoration: BoxDecoration(
