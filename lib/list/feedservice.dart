@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:greentouch/list/feed.dart';
-import 'package:greentouch/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /**
  * ChangeNotifier

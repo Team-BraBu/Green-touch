@@ -1,9 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:greentouch/list/feedservice.dart';
-import 'package:greentouch/main.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Feed extends StatefulWidget {
