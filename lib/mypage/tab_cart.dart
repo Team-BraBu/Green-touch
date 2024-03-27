@@ -404,7 +404,7 @@ class _TabCartState extends State<TabCart> {
                     padding: EdgeInsets.only(bottom: 25.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => PurchasePage()),
