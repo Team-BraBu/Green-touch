@@ -262,9 +262,6 @@ class _TabCartState extends State<TabCart> {
                 itemCount: cartItems.length,
                 itemBuilder: (context, index) {
                   final product = cartItems[index];
-                  // int quantity = quantities[product] ?? 1;
-                  // double totalPrice = product.price * quantity;
-
                   return Card(
                     color: Colors.white,
                     margin: EdgeInsets.all(6.0),
@@ -277,18 +274,6 @@ class _TabCartState extends State<TabCart> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Checkbox(
-                          //   shape: CircleBorder(),
-                          //   value: isChecked[product] ?? true,
-                          //   onChanged: (value) {
-                          //     setState(() {
-                          //       isChecked[product] = value ?? true;
-                          //     });
-                          //   },
-                          //   checkColor: Colors.white, // 체크 마크 색상
-                          //   activeColor:
-                          //       Color(0xff739072), // 활성화된 상태의 체크박스 배경 색상
-                          // ),
                           Container(
                             width: 100.0,
                             height: 140.0,
@@ -320,46 +305,6 @@ class _TabCartState extends State<TabCart> {
                                   ),
                                 ),
                                 SizedBox(height: 43),
-                                // Container(
-                                //   width: 105.0,
-                                //   height: 30.0,
-                                //   decoration: BoxDecoration(
-                                //     border: Border.all(color: Colors.grey),
-                                //     borderRadius: BorderRadius.circular(
-                                //         20.0), // 테두리 둥글기 설정
-                                //   ),
-                                //   // child: Row(
-                                //   //   children: [
-                                //   //     IconButton(
-                                //   //       icon: Icon(Icons.remove),
-                                //   //       onPressed: () {
-                                //   //         // if (quantity > 1) {
-                                //   //         //   setState(() {
-                                //   //         //     quantities[product] =
-                                //   //         //         quantity - 1;
-                                //   //         //   });
-                                //   //         // }
-                                //   //       },
-                                //   //       padding: EdgeInsets.all(1.0),
-                                //   //       iconSize: 15.0,
-                                //   //     ),
-                                //   //     Text(
-                                //   //       '$quantity',
-                                //   //       style: TextStyle(fontSize: 12.0),
-                                //   //     ),
-                                //   //     IconButton(
-                                //   //       icon: Icon(Icons.add),
-                                //   //       onPressed: () {
-                                //   //         // setState(() {
-                                //   //         //   quantities[product] = quantity + 1;
-                                //   //         // });
-                                //   //       },
-                                //   //       padding: EdgeInsets.all(1.0),
-                                //   //       iconSize: 15.0,
-                                //   //     ),
-                                //   //   ],
-                                //   // ),
-                                // ),
                               ],
                             ),
                           ),

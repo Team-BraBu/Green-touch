@@ -16,4 +16,9 @@ class CartService extends ChangeNotifier {
     product.remove(plant);
     notifyListeners();
   }
+
+  void removeCartItems() {
+    product.clear();
+    notifyListeners();
+  }
 }

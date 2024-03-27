@@ -93,7 +93,7 @@ class _ProductListState extends State<ProductList> {
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 1 / 1.5,
+                      childAspectRatio: 1 / 1.6,
                       crossAxisSpacing: 8,
                       mainAxisSpacing: 8,
                     ),

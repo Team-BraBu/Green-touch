@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar.dart';
 import 'package:greentouch/mypage/product_reviews.dart';
 
+
 class PurchaseComplete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: BaseAppBar(),
       backgroundColor: Colors.white,
@@ -13,6 +15,7 @@ class PurchaseComplete extends StatelessWidget {
           image: DecorationImage(
             image: AssetImage('assets/images/background.jpg'),
             fit: BoxFit.cover,
+
           ),
         ),
         child: Column(
