@@ -225,10 +225,6 @@ class _InformationDetailState extends State<InformationDetail> {
             GestureDetector(
               onTap: () {
                 if (user != null) {
-                  final cartItem = widget.plant;
-                  context
-                      .read<CartService>()
-                      .addToCart(cartItem); // 장바구니에 상품 추가
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => TabCart()));
                 } else {
