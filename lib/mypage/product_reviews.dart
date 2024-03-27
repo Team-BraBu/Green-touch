@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:greentouch/layout/appbar_back.dart';
-import 'package:greentouch/service/cart_service.dart';
+import 'package:greentouch/service/purchased_service.dart';
 import 'package:provider/provider.dart';
 
 import '../list/information_detail.dart';
@@ -17,10 +17,7 @@ class Product {
 }
 
 class ProductReview extends StatefulWidget {
-  final List<Plant> purchasedItems;
-
-  const ProductReview({Key? key, required this.purchasedItems})
-      : super(key: key);
+  const ProductReview({Key? key}) : super(key: key);
 
   @override
   State<ProductReview> createState() => _ProductReviewState();
@@ -33,8 +30,8 @@ class _ProductReviewState extends State<ProductReview> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CartService>(builder: (context, cartService, child) {
-      List<Plant> purchased = cartService.purchasedItems;
+    return Consumer<PurchaseService>(builder: (context, purchase, child) {
+      List<Plant> purchased = purchase.purchasedItems;
 
       return Scaffold(
         appBar: BackAppbar(),

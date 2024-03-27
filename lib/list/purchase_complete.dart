@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar.dart';
 import 'package:greentouch/mypage/product_reviews.dart';
-import 'package:provider/provider.dart';
-
-import '../service/cart_service.dart';
 
 class PurchaseComplete extends StatelessWidget {
   @override
@@ -56,10 +53,7 @@ class PurchaseComplete extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProductReview(
-                            purchasedItems:
-                                context.read<CartService>().getPurchasedItem(),
-                          ),
+                          builder: (context) => ProductReview(),
                         ),
                       );
                     },

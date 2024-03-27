@@ -26,8 +26,6 @@ class _PurchasePageState extends State<PurchasePage> {
   Widget build(BuildContext context) {
     return Consumer<CartService>(
       builder: (context, cartService, child) {
-        // 여기에서 구매한 아이템 목록을 가져옵니다.
-
         List<Plant> product = cartService.product;
         double totalPrice = 0;
         for (var i = 0; i < product.length; i++) {
@@ -147,21 +145,16 @@ class _PurchasePageState extends State<PurchasePage> {
                       ),
                     ),
                     onPressed: () {
-                      context.read<CartService>().removeCartItems();
-
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => PurchaseComplete(),
                           settings: RouteSettings(
-                            arguments: ProductReview(
-                              purchasedItems: context
-                                  .read<CartService>()
-                                  .getPurchasedItem(), // 여기에 데이터를 전달합니다.
-                            ),
+                            arguments: ProductReview(),
                           ),
                         ),
                       );
+                      context.read<CartService>().removeCartItems();
                     },
                     child: Text(
                       '결제하기',
