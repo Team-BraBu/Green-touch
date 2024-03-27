@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar.dart';
 import 'package:greentouch/mypage/product_reviews.dart';
+import 'package:provider/provider.dart';
+
+import '../service/cart_service.dart';
 
 class PurchaseComplete extends StatelessWidget {
   @override
@@ -50,11 +53,12 @@ class PurchaseComplete extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       // Button tap action
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProductReview(),
-                        ),
+                            builder: (context) => ProductReview(
+                                  onDataTransferred: (removeProducts) {},
+                                )),
                       );
                     },
                     child: Text('반려식물 별점 주러가기'),

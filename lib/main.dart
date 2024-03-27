@@ -25,12 +25,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => PlantService()), // 외우기
         ChangeNotifierProvider(create: (context) => AuthService()),
-        ChangeNotifierProvider(create: (context) => CartService()),
-        ChangeNotifierProvider(
-          create: (context) => PurchaseService(
-            cartService: Provider.of<CartService>(context, listen: true),
-          ),
-        )
+        ChangeNotifierProvider(create: (context) => CartService())
       ],
       child: const MyApp(),
     ),

@@ -144,11 +144,12 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                       onTap: () {
                         // 버튼이 눌렸을 때 수행할 동작 추가
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ProductReview(),
-                          ),
-                        );
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProductReview(
+                                onDataTransferred: (removeProducts) {},
+                              ),
+                            ));
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(

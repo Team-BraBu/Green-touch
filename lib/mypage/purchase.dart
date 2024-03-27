@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar_back.dart';
 import 'package:greentouch/list/purchase_complete.dart';
-import 'package:greentouch/mypage/product_reviews.dart';
-
 import 'package:greentouch/service/cart_service.dart';
 import 'package:provider/provider.dart';
 
@@ -145,16 +143,13 @@ class _PurchasePageState extends State<PurchasePage> {
                       ),
                     ),
                     onPressed: () {
+                      context.read<CartService>().removeCartItems();
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => PurchaseComplete(),
-                          settings: RouteSettings(
-                            arguments: ProductReview(),
-                          ),
                         ),
                       );
-                      context.read<CartService>().removeCartItems();
                     },
                     child: Text(
                       '결제하기',
