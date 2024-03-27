@@ -7,6 +7,7 @@ import 'package:greentouch/mypage/tab_cart.dart';
 import 'package:greentouch/product/plant_service.dart';
 import 'package:provider/provider.dart';
 
+import '../service/auth_service.dart';
 import '../service/cart_service.dart';
 
 class InformationDetail extends StatefulWidget {
@@ -24,6 +25,7 @@ class _InformationDetailState extends State<InformationDetail> {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<AuthService>().currentUser();
     return Scaffold(
       appBar: BackAppbar(),
       //drawer: AppDrawer(),
@@ -153,27 +155,44 @@ class _InformationDetailState extends State<InformationDetail> {
                               TextStyle(color: Colors.grey[600], fontSize: 15),
                         ),
                         SizedBox(height: 16),
-                        Text(
-                          '키우는 TIP',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Color(0xffD26F6F),
-                            fontFamily: 'Jua',
+                        if (widget.plant.subtitle == '영양제')
+                          Text(
+                            '영양제 TIP',
+                            style: TextStyle(
+                              fontSize: 22,
+                              color: Color(0xffD26F6F),
+                              fontFamily: 'Jua',
+                            ),
                           ),
-                        ),
-                        Text(
-                          widget.plant.detail_2,
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
+                        if (widget.plant.subtitle == '영양제')
+                          Text(
+                            widget.plant.detail_2,
+                            style: TextStyle(color: Colors.grey[600]),
+                          ),
+                        if (widget.plant.subtitle != '영양제')
+                          Text(
+                            '키우는 TIP',
+                            style: TextStyle(
+                              fontSize: 22,
+                              color: Color(0xffD26F6F),
+                              fontFamily: 'Jua',
+                            ),
+                          ),
+                        if (widget.plant.subtitle != '영양제')
+                          Text(
+                            widget.plant.detail_2,
+                            style: TextStyle(color: Colors.grey[600]),
+                          ),
                         SizedBox(height: 16),
-                        Text(
-                          '인테리어 TIP',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontFamily: 'Jua',
-                            color: Color(0xff739072),
+                        if (widget.plant.subtitle != '영양제')
+                          Text(
+                            '인테리어 TIP',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontFamily: 'Jua',
+                              color: Color(0xff739072),
+                            ),
                           ),
-                        ),
                         Text(
                           widget.plant.detail_3,
                           style: TextStyle(color: Colors.grey[600]),
@@ -205,12 +224,30 @@ class _InformationDetailState extends State<InformationDetail> {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => TabCart(),
-                  ),
-                );
+                if (user != null) {
+                  final cartItem = widget.plant;
+                  context
+                      .read<CartService>()
+                      .addToCart(cartItem); // 장바구니에 상품 추가
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TabCart()));
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text("회원 전용"),
+                          content: Text('로그인이 된 회원만 장바구니를 이용할 수 있습니다.'),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('확인'))
+                          ],
+                        );
+                      });
+                }
               },
               child: Icon(
                 CupertinoIcons.cart,
@@ -223,12 +260,30 @@ class _InformationDetailState extends State<InformationDetail> {
             ),
             ElevatedButton(
               onPressed: () {
-                final cartItem = widget.plant;
-                context.read<CartService>().addToCart(cartItem); // 장바구니에 상품 추가
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TabCart())); // 장바구니 화면으로 이동
+                if (user != null) {
+                  final cartItem = widget.plant;
+                  context
+                      .read<CartService>()
+                      .addToCart(cartItem); // 장바구니에 상품 추가
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TabCart()));
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text("회원 전용"),
+                          content: Text('로그인이 된 회원만 장바구니를 이용할 수 있습니다.'),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('확인'))
+                          ],
+                        );
+                      });
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF739072),
@@ -256,7 +311,10 @@ class _InformationDetailState extends State<InformationDetail> {
                   builder: (BuildContext context) {
                     return Container(
                       height: 200,
-                      child: PurchaseModalButton(title: widget.plant.title),
+                      child: PurchaseModalButton(
+                        title: widget.plant.title,
+                        plant: widget.plant,
+                      ),
                     );
                   },
                 );
@@ -288,11 +346,15 @@ class _InformationDetailState extends State<InformationDetail> {
 //모달창 클래스
 class PurchaseModalButton extends StatelessWidget {
   final String title;
+  final Plant plant;
 
-  const PurchaseModalButton({Key? key, required this.title}) : super(key: key);
+  const PurchaseModalButton(
+      {Key? key, required this.title, required this.plant})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<AuthService>().currentUser();
     return Container(
       height: 200,
       child: Center(
@@ -343,13 +405,32 @@ class PurchaseModalButton extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      // 결제 창으로 이동하는 코드 작성
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => PurchasePage(),
-                        ),
-                      );
+                      if (user != null) {
+                        final cartItem = plant;
+                        context
+                            .read<CartService>()
+                            .addToCart(cartItem); // 장바구니에 상품 추가
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PurchasePage()));
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text("회원 전용"),
+                                content: Text('로그인이 된 회원만 구매를 이용할 수 있습니다.'),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text('확인'))
+                                ],
+                              );
+                            });
+                      }
                     },
                     child: Text(
                       '바로 구매 하기',
