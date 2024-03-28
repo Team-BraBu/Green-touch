@@ -142,8 +142,12 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                     Divider(color: Color(0xffF0EADB)),
                     InkWell(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => ProductReview()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ProductReview(),
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
