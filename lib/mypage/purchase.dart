@@ -29,6 +29,7 @@ class _PurchasePageState extends State<PurchasePage> {
   Widget build(BuildContext context) {
     return Consumer<CartService>(builder: (context, cartService, child) {
       List<Plant> product = cartService.product;
+      final cartItems = cartService.product;
       double totalPrice = 0;
       for (var i = 0; i < product.length; i++) {
         totalPrice += product[i].price;
@@ -57,20 +58,32 @@ class _PurchasePageState extends State<PurchasePage> {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: product.length,
+                  itemCount: context.watch<CartService>().product.length,
                   itemBuilder: (context, index) {
-                    Plant products = product[index];
+                    Plant product = context.watch<CartService>().product[index];
                     return ListTile(
                       leading: Image.asset(
-                        products.imagePath,
+                        product.imagePath,
                         width: 50,
                         height: 50,
                         fit: BoxFit.cover,
                       ),
-                      title: Text(products.title),
-                      subtitle: Text('${products.price} 원'),
+                      title: Text('${product.title} ${product.quantity}개'),
+                      subtitle: Text('${product.price * product.quantity} 원'),
                     );
                   },
+                ),
+                Container(
+                  alignment: Alignment.centerRight, // 오른쪽 정렬을 위한 설정
+                  child: Text(
+                    '총 금액 ${calculateTotalPrice(cartItems)}원',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.normal,
+                      color: Color(0xFF739072),
+                      fontFamily: 'Jua',
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 30,
@@ -205,9 +218,9 @@ class _PurchasePageState extends State<PurchasePage> {
                         }
                       },
                       child: Text(
-                        '${totalPrice.toString()} 원 결제하기',
+                        '결제하기',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 20,
                           color: Colors.white,
                           fontFamily: 'Jua',
                           fontWeight: FontWeight.normal,
@@ -222,5 +235,13 @@ class _PurchasePageState extends State<PurchasePage> {
         ),
       );
     });
+  }
+
+  int calculateTotalPrice(List<Plant> cartItems) {
+    int totalPrice = 0;
+    for (var item in cartItems) {
+      totalPrice += item.price * item.quantity;
+    }
+    return totalPrice;
   }
 }
