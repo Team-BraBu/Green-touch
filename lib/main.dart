@@ -35,7 +35,6 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => ActivityModel(), //내정보-미션위해서 27일새로생성, 재형
         ),
-
       ],
       child: const MyApp(),
     ),
@@ -53,7 +52,6 @@ class MyApp extends StatelessWidget {
     bool isOnboarded = prefs.getBool('isOnboarded') ?? false;
 
     return MaterialApp(
-      // scaffoldAppBar: BaseAppBar(),
       debugShowCheckedModeBanner: false,
       title: 'Your App Title',
       home: isOnboarded ? OnBoarding() : MyHomePage(),

@@ -28,7 +28,8 @@ class CartService extends ChangeNotifier {
 
   void removeCartItems() async {
     List<Purchased> purchased = product.map((plant) {
-      return Purchased(id: Uuid().v4(), plant: plant); //고유ID생성
+      return Purchased(
+          id: Uuid().v4(), plant: plant, purchaseDate: DateTime.now()); //고유ID생성
     }).toList();
 
     print('product : $product');
