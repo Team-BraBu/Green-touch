@@ -95,11 +95,11 @@ class _ProductReviewState extends State<ProductReview> {
                                   Text(
                                     productItem.plant.title,
                                     style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                        fontSize: 20,
+                                        fontFamily: 'Jua',
+                                        color: Color(0xff739072)),
                                   ),
-                                  SizedBox(height: 25),
+                                  SizedBox(height: 10),
                                   RatingBar.builder(
                                     initialRating: rating,
                                     minRating: 1,
