@@ -82,25 +82,49 @@ class _MissionPageState extends State<MissionPage> {
 
 //미션완료시 activity생성. 새로추가
 
-class MissionTile extends StatelessWidget {
+class MissionTile extends StatefulWidget {
   final Mission mission;
   final ValueChanged<bool?> onChanged;
 
-  const MissionTile({required this.mission, required this.onChanged});
+  const MissionTile({Key? key, required this.mission, required this.onChanged})
+      : super(key: key);
 
   @override
+  _MissionTileState createState() => _MissionTileState();
+}
+
+class _MissionTileState extends State<MissionTile> {
+  @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(
-        mission.iconData,
-        color: mission.isCompleted ? Colors.green : Colors.grey,
-      ),
-      title: Text(mission.title),
-      subtitle: Text(mission.description),
-      trailing: Checkbox(
-        value: mission.isCompleted,
-        onChanged: onChanged,
-        activeColor: Colors.green,
+    return InkWell(
+      onTap: () {
+        // 여기서는 InkWell의 onTap을 사용하지 않고, Checkbox의 onChanged만 사용합니다.
+      },
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 200),
+        color: widget.mission.isCompleted
+            ? Colors.green[100]
+            : Colors.transparent, // 이 부분은 선택적으로 애니메이션 효과를 주기 위해 유지합니다.
+        child: ListTile(
+          leading: Icon(
+            widget.mission.iconData,
+            color: widget.mission.isCompleted ? Colors.green : Colors.grey,
+          ),
+          title: Text(widget.mission.title),
+          subtitle: Text(widget.mission.description),
+          trailing: Checkbox(
+            value: widget.mission.isCompleted,
+            onChanged: (bool? value) {
+              // 여기에서 Mission 객체의 isCompleted 상태를 업데이트합니다.
+              setState(() {
+                widget.mission.isCompleted = value ?? false; // null이면 false를 할당
+              });
+              // 필요하다면, 여기에서 상위 위젯에 변경 사항을 알릴 수 있습니다.
+              // 예: widget.onChanged(widget.mission.isCompleted);
+            },
+            activeColor: Colors.green,
+          ),
+        ),
       ),
     );
   }

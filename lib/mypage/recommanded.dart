@@ -40,6 +40,15 @@ class PlantActivityPage extends StatelessWidget {
     return ListView.builder(
       itemCount: plantActivities.length,
       itemBuilder: (context, index) {
+        // 첫 번째 항목에만 상단 패딩 추가
+        if (index == 0) {
+          return Column(
+            children: [
+              SizedBox(height: 20), // appbar와의 간격 조정
+              PlantActivityTile(plantActivity: plantActivities[index]),
+            ],
+          );
+        }
         return PlantActivityTile(plantActivity: plantActivities[index]);
       },
     );
