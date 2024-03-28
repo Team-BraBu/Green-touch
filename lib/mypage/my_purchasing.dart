@@ -94,13 +94,13 @@ class _MyPurchasingState extends State<MyPurchasing> {
                                   Text(
                                     productItem.plant.title,
                                     style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                        fontSize: 20,
+                                        fontFamily: 'Jua',
+                                        color: Color(0xff739072)),
                                   ),
                                   SizedBox(height: 5),
                                   Text(
-                                    '구매 날짜: ${DateFormat('yyyy-MM-dd').format(productItem.purchaseDate)}',
+                                    '${DateFormat('yyyy-MM-dd').format(productItem.purchaseDate)} 구매',
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.grey[600],
