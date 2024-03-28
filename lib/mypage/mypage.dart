@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'calendar.dart';
 import '../layout/app_drawer.dart';
 import '../layout/appbar.dart';
+import 'my_purchasing.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -237,64 +238,88 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '최근 주문',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 30, bottom: 0, left: 30, right: 20),
+                      child: Text(
+                        '최근 주문',
+                        style: TextStyle(
+                            fontFamily: 'Jua',
+                            fontSize: 20,
+                            color: Color(0xFF739072)),
+                      ),
                     ),
                     SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('입금/결제'),
-                              SizedBox(height: 5),
-                              Text('0'),
-                            ],
-                          ),
+                    Container(
+                      padding: EdgeInsets.all(20), // 컨테이너 내부에 패딩을 추가합니다.
+                      margin: EdgeInsets.only(left: 20, right: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white, // 배경 색상 설정
+                        borderRadius: BorderRadius.circular(10), // 테두리 둥글게 설정
+                        border: Border.all(
+                          color: Color(0xffF3F1EC), // 테두리 색상 설정
+                          width: 2, // 테두리 두께 설정
                         ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('주문중'),
-                              SizedBox(height: 5),
-                              Text('0'),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('주문완료'),
-                              SizedBox(height: 5),
-                              Text('0'),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 100),
-                    InkWell(
-                      onTap: () {
-                        // 결제/주문 내역을 눌렀을 때 동작할 코드 추가
-                      },
+                      ),
                       child: Row(
                         children: [
-                          Text(
-                            '결제/주문 내역',
-                            style: TextStyle(
-                              fontSize: 20,
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('입금/결제'),
+                                SizedBox(height: 5),
+                                Text('5'),
+                              ],
                             ),
                           ),
-                          Spacer(),
-                          Icon(Icons.arrow_forward_ios),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('주문중'),
+                                SizedBox(height: 5),
+                                Text('2'),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('주문완료'),
+                                SizedBox(height: 5),
+                                Text('3'),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
+                    SizedBox(height: 20),
+                    Divider(color: Color(0xffF0EADB)),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => MyPurchasing()));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: [
+                            Text('결제/주문 내역',
+                                style: TextStyle(
+                                    fontFamily: 'Jua',
+                                    fontSize: 20,
+                                    color: Color(0xFF739072))),
+                            Spacer(),
+                            Icon(Icons.arrow_forward_ios,
+                                color: Color(0xFF739072)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Divider(color: Color(0xffF0EADB)),
                   ],
                 ),
               ],
