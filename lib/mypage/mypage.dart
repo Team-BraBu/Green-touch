@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:greentouch/mypage/history.dart';
 import 'package:greentouch/mypage/mission.dart';
@@ -5,8 +8,11 @@ import 'package:greentouch/list/planteriorlist.dart';
 import 'package:greentouch/mypage/recommanded.dart';
 import 'package:greentouch/mypage/product_reviews.dart';
 import 'package:greentouch/service/auth_service.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'calendar.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:shared_preferences/shared_preferences.dart'; // SharedPreferences import 추가
 import '../layout/app_drawer.dart';
 import '../layout/appbar.dart';
 import 'my_purchasing.dart';
@@ -18,11 +24,77 @@ class MyPage extends StatefulWidget {
 
 class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  String? _profileImageUrl; // 프로필 사진 URL 추가
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    _loadProfileImage(); // 프로필 사진 URL 불러오기
+  }
+
+  // 프로필 사진 URL 불러오기
+  Future<void> _loadProfileImage() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      // Firebase에서 사용자의 프로필 이미지 URL 가져오기
+      String? profileImageUrl = user.photoURL;
+      if (profileImageUrl != null) {
+        setState(() {
+          _profileImageUrl = profileImageUrl;
+        });
+      }
+    }
+  }
+
+  Future<void> _changeProfilePicture() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      final bytes = await pickedFile.readAsBytes();
+
+      try {
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          final firebase_storage.Reference ref = firebase_storage
+              .FirebaseStorage.instance
+              .ref()
+              .child('profile_images')
+              .child('${user.uid}.jpg');
+
+          // 이미지 데이터를 Firebase Storage에 업로드
+          await ref.putData(bytes);
+
+          // 업로드된 이미지의 다운로드 URL을 가져옴
+          final imageUrl = await ref.getDownloadURL();
+
+          // SharedPreferences에 프로필 사진 URL 저장
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('profileImageUrl', imageUrl);
+
+          // 사용자 정보 업데이트 (프로필 이미지 URL 저장)
+          await context.read<AuthService>().updateProfilePicture(imageUrl);
+
+          // 프로필 사진 URL을 다시 가져와서 UI 업데이트
+          await _loadProfileImage();
+
+          // 업로드 완료 메시지 표시
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('프로필 사진이 업로드되었습니다.')),
+          );
+        }
+      } catch (e) {
+        // 오류 발생 시 오류 메시지 출력
+        print('프로필 사진 업로드 오류: $e');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('프로필 사진을 업로드하는 도중 오류가 발생했습니다.')),
+        );
+      }
+    } else {
+      // 이미지를 선택하지 않았을 때 메시지 출력
+      print('사용자가 이미지를 선택하지 않았습니다.');
+    }
   }
 
   @override
@@ -39,15 +111,33 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                 const EdgeInsets.only(top: 50, bottom: 30, left: 30, right: 30),
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 50,
-                  // backgroundImage: AssetImage(''),
-                  backgroundColor: Color(0xfff0eadb),
+                GestureDetector(
+                  onTap: () {
+                    _changeProfilePicture();
+                  },
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Color(0xfff0eadb),
+                    child: _profileImageUrl != null
+                        ? ClipOval(
+                            child: Image.network(
+                              _profileImageUrl!,
+                              fit: BoxFit.cover,
+                              width: 100, // 이미지 크기 조정
+                              height: 100, // 이미지 크기 조정
+                            ),
+                          )
+                        : Icon(
+                            Icons.account_circle, // 이미지가 없는 경우 기본 아이콘
+                            size: 100, // 아이콘 크기 조정
+                            color: Colors.grey, // 아이콘 색상 설정
+                          ),
+                  ),
                 ),
                 SizedBox(width: 20),
                 Text(
                   user == null ? '비회원' : '${user.email}',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
                 Column(
