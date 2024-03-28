@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:greentouch/layout/appbar_back.dart';
 import 'package:greentouch/list/purchase_complete.dart';
-import 'package:greentouch/mypage/product_reviews.dart';
 import 'package:greentouch/service/cart_service.dart';
 import 'package:provider/provider.dart';
 
@@ -75,39 +74,34 @@ class _PurchasePageState extends State<PurchasePage> {
                 ),
                 SizedBox(
                   height: 30,
-                ),
-                Text(
-                  '배송 주소 입력',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.normal,
-                    color: Color(0xFF739072),
-                    fontFamily: 'Jua',
                   ),
-                ),
-                TextField(
-                  controller: addressController,
-                  decoration: InputDecoration(
-                    hintText: '주소를 입력해주세요.',
-                    border: OutlineInputBorder(),
+                  Text(
+                    '배송 주소 입력',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal,
+                      color: Color(0xFF739072),
+                      fontFamily: 'Jua',
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  '카드 결제',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.normal,
-                    color: Color(0xFF739072),
-                    fontFamily: 'Jua',
+                  TextField(
+                    controller: addressController,
+                    decoration: InputDecoration(
+                      hintText: '주소를 입력해주세요.',
+                      border: OutlineInputBorder(),
+                    ),
                   ),
-                ),
-                TextField(
-                  controller: cardNumberController,
-                  decoration: InputDecoration(
-                    hintText: '카드 번호를 입력해주세요.',
-                    border: OutlineInputBorder(),
+                  SizedBox(height: 20),
+                  Text(
+                    '카드 결제',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal,
+                      color: Color(0xFF739072),
+                      fontFamily: 'Jua',
+                    ),
                   ),
+
                   keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 10),
@@ -126,6 +120,7 @@ class _PurchasePageState extends State<PurchasePage> {
                           LengthLimitingTextInputFormatter(4),
                         ],
                       ),
+
                     ),
                     SizedBox(width: 10),
                     Expanded(
@@ -180,6 +175,7 @@ class _PurchasePageState extends State<PurchasePage> {
                         ),
                       ),
                       onPressed: () {
+                 
                         if (addressController.text.isEmpty) {
                           showSnackBar(context, '주소를 입력해주세요.');
                         } else if (cardNumberController.text.length != 16) {
@@ -189,14 +185,19 @@ class _PurchasePageState extends State<PurchasePage> {
                         } else if (cvvController.text.isEmpty) {
                           showSnackBar(context, 'cvv번호를 입력해주세요.');
                         } else {
-                          context.read<CartService>().removeCartItems();
-                          Navigator.push(
+                          
+                          // CartService 인스턴스 가져오기
+                          var cartService =
+                            Provider.of<CartService>(context, listen: false);
+
+                          // 장바구니 비우기 및 구매 완료한 상품 목록 ReviewService로 전송
+                          // 이 작업은 CartService의 removeCartItems 메소드 내에서 이미 처리됩니다.
+                          cartService.removeCartItems();
+                          
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => PurchaseComplete(),
-                              settings: RouteSettings(
-                                arguments: ProductReview(), // 여기에 데이터를 전달합니다.
-                              ),
                             ),
                           );
                         }

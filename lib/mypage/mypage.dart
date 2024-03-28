@@ -144,7 +144,6 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                     Divider(color: Color(0xffF0EADB)),
                     InkWell(
                       onTap: () {
-                        // 버튼이 눌렸을 때 수행할 동작 추가
                         Navigator.push(
                           context,
                           MaterialPageRoute(

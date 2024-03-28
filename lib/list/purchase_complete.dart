@@ -9,6 +9,7 @@ class PurchaseComplete extends StatelessWidget {
     return Scaffold(
       appBar: BaseAppBar(),
       backgroundColor: Colors.white,
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -57,6 +58,7 @@ class PurchaseComplete extends StatelessWidget {
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
+
                 ),
                 SizedBox(height: 20),
                 Row(
