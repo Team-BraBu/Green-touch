@@ -50,6 +50,7 @@ dependencies:
   firebase_storage: ^11.6.11
   firebase_app_check: ^0.2.1+19
   uuid: ^3.0.6
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

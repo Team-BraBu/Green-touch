@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:greentouch/main_Page.dart';
 import 'package:greentouch/onboarding.dart';
 import 'package:greentouch/product/plant_service.dart';
 import 'package:greentouch/service/activity_service.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Your App Title',
-      home: isOnboarded ? OnBoarding() : MyHomePage(),
+      home: isOnboarded ? MainPage() : OnBoarding(),
     );
   }
 }

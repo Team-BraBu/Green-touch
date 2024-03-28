@@ -1,24 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:greentouch/layout/appbar_back.dart';
-import 'package:greentouch/service/review_service.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../layout/appbar_back.dart';
 import '../list/information_detail.dart';
+import '../service/review_service.dart';
 
-class ProductReview extends StatefulWidget {
-  const ProductReview({Key? key}) : super(key: key);
+class MyPurchasing extends StatefulWidget {
+  const MyPurchasing({super.key});
 
   @override
-  _ProductReviewState createState() => _ProductReviewState();
+  State<MyPurchasing> createState() => _MyPurchasingState();
 }
 
-class _ProductReviewState extends State<ProductReview> {
+class _MyPurchasingState extends State<MyPurchasing> {
   @override
   Widget build(BuildContext context) {
     var reviewService = Provider.of<ReviewService>(context);
-    // ReviewService의 purchaseItems 리스트를 먼저 정렬
+// ReviewService의 purchaseItems 리스트를 먼저 정렬
     var sortedPurchasedItems = reviewService.purchaseItems;
     sortedPurchasedItems
         .sort((a, b) => b.purchaseDate.compareTo(a.purchaseDate));
@@ -36,7 +36,7 @@ class _ProductReviewState extends State<ProductReview> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '상품 리뷰',
+                      '구매 내역',
                       style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
@@ -44,7 +44,7 @@ class _ProductReviewState extends State<ProductReview> {
                           color: Color(0xff739072)),
                     ),
                     Text(
-                      '구매하신 상품의 별점을 주세요 ⭐️',
+                      '여기에서 구매하신 상품의 내역을 확인하세요.',
                       style: TextStyle(
                           fontSize: 12,
                           color: Color(0xff3A4D39),
@@ -65,7 +65,6 @@ class _ProductReviewState extends State<ProductReview> {
               itemCount: sortedPurchasedItems.length,
               itemBuilder: (context, index) {
                 final productItem = sortedPurchasedItems[index];
-                final rating = reviewService.getRating(productItem.id) ?? 0;
                 return Container(
                   decoration: BoxDecoration(
                     border: Border(
@@ -99,23 +98,13 @@ class _ProductReviewState extends State<ProductReview> {
                                         fontFamily: 'Jua',
                                         color: Color(0xff739072)),
                                   ),
-                                  SizedBox(height: 10),
-                                  RatingBar.builder(
-                                    initialRating: rating,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemSize: 23,
-                                    itemBuilder: (context, _) => Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
+                                  SizedBox(height: 5),
+                                  Text(
+                                    '${DateFormat('yyyy-MM-dd').format(productItem.purchaseDate)} 구매',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey[600],
                                     ),
-                                    onRatingUpdate: (rating) {
-                                      reviewService.rateProduct(
-                                          productItem.id, rating);
-                                      print(rating);
-                                    },
                                   ),
                                 ],
                               ),

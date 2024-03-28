@@ -22,14 +22,14 @@ class PurchaseComplete extends StatelessWidget {
             padding: EdgeInsets.all(20.0),
             child: Row(
               children: [
-                Icon(Icons.menu, size: 30), // Menu icon
+                //Icon(Icons.menu, size: 30), // Menu icon
                 Expanded(
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: Image.asset(
-                      'assets/images/logo4.png', // Replace with your asset
-                      width: 100, // Adjust the size to fit your logo
-                    ),
+                    // child: Image.asset(
+                    //   'assets/images/logo4.png', // Replace with your asset
+                    //   width: 100, // Adjust the size to fit your logo
+                    // ),
                   ),
                 ),
               ],
@@ -45,7 +45,7 @@ class PurchaseComplete extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/logo2.jpg',
+                  'assets/images/logo3.png',
                   width: double.infinity,
                   height: 250,
                 ),
@@ -84,6 +84,11 @@ class PurchaseComplete extends StatelessWidget {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF739072),
+                        fixedSize: Size(150, 50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                         padding:
                             EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                       ),
@@ -123,11 +128,9 @@ class PurchaseComplete extends StatelessWidget {
             ),
           ),
 
-// ... The rest of the code remains the same ...
-
           // Bottom banner with fast delivery text
           Container(
-            color: Colors.orange,
+            color: Color(0xff3A4D39),
             padding: EdgeInsets.all(16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -135,7 +138,7 @@ class PurchaseComplete extends StatelessWidget {
                 Icon(Icons.local_shipping, color: Colors.white),
                 SizedBox(width: 8),
                 Text(
-                  '다음 빠른 배송을 준비하세요!',
+                  '빠른 배송을 준비할게요!',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ],
