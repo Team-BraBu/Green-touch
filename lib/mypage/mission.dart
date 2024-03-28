@@ -59,7 +59,7 @@ class _MissionPageState extends State<MissionPage> {
                 color: Color(0xff739072),
               ),
             ),
-            SizedBox(width: 30, height: 20), // 제목과 리스트 사이 여백 조절
+            SizedBox(width: 40, height: 20), // 제목과 리스트 사이 여백 조절
             Expanded(
               child: ListView.builder(
                 itemCount: missions.length,
@@ -94,35 +94,49 @@ class MissionTile extends StatefulWidget {
 }
 
 class _MissionTileState extends State<MissionTile> {
+  bool _isTapped = false;
+
+  void _toggleTap() {
+    setState(() {
+      _isTapped = !_isTapped;
+      // 클릭 이벤트 발생시, 완료 상태 토글
+      widget.onChanged(!_isTapped);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // 여기서는 InkWell의 onTap을 사용하지 않고, Checkbox의 onChanged만 사용합니다.
+        _toggleTap();
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 200),
-        color: widget.mission.isCompleted
-            ? Colors.green[100]
-            : Colors.transparent, // 이 부분은 선택적으로 애니메이션 효과를 주기 위해 유지합니다.
+        height: _isTapped ? 120 : 100, // 애니메이션 효과를 줄 속성
+        width: _isTapped ? 400 : 350, // 애니메이션 효과를 줄 속성
+        decoration: BoxDecoration(
+          color: _isTapped ? Color(0xFFECE3CE) : Colors.transparent,
+          borderRadius:
+              BorderRadius.circular(_isTapped ? 20 : 10), // 애니메이션 효과를 줄 속성
+          border: Border.all(
+            color: _isTapped ? Colors.lightGreen : Colors.grey,
+            width: _isTapped ? 2 : 1, // 애니메이션 효과를 줄 속성
+          ),
+        ),
         child: ListTile(
           leading: Icon(
             widget.mission.iconData,
-            color: widget.mission.isCompleted ? Colors.green : Colors.grey,
+            color: _isTapped ? Colors.green : Colors.grey,
           ),
           title: Text(widget.mission.title),
           subtitle: Text(widget.mission.description),
           trailing: Checkbox(
-            value: widget.mission.isCompleted,
+            value: _isTapped,
             onChanged: (bool? value) {
-              // 여기에서 Mission 객체의 isCompleted 상태를 업데이트합니다.
-              setState(() {
-                widget.mission.isCompleted = value ?? false; // null이면 false를 할당
-              });
-              // 필요하다면, 여기에서 상위 위젯에 변경 사항을 알릴 수 있습니다.
-              // 예: widget.onChanged(widget.mission.isCompleted);
+              widget.onChanged(value);
+              _toggleTap(); // 상태 업데이트를 위해 여기도 호출
             },
-            activeColor: Colors.green,
+            activeColor: Color(0xFF739072),
           ),
         ),
       ),
