@@ -4,11 +4,9 @@ import 'package:greentouch/layout/appbar_back.dart';
 class Recommand extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: BackAppbar(),
-        body: PlantActivityPage(),
-      ),
+    return Scaffold(
+      appBar: BackAppbar(),
+      body: PlantActivityPage(),
     );
   }
 }
