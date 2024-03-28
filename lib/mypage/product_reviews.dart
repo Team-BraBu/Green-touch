@@ -2,36 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:greentouch/layout/appbar_back.dart';
+import 'package:greentouch/service/review_service.dart';
+import 'package:provider/provider.dart';
 
 import '../list/information_detail.dart';
-import '../product/plant_service.dart';
-
-// 데이터 모델 정의
-class Product {
-  final String name;
-  final String imagePath;
-
-  Product(this.name, this.imagePath);
-}
 
 class ProductReview extends StatefulWidget {
-  final Function(List<Plant>)? onDataTransferred;
-
-  const ProductReview({Key? key, required this.onDataTransferred})
-      : super(key: key);
+  const ProductReview({Key? key}) : super(key: key);
 
   @override
   _ProductReviewState createState() => _ProductReviewState();
 }
 
 class _ProductReviewState extends State<ProductReview> {
-  List<Plant> purchased = [];
-
-  // 각 상품의 별점을 저장하는 맵
-  Map<String, double> ratings = {};
-
   @override
   Widget build(BuildContext context) {
+    var reviewService = Provider.of<ReviewService>(context);
     return Scaffold(
       appBar: BackAppbar(),
       body: Column(
@@ -72,9 +58,10 @@ class _ProductReviewState extends State<ProductReview> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: purchased.length,
+              itemCount: reviewService.purchaseItems.length,
               itemBuilder: (context, index) {
-                final product = purchased[index];
+                final productItem = reviewService.purchaseItems[index];
+                final rating = reviewService.getRating(productItem.id) ?? 0;
                 return Container(
                   decoration: BoxDecoration(
                     border: Border(
@@ -92,7 +79,7 @@ class _ProductReviewState extends State<ProductReview> {
                         Row(
                           children: [
                             Image.asset(
-                              product.imagePath,
+                              productItem.plant.imagePath,
                               width: 120,
                               height: 120,
                             ),
@@ -102,7 +89,7 @@ class _ProductReviewState extends State<ProductReview> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    product.title,
+                                    productItem.plant.title,
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -110,7 +97,7 @@ class _ProductReviewState extends State<ProductReview> {
                                   ),
                                   SizedBox(height: 25),
                                   RatingBar.builder(
-                                    initialRating: 0,
+                                    initialRating: rating,
                                     minRating: 1,
                                     direction: Axis.horizontal,
                                     allowHalfRating: true,
@@ -121,6 +108,8 @@ class _ProductReviewState extends State<ProductReview> {
                                       color: Colors.amber,
                                     ),
                                     onRatingUpdate: (rating) {
+                                      reviewService.rateProduct(
+                                          productItem.id, rating);
                                       print(rating);
                                     },
                                   ),
@@ -132,8 +121,8 @@ class _ProductReviewState extends State<ProductReview> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          InformationDetail(plant: product)),
+                                      builder: (context) => InformationDetail(
+                                          plant: productItem.plant)),
                                 );
                               },
                               child: Row(
@@ -165,14 +154,5 @@ class _ProductReviewState extends State<ProductReview> {
         ],
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.onDataTransferred != null) {
-      // 콜백 함수가 제공되었는지 확인하고, 제공되었다면 카트에서 제거된 상품 목록을 받아옴
-      widget.onDataTransferred!(purchased);
-    }
   }
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar_back.dart';
 import 'package:greentouch/list/purchase_complete.dart';
+import 'package:greentouch/mypage/product_reviews.dart';
 import 'package:greentouch/service/cart_service.dart';
 import 'package:provider/provider.dart';
 
 import '../product/plant_service.dart';
+import '../service/review_service.dart';
 
 class PurchasePage extends StatefulWidget {
   const PurchasePage({Key? key}) : super(key: key);
@@ -142,8 +144,16 @@ class _PurchasePageState extends State<PurchasePage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {
-                      context.read<CartService>().removeCartItems();
+                    onPressed: () async {
+                      // CartService 인스턴스 가져오기
+                      var cartService =
+                          Provider.of<CartService>(context, listen: false);
+
+                      // 장바구니 비우기 및 구매 완료한 상품 목록 ReviewService로 전송
+                      // 이 작업은 CartService의 removeCartItems 메소드 내에서 이미 처리됩니다.
+                      cartService.removeCartItems();
+
+                      // 리뷰 페이지로 이동하면서 상품 목록 전달
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

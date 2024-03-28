@@ -1,11 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:greentouch/onboarding.dart';
 import 'package:greentouch/product/plant_service.dart';
 import 'package:greentouch/service/auth_service.dart';
 import 'package:greentouch/service/cart_service.dart';
-import 'package:greentouch/service/purchased_service.dart';
+import 'package:greentouch/service/review_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,9 +24,12 @@ void main() async {
     //서비스 등록
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => ReviewService()),
         ChangeNotifierProvider(create: (context) => PlantService()), // 외우기
         ChangeNotifierProvider(create: (context) => AuthService()),
-        ChangeNotifierProvider(create: (context) => CartService())
+        ChangeNotifierProvider(
+            create: (context) => CartService(
+                Provider.of<ReviewService>(context, listen: false))),
       ],
       child: const MyApp(),
     ),
