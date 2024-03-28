@@ -12,14 +12,30 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.read<AuthService>().currentUser();
+    final profileImageUrl = user?.photoURL; // 프로필 이미지 URL 가져오기
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/bo.png'),
-              backgroundColor: Colors.white,
+              radius: 50,
+              backgroundColor: Color(0xfff0eadb),
+              child: profileImageUrl != null
+                  ? ClipOval(
+                      child: Image.network(
+                        profileImageUrl,
+                        fit: BoxFit.cover,
+                        width: 100, // 이미지 크기 조정
+                        height: 100, // 이미지 크기 조정
+                      ),
+                    )
+                  : Icon(
+                      Icons.account_circle, // 이미지가 없는 경우 기본 아이콘
+                      size: 100, // 아이콘 크기 조정
+                      color: Colors.grey, // 아이콘 색상 설정
+                    ),
             ),
             accountName: Text(
               user == null ? '비회원☘️' : '${user.email}🍀',

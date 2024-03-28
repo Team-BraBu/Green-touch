@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class AuthService extends ChangeNotifier {
   User? currentUser() {
@@ -13,6 +16,7 @@ class AuthService extends ChangeNotifier {
     required String password2,
     required Function() onSuccess,
     required Function(String err) onError,
+    String? profileImageUrl,
   }) async {
     //회원가입
     if (email.isEmpty) {
@@ -93,5 +97,43 @@ class AuthService extends ChangeNotifier {
     //로그아웃
     await FirebaseAuth.instance.signOut();
     notifyListeners();
+  }
+
+  Future<String?> uploadProfileImage(String imagePath) async {
+    try {
+      // 현재 사용자 가져오기
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user == null) {
+        return null;
+      }
+
+      // Firebase Storage에 이미지 업로드
+      firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
+          .ref()
+          .child('profile_images')
+          .child(user.uid + '.jpg');
+
+      await ref.putFile(File(imagePath));
+
+      // 업로드된 이미지의 다운로드 URL 반환
+      String downloadURL = await ref.getDownloadURL();
+
+      return downloadURL;
+    } catch (e) {
+      print('Error uploading profile image: $e');
+      return null;
+    }
+  }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  // AuthService 클래스에 사용자 정보 업데이트 메서드 추가
+  Future<void> updateProfilePicture(String imageUrl) async {
+    try {
+      await _auth.currentUser!.updatePhotoURL(imageUrl);
+    } catch (e) {
+      throw e;
+    }
   }
 }

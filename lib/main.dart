@@ -10,7 +10,14 @@ late SharedPreferences prefs;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      appId: '1:721526155217:android:4415e65048a30539d8a2f0',
+      apiKey: 'AIzaSyBl2iSVS7hleJU8Ug656dRvmK6TdMRrv3o',
+      messagingSenderId: '721526155217', // 필수 매개변수
+      projectId: 'green-touch-6cf2a',
+    ),
+  );
   //스플레쉬 위젯 적용
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
