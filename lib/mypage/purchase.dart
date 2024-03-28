@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:greentouch/layout/appbar_back.dart';
 import 'package:greentouch/list/purchase_complete.dart';
-import 'package:greentouch/mypage/product_reviews.dart';
 import 'package:greentouch/service/cart_service.dart';
 import 'package:provider/provider.dart';
 
 import '../product/plant_service.dart';
-import '../service/review_service.dart';
 
 class PurchasePage extends StatefulWidget {
   const PurchasePage({Key? key}) : super(key: key);
