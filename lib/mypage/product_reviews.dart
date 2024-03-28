@@ -18,6 +18,10 @@ class _ProductReviewState extends State<ProductReview> {
   @override
   Widget build(BuildContext context) {
     var reviewService = Provider.of<ReviewService>(context);
+    // ReviewService의 purchaseItems 리스트를 먼저 정렬
+    var sortedPurchasedItems = reviewService.purchaseItems;
+    sortedPurchasedItems
+        .sort((a, b) => b.purchaseDate.compareTo(a.purchaseDate));
     return Scaffold(
       appBar: BackAppbar(),
       body: Column(
@@ -58,9 +62,9 @@ class _ProductReviewState extends State<ProductReview> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: reviewService.purchaseItems.length,
+              itemCount: sortedPurchasedItems.length,
               itemBuilder: (context, index) {
-                final productItem = reviewService.purchaseItems[index];
+                final productItem = sortedPurchasedItems[index];
                 final rating = reviewService.getRating(productItem.id) ?? 0;
                 return Container(
                   decoration: BoxDecoration(

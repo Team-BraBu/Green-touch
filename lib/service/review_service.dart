@@ -5,8 +5,10 @@ import '../product/plant_service.dart';
 class Purchased {
   final String id;
   final Plant plant;
+  final DateTime purchaseDate;
 
-  Purchased({required this.id, required this.plant});
+  Purchased(
+      {required this.id, required this.plant, required this.purchaseDate});
 }
 
 class ReviewService extends ChangeNotifier {
