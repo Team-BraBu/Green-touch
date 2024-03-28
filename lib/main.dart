@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:greentouch/onboarding.dart';
 import 'package:greentouch/product/plant_service.dart';
+import 'package:greentouch/service/activity_service.dart';
 import 'package:greentouch/service/auth_service.dart';
 import 'package:greentouch/service/cart_service.dart';
 import 'package:greentouch/service/review_service.dart';
@@ -30,6 +31,11 @@ void main() async {
         ChangeNotifierProvider(
             create: (context) => CartService(
                 Provider.of<ReviewService>(context, listen: false))),
+
+        ChangeNotifierProvider(
+          create: (context) => ActivityModel(), //내정보-미션위해서 27일새로생성, 재형
+        ),
+
       ],
       child: const MyApp(),
     ),
