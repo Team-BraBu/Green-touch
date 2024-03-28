@@ -2,7 +2,10 @@ import 'dart:typed_data';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:greentouch/mypage/history.dart';
+import 'package:greentouch/mypage/mission.dart';
 import 'package:greentouch/list/planteriorlist.dart';
+import 'package:greentouch/mypage/recommanded.dart';
 import 'package:greentouch/mypage/product_reviews.dart';
 import 'package:greentouch/service/auth_service.dart';
 import 'package:image_picker/image_picker.dart';
@@ -200,13 +203,13 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                   children: [
                     InkWell(
                       onTap: () {
-                        // // 버튼이 눌렸을 때 수행할 동작 추가
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => ProductReview(),
-                        //   ),
-                        // );
+                        // 버튼이 눌렸을 때 수행할 동작 추가
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => Recommand(),
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -231,7 +234,6 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                     Divider(color: Color(0xffF0EADB)),
                     InkWell(
                       onTap: () {
-                        // 버튼이 눌렸을 때 수행할 동작 추가
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -262,13 +264,12 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                     Divider(color: Color(0xffF0EADB)),
                     InkWell(
                       onTap: () {
-                        // 버튼이 눌렸을 때 수행할 동작 추가
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => ProductReview(),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => MissionPage(),
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -293,13 +294,12 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
                     Divider(color: Color(0xffF0EADB)),
                     InkWell(
                       onTap: () {
-                        // 버튼이 눌렸을 때 수행할 동작 추가
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => ProductReview(),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => HistoryPage(),
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(

@@ -2,37 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:greentouch/layout/appbar_back.dart';
-import 'package:greentouch/list/information_detail.dart';
+import 'package:greentouch/service/review_service.dart';
+import 'package:provider/provider.dart';
 
-// 데이터 모델 정의
-class Product {
-  final String name;
-  final String imagePath;
-
-  Product(this.name, this.imagePath);
-}
+import '../list/information_detail.dart';
 
 class ProductReview extends StatefulWidget {
   const ProductReview({Key? key}) : super(key: key);
 
   @override
-  State<ProductReview> createState() => _ProductReviewState();
+  _ProductReviewState createState() => _ProductReviewState();
 }
 
 class _ProductReviewState extends State<ProductReview> {
-  // 상품 데이터 생성
-  final List<Product> products = [
-    Product('아레카야자', 'assets/plant/plant1.png'),
-    Product('관음죽', 'assets/plant/plant2.png'),
-    Product('대나무야자', 'assets/plant/plant3.png'),
-    Product('아레카야자1', 'assets/plant/plant4.png'),
-  ];
-
-  // 각 상품의 별점을 저장하는 맵
-  Map<String, double> ratings = {};
-
   @override
   Widget build(BuildContext context) {
+    var reviewService = Provider.of<ReviewService>(context);
+    // ReviewService의 purchaseItems 리스트를 먼저 정렬
+    var sortedPurchasedItems = reviewService.purchaseItems;
+    sortedPurchasedItems
+        .sort((a, b) => b.purchaseDate.compareTo(a.purchaseDate));
     return Scaffold(
       appBar: BackAppbar(),
       body: Column(
@@ -73,9 +62,10 @@ class _ProductReviewState extends State<ProductReview> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: products.length,
+              itemCount: sortedPurchasedItems.length,
               itemBuilder: (context, index) {
-                final product = products[index];
+                final productItem = sortedPurchasedItems[index];
+                final rating = reviewService.getRating(productItem.id) ?? 0;
                 return Container(
                   decoration: BoxDecoration(
                     border: Border(
@@ -93,7 +83,7 @@ class _ProductReviewState extends State<ProductReview> {
                         Row(
                           children: [
                             Image.asset(
-                              product.imagePath,
+                              productItem.plant.imagePath,
                               width: 120,
                               height: 120,
                             ),
@@ -103,7 +93,7 @@ class _ProductReviewState extends State<ProductReview> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    product.name,
+                                    productItem.plant.title,
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -111,7 +101,7 @@ class _ProductReviewState extends State<ProductReview> {
                                   ),
                                   SizedBox(height: 25),
                                   RatingBar.builder(
-                                    initialRating: 0,
+                                    initialRating: rating,
                                     minRating: 1,
                                     direction: Axis.horizontal,
                                     allowHalfRating: true,
@@ -122,6 +112,8 @@ class _ProductReviewState extends State<ProductReview> {
                                       color: Colors.amber,
                                     ),
                                     onRatingUpdate: (rating) {
+                                      reviewService.rateProduct(
+                                          productItem.id, rating);
                                       print(rating);
                                     },
                                   ),
@@ -133,7 +125,8 @@ class _ProductReviewState extends State<ProductReview> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (_) => InformationDetail()),
+                                      builder: (context) => InformationDetail(
+                                          plant: productItem.plant)),
                                 );
                               },
                               child: Row(
@@ -163,33 +156,6 @@ class _ProductReviewState extends State<ProductReview> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ProductDetailPage extends StatelessWidget {
-  final Product product;
-
-  const ProductDetailPage({Key? key, required this.product}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(product.name),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '상품 페이지입니다: ${product.name}',
-              style: TextStyle(fontSize: 24),
-            ),
-            // 상품 페이지 컨텐츠 추가
-          ],
-        ),
       ),
     );
   }

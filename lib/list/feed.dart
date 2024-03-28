@@ -1,14 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'feediconstate.dart';
 
 class Feed extends StatefulWidget {
   const Feed({
-    super.key,
+    Key? key,
     required this.imagePath,
     required this.contentPath,
     required this.hashtagPath,
     required this.datePath,
-  });
+  }) : super(key: key);
+
   final String imagePath;
   final String contentPath;
   final String hashtagPath;
@@ -21,17 +24,56 @@ class Feed extends StatefulWidget {
 class _FeedState extends State<Feed> {
   bool isFavorite = false;
   bool isMarked = false;
+  late FeedIconState feedIconState;
+  int likesCount = 356;
+
+  @override
+  void initState() {
+    SharedPreferences.getInstance().then((prefs) {
+      feedIconState = FeedIconState(prefs);
+
+      bool bookmarkStatus = feedIconState.loadBookmarkStatus(widget.imagePath);
+      setState(() {
+        isMarked = bookmarkStatus;
+      });
+
+      bool favoriteStatus =
+          feedIconState.loadFavoriteStatus('favorite_${widget.imagePath}');
+      setState(() {
+        isFavorite = favoriteStatus;
+      });
+
+      int savedLikesCount =
+          feedIconState.loadLikesCount('likes_${widget.imagePath}');
+      setState(() {
+        likesCount = savedLikesCount;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(
-          widget.imagePath,
-          height: 400,
-          width: double.infinity,
-          fit: BoxFit.cover,
+        GestureDetector(
+          onDoubleTap: () {
+            setState(() {
+              isFavorite = !isFavorite;
+              // likesCount += 1; // 단순히 횟수 증가하는 로직
+              likesCount += isFavorite ? 1 : -1; // 좋아요 누를때마다 횟수 조정
+            });
+            feedIconState.saveFavoriteStatus(
+                'favorite_${widget.imagePath}', isFavorite);
+            feedIconState.saveLikesCount(
+                'likes_${widget.imagePath}', likesCount);
+          },
+          child: Image.asset(
+            widget.imagePath,
+            height: 400,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
         ),
         Row(
           children: [
@@ -39,22 +81,34 @@ class _FeedState extends State<Feed> {
               onPressed: () {
                 setState(() {
                   isFavorite = !isFavorite;
+                  // likesCount += 1; // 단순히 횟수 증가하는 로직
+                  likesCount += isFavorite ? 1 : -1; // 좋아요 누를때마다 횟수 조정
                 });
+                feedIconState.saveFavoriteStatus(
+                    'favorite_${widget.imagePath}', isFavorite);
+                feedIconState.saveLikesCount(
+                    'likes_${widget.imagePath}', likesCount);
               },
-              icon: Icon(CupertinoIcons.heart),
-              color: isFavorite ? Colors.red : Colors.black,
+              icon: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: isFavorite ? Colors.red : Colors.black,
+              ),
             ),
+            Text('${likesCount} likes'),
             Spacer(),
             IconButton(
-                onPressed: () {
-                  setState(() {
-                    isMarked = !isMarked;
-                  });
-                },
-                icon: Icon(
-                  CupertinoIcons.bookmark,
-                  color: isMarked ? Colors.grey : Colors.black,
-                ))
+              onPressed: () {
+                setState(() {
+                  isMarked = !isMarked;
+                });
+                feedIconState.saveBookmarkStatus(
+                    widget.imagePath, isMarked); // 북마크 상태 저장
+              },
+              icon: Icon(
+                isMarked ? Icons.bookmark : Icons.bookmark_border,
+                color: isMarked ? Colors.black : Colors.black,
+              ),
+            ),
           ],
         ),
         Padding(
@@ -75,6 +129,9 @@ class _FeedState extends State<Feed> {
             style: TextStyle(color: Colors.grey),
           ),
         ),
+        SizedBox(
+          height: 8,
+        )
       ],
     );
   }

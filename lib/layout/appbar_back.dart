@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:greentouch/mypage/mypage.dart';
 
 import '../main_Page.dart';
 
@@ -17,7 +18,14 @@ class BackAppbar extends StatelessWidget implements PreferredSizeWidget {
           size: 40,
         ),
         onPressed: () {
-          Navigator.of(context).pop();
+          if (Navigator.canPop(context)) {
+            Navigator.of(context).pop();
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => MyPage()),
+            );
+          }
         },
       ),
       actions: [

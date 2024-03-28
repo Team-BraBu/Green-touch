@@ -49,6 +49,7 @@ dependencies:
   path_provider: ^2.1.2
   firebase_storage: ^11.6.11
   firebase_app_check: ^0.2.1+19
+  uuid: ^3.0.6
 
 dev_dependencies:
   flutter_test:

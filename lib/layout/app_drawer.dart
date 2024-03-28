@@ -40,7 +40,7 @@ class AppDrawer extends StatelessWidget {
             accountName: Text(
               user == null ? '비회원☘️' : '${user.email}🍀',
               style: TextStyle(
-                  color: Color(0xFF3A4D39), fontFamily: 'Jua', fontSize: 22),
+                  color: Color(0xFF3A4D39), fontFamily: 'Jua', fontSize: 19),
             ),
             accountEmail: Text('', style: TextStyle(color: Colors.black)),
             onDetailsPressed: () {
@@ -97,7 +97,7 @@ class AppDrawer extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => tabcart()),
+                    MaterialPageRoute(builder: (context) => TabCart()),
                   );
                 },
                 title: Text(
