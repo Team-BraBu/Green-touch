@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:greentouch/main_Page.dart';
 import 'package:greentouch/onboarding.dart';
 import 'package:greentouch/product/plant_service.dart';
 import 'package:greentouch/service/activity_service.dart';
@@ -11,6 +9,8 @@ import 'package:greentouch/service/cart_service.dart';
 import 'package:greentouch/service/review_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'main_Page.dart';
 
 late SharedPreferences prefs;
 
@@ -51,9 +51,10 @@ class MyApp extends StatelessWidget {
     bool isOnboarded = prefs.getBool('isOnboarded') ?? false;
 
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Your App Title',
-      home: isOnboarded ? MainPage() : OnBoarding(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Your App Title',
+        home: isOnboarded ? MainPage() : OnBoarding()
+        // home: OnBoarding(),
+        );
   }
 }
