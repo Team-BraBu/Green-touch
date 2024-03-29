@@ -258,11 +258,69 @@ class _InformationDetailState extends State<InformationDetail> {
               onPressed: () {
                 if (user != null) {
                   final cartItem = widget.plant;
-                  context
-                      .read<CartService>()
-                      .addToCart(cartItem); // 장바구니에 상품 추가
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TabCart()));
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text(
+                            '장바구니',
+                            style: TextStyle(
+                                color: Color(0xff739072),
+                                fontFamily: 'Jua',
+                                fontSize: 15),
+                          ),
+                          content: Text(
+                            '장바구니에 담으시겠습니까?',
+                            style: TextStyle(
+                              fontFamily: 'Jua',
+                              fontSize: 25,
+                              color: Color(0xff739072),
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xffece3ce),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10))),
+                              child: Text(
+                                '둘러볼게요!',
+                                style: TextStyle(
+                                    color: Color(0xff739072),
+                                    fontWeight: FontWeight.normal,
+                                    fontFamily: 'Jua',
+                                    fontSize: 15),
+                              ),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  context
+                                      .read<CartService>()
+                                      .addToCart(cartItem); // 장바구니에 상품 추가
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('장바구니에 추가되었습니다')),
+                                  );
+                                  Navigator.pop(context);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Color(0xff739072),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10))),
+                                child: Text(
+                                  '장바구니 담기',
+                                  style: TextStyle(
+                                      color: Color(0xffece3ce),
+                                      fontWeight: FontWeight.normal,
+                                      fontFamily: 'Jua',
+                                      fontSize: 15),
+                                ))
+                          ],
+                        );
+                      });
                 } else {
                   showDialog(
                       context: context,
