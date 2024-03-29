@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:greentouch/layout/appbar_back.dart';
+import 'package:greentouch/list/carculate_rating_bar.dart';
 import 'package:greentouch/mypage/purchase.dart';
 import 'package:greentouch/mypage/tab_cart.dart';
 import 'package:greentouch/product/plant_service.dart';
@@ -26,6 +27,16 @@ class _InformationDetailState extends State<InformationDetail> {
   @override
   Widget build(BuildContext context) {
     final user = context.read<AuthService>().currentUser();
+
+    // 별점 데이터 준비
+    Map<int, int> ratings = {
+      5: 20, // 예시: 5점 별점을 20회 받음
+      4: 15,
+      3: 5,
+      2: 3,
+      1: 2,
+    };
+
     return Scaffold(
       appBar: BackAppbar(),
       //drawer: AppDrawer(),
@@ -204,12 +215,38 @@ class _InformationDetailState extends State<InformationDetail> {
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(8.5)),
-                SizedBox(
-                  height: 100,
-                )
+
                 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 클릭시 내용 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
               ],
             ),
+            Divider(
+              height: 1,
+            ),
+
+            Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  '사용자 ⭐️ 평가',
+                  style: TextStyle(
+                      fontFamily: 'Jua',
+                      fontSize: 20,
+                      color: Color(0xff739072)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 5, bottom: 20, left: 40, right: 40),
+
+                  //  별점 차트 불러 오기
+                  child: RatingBarChart(
+                    ratings: ratings,
+                  ),
+                ),
+              ],
+            ),
+            // ... 기타 상품 정보 및 설명 위젯들
           ],
         ),
       ),
