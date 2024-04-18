@@ -14,6 +14,7 @@
 ## Green-touch 주요 기능
 
 
+<img width="1126" alt="greentouch-figmaUI" src="https://github.com/Team-BraBu/Green-touch/assets/159866078/8a6ef882-0b9f-4cf2-bedd-ee41e1914783">
  ----------------
  
 ## 프로젝트 개발 환경
@@ -158,13 +159,13 @@
 
 ## 실행화면
 
-
+![드로우바](https://github.com/Team-BraBu/Green-touch/assets/159866078/b94fcd82-a60c-41f9-817d-414f254709b9)
 -----------
 
 
 
 
-## 프로젝트 하면서 부족했던점
+
 
 
     
